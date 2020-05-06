@@ -1,0 +1,102 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+
+    dependencies {
+        classpath "com.github.node-gradle:gradle-node-plugin:2.2.0"
+    }
+}
+
+
+apply plugin: 'idea'
+apply plugin: 'com.github.node-gradle.node'
+
+task createBuildDir {
+    doLast {
+        if (!buildDir.exists()) {
+            buildDir.mkdir()
+        }
+    }
+}
+
+task gulpDefault(type: YarnTask) {
+    args = ["gulp", "default"]
+}
+
+task gulpClean(type: YarnTask, dependsOn: [createBuildDir, yarn]) {
+    args = ["gulp", "clean"]
+}
+
+task gulpSeleniumInstall(type: YarnTask, dependsOn: [yarn]) {
+    args = ["gulp", "selenium-install"]
+}
+
+task gulpDevBuild(type: YarnTask, dependsOn: [gulpClean]) {
+    args = ["gulp", "build-development"]
+}
+
+task gulpBuild(type: YarnTask, dependsOn: [gulpClean]) {
+    args = ["gulp", "build-production"]
+}
+
+task gulpTests(type: YarnTask, dependsOn: [gulpSeleniumInstall, gulpDevBuild]) {
+    args = ["gulp", "e2e", "jest"]
+}
+
+task gulpIntegrationTests(type: YarnTask, dependsOn: [gulpDevBuild]) {
+    args = ["gulp", "e2e"] + (project.hasProperty("suite") ? ["--suite", project.property("suite")] : [])
+}
+
+task gulpUnitTests(type: YarnTask, dependsOn: [gulpDevBuild]) {
+    args = ["gulp", "jest"]
+}
+
+task gulpGhPages(type: YarnTask, dependsOn: [yarn]) {
+    args = ["gulp", "gh-pages"]
+}
+
+task gulpGhPublish(type: YarnTask, dependsOn: [yarn]) {
+    args = ["gulp", "gh-publish"]
+}
+
+task gulpRelease(type: YarnTask, dependsOn: [yarn]) {
+    args = ["gulp", 'complete-release']
+}
+
+task patchRelease(type: YarnTask, dependsOn: [yarn]) {
+    args = ['gulp', 'complete-release']
+}
+
+task minorRelease(type: YarnTask, dependsOn: [yarn]) {
+    args = ['gulp', 'complete-release', '--minor']
+}
+
+task majorRelease(type: YarnTask, dependsOn: [yarn]) {
+    args = ['gulp', 'complete-release', '--major']
+}
+
+build.mustRunAfter clean
+build.dependsOn(gulpUnitTests)
+
+processResources.dependsOn(gulpBuild)
+
+yarn_install {
+    args = ['--mutex', 'network']
+}
+
+node {
+    version = '14.2.0'
+    yarnVersion = '1.22.4'
+    download = true
+}
+
+idea {
+    module {
+        excludeDirs += file('node_modules')
+        excludeDirs += file('build')
+        excludeDirs += file('devDist')
+        excludeDirs += file('dist')
+        excludeDirs += file('ghPages')
+    }
+}

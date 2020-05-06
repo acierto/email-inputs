@@ -1,0 +1,1 @@
+export default {waitForConditionTimeout: 2000};
