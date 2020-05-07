@@ -10,6 +10,8 @@ export const onAddEmailListener = (element, storage, condition = () => true, lis
         });
 
         const {value} = target;
-        storage.addEmail(value);
+        if (value !== '') {
+            storage.addEmail(value);
+        }
     }
 };

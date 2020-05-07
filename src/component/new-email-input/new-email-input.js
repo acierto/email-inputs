@@ -30,7 +30,7 @@ export const NewEmailInput = (htmlNode, storage, options = {}) => {
         }]);
 
         element.addEventListener('keypress', keyPressListener, false);
-        element.addEventListener('blur', blurListener, false);
+        // element.addEventListener('blur', blurListener, false);
     };
 
     return {

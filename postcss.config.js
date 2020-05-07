@@ -1,5 +1,6 @@
 const autoprefixer = require('autoprefixer');
 const doiuse = require('doiuse');
+const cssReset = require('postcss-css-reset');
 
 module.exports = {
     plugins: [
@@ -10,6 +11,7 @@ module.exports = {
             onFeatureUsage: (val) => {
                 throw new Error(`You are using not supported CSS by all specified browsers. ${val.message}`);
             }
-        })
+        }),
+        cssReset({})
     ]
 };

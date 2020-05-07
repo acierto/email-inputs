@@ -1,4 +1,4 @@
-let currentId = 1;
+let currentId = 0;
 
 export const getNextId = () => {
     currentId += 1;

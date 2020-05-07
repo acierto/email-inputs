@@ -1,4 +1,7 @@
-import {EmailInputs} from './component/email-inputs/email-inputs';
+import './index.less';
+import {DemoForm} from './demo/demo-form';
+const rootElement = document.querySelector('#root');
 
-const inputContainerNode = document.querySelector('#email-inputs');
-EmailInputs(inputContainerNode, {});
+const demoForm = DemoForm(rootElement);
+rootElement.innerHTML = demoForm.render();
+demoForm.postRender();

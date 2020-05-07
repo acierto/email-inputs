@@ -65,6 +65,7 @@
     "jest": "26.0.1",
     "jest-cli": "26.0.1",
     "less-loader": "6.0.0",
+    "postcss-css-reset": "^1.0.2",
     "postcss-loader": "3.0.0",
     "protractor-base-dsl": "0.1.33",
     "protractor-jasmine2-html-reporter": "0.0.7",
