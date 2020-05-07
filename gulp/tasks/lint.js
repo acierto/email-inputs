@@ -34,7 +34,7 @@ gulp.task('lint-tests', () => lintStream(gulp.src(`${paths.testsDir}/**/*.js`)))
 gulp.task('lint-all', gulp.series('lint-less', 'lint', 'lint-tests'));
 
 gulp.task('watch-lint', () => {
-    const watch = (glob, taskName) => gulp.watch(glob, gulp.parallel(taskName)).on('error', (err) => console.log(err));
+    const watch = (glob, taskName) => gulp.watch(glob, gulp.parallel(taskName));
 
     watch(`${paths.srcDir}/**/*.less`, 'lint-less');
     watch(`${paths.srcDir}/**/*.js`, 'lint');

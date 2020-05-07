@@ -502,8 +502,6 @@
     "max-statements": 0,
     // enforce a maximum number of statements allowed in function blocks
     "multiline-ternary": 0,
-    // enforce newlines between operands of ternary expressions
-    "new-cap": 2,
     // require a capital letter for constructors
     "new-parens": 2,
     // disallow the omission of parentheses when invoking a constructor with no arguments
