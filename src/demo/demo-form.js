@@ -31,19 +31,21 @@ export const DemoForm = (rootNode) => {
     };
 
     const registerListeners = (emailInputs) => {
-        rootNode.querySelector('.demo-form .add-email').addEventListener('click', addEmailListener(emailInputs));
-        rootNode.querySelector('.demo-form .get-emails-count').addEventListener('click', getEmailsCountListener(emailInputs));
+        rootNode.querySelector('.demo-form .add-email')
+            .addEventListener('click', addEmailListener(emailInputs));
+        rootNode.querySelector('.demo-form .get-emails-count')
+            .addEventListener('click', getEmailsCountListener(emailInputs));
     };
 
     const postRender = () => {
         const inputContainerNode = document.querySelector('#email-inputs');
         const emailInputs = EmailInputs(inputContainerNode, {});
         registerListeners(emailInputs);
-    }
+    };
 
     return {
-        registerListeners,
         postRender,
+        registerListeners,
         render
     };
 };

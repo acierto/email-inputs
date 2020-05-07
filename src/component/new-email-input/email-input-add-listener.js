@@ -1,4 +1,4 @@
-export const onEnterListener = (event) => event.key === 'Enter';  // TODO: check IE 11
+export const onEnterListener = (event) => event.key === 'Enter';
 export const onCommaListener = (event) => event.key === ',';
 
 export const onAddEmailListener = (element, storage, condition = () => true, listeners = []) => (event) => {
