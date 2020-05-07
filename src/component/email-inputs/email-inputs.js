@@ -16,16 +16,30 @@ export const EmailInputs = (htmlNode) => {
         subscribe: (subscriber) => observer.subscribe(subscriber)
     };
 
-    const render = () => {
-        const data = storage.getAll();
-        const inputElements = data.map((input) => EmailInput(input).render()).join('');
-        return `<div class="container">${inputElements}</div>`;
+    const render = (emailInputs = []) => {
+        const inputElements = emailInputs.map((input) => EmailInput(input).render()).join('');
+        const output = `<div class="container">${inputElements}</div>`;
+        // TODO: remove listeners as well
+        if (htmlNode) { // TODO: add check here!
+            htmlNode.innerHTML = output;
+            htmlNode.addEventListener('click', onClickListener(storage));
+        }
     };
 
-    if (htmlNode) { // TODO: add check here!
-        htmlNode.innerHTML = render();
-        htmlNode.addEventListener('click', onClickListener);
-    }
+    observer.subscribe(render);
+    storage.replaceAll([{ // TODO: remove it
+        email: 'john@miro.com',
+        id: '1',
+        valid: true
+    }, {
+        email: 'invalid.email',
+        id: '2',
+        valid: false
+    }, {
+        email: 'mike@miro.com',
+        id: '3',
+        valid: true
+    }]);
 
     return api;
 };

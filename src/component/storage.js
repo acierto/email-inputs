@@ -1,17 +1,5 @@
 export const Storage = (observer) => {
-    let inputs = [{ // TODO: remove it
-        email: 'john@miro.com',
-        id: 1,
-        valid: true
-    }, {
-        email: 'invalid.email',
-        id: 2,
-        valid: false
-    }, {
-        email: 'mike@miro.com',
-        id: 3,
-        valid: true
-    }];
+    let inputs = [];
 
     const updateInputs = (newInputs) => {
         inputs = newInputs;

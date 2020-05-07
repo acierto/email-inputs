@@ -7,6 +7,6 @@ const onElementInputListener = (storage, {id, type}) => {
 };
 
 export const onClickListener = (storage) => (event) => {
-    const {dataset} = event.target.dataset;
+    const {dataset} = event.target;
     onElementInputListener(storage, dataset);
 };
