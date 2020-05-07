@@ -15,6 +15,8 @@ export const NewEmailInput = (htmlNode, storage, options = {}) => {
 
     const createBlurListener = (element) => onAddEmailListener(element, storage);
 
+    const getRef = () => htmlNode.querySelector('.new-email-input');
+
     const render = () => `<input 
                                 class="new-email-input"
                                 data-type="${dataTypes.ADD_EMAIL_INPUT}"
@@ -22,7 +24,7 @@ export const NewEmailInput = (htmlNode, storage, options = {}) => {
                                 placeholder="${placeholder}"/>`;
 
     const registerListeners = () => {
-        const element = htmlNode.querySelector('.new-email-input');
+        const element = getRef();
         const blurListener = createBlurListener(element);
         const keyPressListener = createKeyPressListener(element, [{
             listener: blurListener,
@@ -30,10 +32,13 @@ export const NewEmailInput = (htmlNode, storage, options = {}) => {
         }]);
 
         element.addEventListener('keypress', keyPressListener, false);
-        // element.addEventListener('blur', blurListener, false);
+        element.addEventListener('blur', blurListener, false);
     };
 
+    const focus = () => getRef().focus();
+
     return {
+        focus,
         registerListeners,
         render
     };

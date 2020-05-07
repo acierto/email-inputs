@@ -1,4 +1,4 @@
-import {testDataList1} from '../data-list';
+import {testDataList2} from '../data-list';
 import {Storage} from '../storage';
 import {EmailInput} from '../email-input/email-input';
 import {Observable} from '../observable';
@@ -29,13 +29,14 @@ export const EmailInputs = (rootNode) => {
         if (rootNode) {
             rootNode.innerHTML = output;
             newInputElement.registerListeners();
+            newInputElement.focus();
         } else {
-            console.warn('Root element for email-inputs is not found');
+            console.warn('The root element for "email-inputs" has not found.');
         }
     };
 
     observer.subscribe(render);
-    storage.replaceAll(testDataList1);
+    storage.replaceAll(testDataList2);
 
     rootNode.addEventListener('click', onRemoveEmailListener(storage));
 
