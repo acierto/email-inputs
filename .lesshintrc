@@ -1,7 +1,7 @@
 {
     "fileExtensions": [".less", ".css"],
     "idSelector": {
-        "exclude": ["root"]
+        "exclude": ["root", "email-inputs"]
     },
     "hexLength": "short",
     "maxCharPerLine": 120,
