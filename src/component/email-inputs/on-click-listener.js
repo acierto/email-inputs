@@ -1,12 +1,19 @@
 import {dataTypes} from '../data-types';
 
-const onElementInputListener = (storage, {id, type}) => {
+const onRemoveEmailListener = (storage, {id, type}) => {
     if (dataTypes.REMOVE_EMAIL_INPUT === type) {
         storage.removeInput(id);
     }
 };
 
+const onAddEmailListener = (storage, {type}, email) => {
+    if (dataTypes.ADD_EMAIL_INPUT === type) {
+        storage.addInput(email);
+    }
+};
+
 export const onClickListener = (storage) => (event) => {
-    const {dataset} = event.target;
-    onElementInputListener(storage, dataset);
+    const {dataset, value} = event.target;
+    onRemoveEmailListener(storage, dataset);
+    onAddEmailListener(storage, dataset, value);
 };

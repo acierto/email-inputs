@@ -1,0 +1,17 @@
+{
+    "fileExtensions": [".less", ".css"],
+    "idSelector": {
+        "exclude": ["root"]
+    },
+    "hexLength": "short",
+    "maxCharPerLine": 120,
+    "onlyVariableColors": true,
+    "qualifyingElement": {
+        "allowWithAttribute": true,
+        "allowWithClass": true,
+        "allowWithId": true
+    },
+    "spaceAroundComma": false,
+    "universalSelector": false,
+    "zeroUnit": "no_unit"
+}

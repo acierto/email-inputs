@@ -1,3 +1,5 @@
+import {emailToEmailInput} from './services/email-input-converter';
+
 export const Storage = (observer) => {
     let inputs = [];
 
@@ -7,7 +9,8 @@ export const Storage = (observer) => {
     };
 
     return {
-        addInput: (input) => {
+        addInput: (email) => {
+            const input = emailToEmailInput(email);
             inputs.push(input);
             observer.notify(inputs);
         },

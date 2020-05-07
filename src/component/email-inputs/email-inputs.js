@@ -1,7 +1,9 @@
-import {validateAll} from '../validator';
+import {validateAll} from '../services/validator';
 import {Storage} from '../storage';
 import {EmailInput} from '../email-input/email-input';
 import {Observable} from '../observable';
+import {NewEmailInput} from '../new-email-input/new-email-input';
+import {emailsToEmailInputs} from '../services/email-input-converter';
 import {onClickListener} from './on-click-listener';
 
 import './email-inputs.less';
@@ -18,7 +20,8 @@ export const EmailInputs = (htmlNode) => {
 
     const render = (emailInputs = []) => {
         const inputElements = emailInputs.map((input) => EmailInput(input).render()).join('');
-        const output = `<div class="container">${inputElements}</div>`;
+        const newInputElement = NewEmailInput().render();
+        const output = `<div class="email-inputs">${inputElements}${newInputElement}</div>`;
         // TODO: remove listeners as well
         if (htmlNode) { // TODO: add check here!
             htmlNode.innerHTML = output;
@@ -27,19 +30,8 @@ export const EmailInputs = (htmlNode) => {
     };
 
     observer.subscribe(render);
-    storage.replaceAll([{ // TODO: remove it
-        email: 'john@miro.com',
-        id: '1',
-        valid: true
-    }, {
-        email: 'invalid.email',
-        id: '2',
-        valid: false
-    }, {
-        email: 'mike@miro.com',
-        id: '3',
-        valid: true
-    }]);
+    storage.replaceAll(emailsToEmailInputs(['john@miro.com', 'invalid.email',
+        'mike@miro.com', 'alex@miro.com', 'paul@miro.com', 'martijn@miro.com']));
 
     return api;
 };
