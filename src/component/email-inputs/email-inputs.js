@@ -22,7 +22,11 @@ export const EmailInputs = (rootNode) => {
     const render = (emailInputs = []) => {
         const inputElements = emailInputs.map((input) => EmailInput(input).render()).join('');
         const newInputElement = NewEmailInput(rootNode, storage);
-        const output = `<div class="email-inputs">${inputElements}${newInputElement.render()}</div>`;
+        const output = `<div class="email-inputs">
+                            <div class="email-container">
+                                ${inputElements}${newInputElement.render()}
+                            </div>
+                        </div>`;
 
         if (rootNode) { // TODO: add check here!
             rootNode.innerHTML = output;
