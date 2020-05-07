@@ -1,3 +1,4 @@
+import {testDataList} from '../data-list';
 import {validateAll} from '../services/validator';
 import {Storage} from '../storage';
 import {EmailInput} from '../email-input/email-input';
@@ -30,8 +31,7 @@ export const EmailInputs = (rootNode) => {
     };
 
     observer.subscribe(render);
-    storage.replaceAll(emailsToEmailInputs(['john@miro.com', 'invalid.email',
-        'mike@miro.com', 'alex@miro.com', 'paul@miro.com', 'martijn@miro.com']));
+    storage.replaceAll(emailsToEmailInputs(testDataList));
 
     rootNode.addEventListener('click', onRemoveEmailListener(storage)); // TODO: revise it
 

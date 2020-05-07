@@ -1,13 +1,22 @@
 .email-inputs {
   .email-input {
     align-items: center;
-    display: inline-flex;
+    display: flex;
+    flex-grow: 0;
     height: 24px;
     margin-right: 8px;
     margin-top: 4px;
     min-height: 24px;
+    overflow: hidden;
     padding-left: 10px;
     padding-right: 10px;
+
+    > .email {
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
     > .remove-email {
       position: relative;
