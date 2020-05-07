@@ -27,7 +27,7 @@ export const EmailInputs = (rootNode) => {
                         </div>`;
 
         if (rootNode) {
-            rootNode.innerHTML = output;
+            rootNode.innerHTML = output; // TODO: change implementation
             newInputElement.registerListeners();
             newInputElement.focus();
         } else {
