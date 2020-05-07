@@ -4,11 +4,11 @@ import {EmailInput} from '../email-input/email-input';
 import {Observable} from '../observable';
 import {NewEmailInput} from '../new-email-input/new-email-input';
 import {emailsToEmailInputs} from '../services/email-input-converter';
-import {onClickListener} from './on-click-listener';
+import {onRemoveEmailListener} from '../email-input/email-input-remove-listener';
 
 import './email-inputs.less';
 
-export const EmailInputs = (htmlNode) => {
+export const EmailInputs = (rootNode) => {
     const observer = Observable();
     const storage = Storage(observer);
 
@@ -20,18 +20,20 @@ export const EmailInputs = (htmlNode) => {
 
     const render = (emailInputs = []) => {
         const inputElements = emailInputs.map((input) => EmailInput(input).render()).join('');
-        const newInputElement = NewEmailInput().render();
-        const output = `<div class="email-inputs">${inputElements}${newInputElement}</div>`;
-        // TODO: remove listeners as well
-        if (htmlNode) { // TODO: add check here!
-            htmlNode.innerHTML = output;
-            htmlNode.addEventListener('click', onClickListener(storage));
+        const newInputElement = NewEmailInput(rootNode, storage);
+        const output = `<div class="email-inputs">${inputElements}${newInputElement.render()}</div>`;
+
+        if (rootNode) { // TODO: add check here!
+            rootNode.innerHTML = output;
+            newInputElement.registerListeners();
         }
     };
 
     observer.subscribe(render);
     storage.replaceAll(emailsToEmailInputs(['john@miro.com', 'invalid.email',
         'mike@miro.com', 'alex@miro.com', 'paul@miro.com', 'martijn@miro.com']));
+
+    rootNode.addEventListener('click', onRemoveEmailListener(storage)); // TODO: revise it
 
     return api;
 };

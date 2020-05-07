@@ -12,7 +12,7 @@ export const EmailInput = (input) => ({
                     <a 
                         class="remove-email" 
                         href="#">
-                        <i class="remove-icon" data-id="${id}" data-type="${dataTypes.REMOVE_EMAIL_INPUT}"/>
+                        <i class="remove-icon" data-id="${id}" data-type="${dataTypes.REMOVE_EMAIL_INPUT}"></i>
                     </a>
                 </span>`;
     }

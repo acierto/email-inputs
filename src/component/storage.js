@@ -9,13 +9,13 @@ export const Storage = (observer) => {
     };
 
     return {
-        addInput: (email) => {
+        addEmail: (email) => {
             const input = emailToEmailInput(email);
             inputs.push(input);
             observer.notify(inputs);
         },
         getAll: () => inputs,
-        removeInput: (id) => {
+        removeById: (id) => {
             updateInputs(inputs.filter((input) => input.id !== id));
         },
         removeInputs: () => updateInputs([]),
