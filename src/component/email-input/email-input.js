@@ -1,5 +1,4 @@
 import {dataTypes} from '../data-types';
-
 import './email-input.less';
 
 export const EmailInput = (input) => {

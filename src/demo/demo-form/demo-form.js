@@ -1,11 +1,10 @@
-import {EmailInputs} from '../component/email-inputs/email-inputs';
-import {testDataList1} from './data-list';
-import {getNextEmail} from './email-generator';
+import {EmailInputs} from '../../component/email-inputs/email-inputs';
+import {createElement} from '../service/create-element';
+import {getNextEmail} from '../email-generator';
 import './demo-form.less';
 
-export const DemoForm = (rootNode) => {
+export const DemoForm = (rootElement, options) => {
     const render = () => `
-        <div class="demo-form">
             <div class="demo-form-wrapper">
                <div class="form-content">
                    <div class="form-header">
@@ -18,8 +17,9 @@ export const DemoForm = (rootNode) => {
                     <button class="get-emails-count">Get emails count</button>
                </div>
            </div>
-        </div>
     `;
+
+    const element = () => createElement('div', 'demo-form', render());
 
     const addEmailListener = (emailInputs) => () => {
         const emails = emailInputs.getAllEmails();
@@ -32,22 +32,19 @@ export const DemoForm = (rootNode) => {
     };
 
     const registerListeners = (emailInputs) => {
-        rootNode.querySelector('.demo-form .add-email')
+        rootElement.querySelector('.demo-form .add-email')
             .addEventListener('click', addEmailListener(emailInputs));
-        rootNode.querySelector('.demo-form .get-emails-count')
+        rootElement.querySelector('.demo-form .get-emails-count')
             .addEventListener('click', getEmailsCountListener(emailInputs));
     };
 
     const postRender = () => {
         const inputContainerNode = document.querySelector('#email-inputs');
         const emailInputs = EmailInputs(inputContainerNode, {placeholder: 'add more emails...'});
-        emailInputs.replaceAll(testDataList1);
+        emailInputs.replaceAll(options.initialData);
         registerListeners(emailInputs);
     };
 
-    return {
-        postRender,
-        registerListeners,
-        render
-    };
+    rootElement.appendChild(element());
+    postRender();
 };
