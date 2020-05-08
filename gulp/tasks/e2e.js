@@ -5,7 +5,7 @@ import {runProtractor} from './protractor';
 const seleniumHubPort = 4444;
 const seleniumWinAddr = ''; // use existing selenium grid
 
-const getSeleniumAddress = (platform) => ['windows', 'WIN10'].includes(platform) ? seleniumWinAddr : seleniumLinuxAddr;
+const getSeleniumAddress = (platform) => ['windows', 'WIN10'].indexOf(platform) !== -1 ? seleniumWinAddr : seleniumLinuxAddr;
 
 const runLocalProtractor = (browser) => (cb) => runProtractor(cb, env.set({SELENIUM_TEST_BROWSER: browser}));
 

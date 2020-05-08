@@ -1,12 +1,13 @@
-import {isUndefinedOrEmpty} from '../services/common-service';
+import {isDefined, isNotBlank} from '../services/common-service';
 
 export const createInputListeners = (element, storage) => {
     const toMails = (value) => value.split(',');
 
     const addEmails = (value) => {
         toMails(value).forEach((email) => {
-            if (!isUndefinedOrEmpty(email)) {
-                storage.addEmail(email);
+            const trimmedEmail = email.trim();
+            if (isNotBlank(trimmedEmail)) {
+                storage.addEmail(trimmedEmail);
                 element.value = '';
             }
         });
@@ -28,7 +29,15 @@ export const createInputListeners = (element, storage) => {
     };
 
     const pasteListener = (event) => {
-        const value = (event.originalEvent || event).clipboardData.getData('text/plain');
+        const getValue = () => {
+            const {clipboardData} = event.originalEvent || event;
+            if (isDefined(clipboardData)) {
+                return clipboardData.getData('text/plain');
+            }
+            return window.clipboardData.getData('text');
+        };
+
+        const value = getValue();
         addEmails(value);
         event.preventDefault();
     };

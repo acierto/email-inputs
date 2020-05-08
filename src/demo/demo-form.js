@@ -1,6 +1,7 @@
-import './demo-form.less';
 import {EmailInputs} from '../component/email-inputs/email-inputs';
+import {testDataList1} from './data-list';
 import {getNextEmail} from './email-generator';
+import './demo-form.less';
 
 export const DemoForm = (rootNode) => {
     const render = () => `
@@ -40,6 +41,7 @@ export const DemoForm = (rootNode) => {
     const postRender = () => {
         const inputContainerNode = document.querySelector('#email-inputs');
         const emailInputs = EmailInputs(inputContainerNode, {placeholder: 'add more emails...'});
+        emailInputs.replaceAll(testDataList1);
         registerListeners(emailInputs);
     };
 

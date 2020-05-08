@@ -1,4 +1,3 @@
-import {testDataList1} from '../data-list';
 import {Storage} from '../storage';
 import {EmailInput} from '../email-input/email-input';
 import {Observable} from '../observable';
@@ -18,9 +17,7 @@ export const EmailInputs = (rootElement, options) => {
     };
 
     const render = () => {
-        const newInputElement = NewEmailInput(rootElement, storage, {
-            placeholder: options.placeholder
-        });
+        const newInputElement = NewEmailInput(rootElement, storage, {placeholder: options.placeholder});
         const output = `<div class="email-inputs">
                             <div class="email-container">
                                 ${newInputElement.render()}
@@ -43,13 +40,13 @@ export const EmailInputs = (rootElement, options) => {
         }
 
         for (const id of removed) {
-            ref.querySelector(`.email-input[data-id="${id}"]`).remove();
+            const child = ref.querySelector(`.email-input[data-id="${id}"]`);
+            ref.removeChild(child);
         }
     };
 
     render();
     observer.subscribe(rerender);
-    storage.replaceAll(testDataList1);
 
     rootElement.addEventListener('click', onRemoveEmailListener(storage));
 
