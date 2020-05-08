@@ -1,6 +1,6 @@
 import './new-email-input.less';
 import {dataTypes} from '../data-types';
-import {createBlurListener, createKeyPressListener} from './create-new-email-input-listeners';
+import {createInputListeners} from './create-new-email-input-listeners';
 
 export const NewEmailInput = (htmlNode, storage, options = {}) => {
     const placeholder = options.placeholder || 'add more people...';
@@ -14,11 +14,16 @@ export const NewEmailInput = (htmlNode, storage, options = {}) => {
 
     const registerListeners = () => {
         const element = getRef();
-        const blurListener = createBlurListener(element, storage);
-        const keyPressListener = createKeyPressListener(element, storage);
 
-        element.addEventListener('keypress', keyPressListener);
+        const {
+            blurListener,
+            keyPressListener,
+            pasteListener
+        } = createInputListeners(element, storage);
+
         element.addEventListener('blur', blurListener);
+        element.addEventListener('keypress', keyPressListener);
+        element.addEventListener('paste', pasteListener);
     };
 
     return {
