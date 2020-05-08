@@ -40,6 +40,9 @@ export default {
         ]
     },
     node: {module: 'empty'},
+    optimization: {
+        noEmitOnErrors: true
+    },
     output: {
         filename: '[name]-[hash].js',
         path: paths.devDistDir,
@@ -47,7 +50,6 @@ export default {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.ejs',
             title: 'Email Inputs'

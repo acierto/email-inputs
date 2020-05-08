@@ -23,7 +23,7 @@ task createBuildDir {
     }
 }
 
-task gulpDefault(type: YarnTask) {
+task gulpDefault(type: YarnTask, dependsOn: [yarn]) {
     args = ["gulp", "default"]
 }
 
@@ -37,10 +37,6 @@ task gulpSeleniumInstall(type: YarnTask, dependsOn: [yarn]) {
 
 task gulpDevBuild(type: YarnTask, dependsOn: [gulpClean]) {
     args = ["gulp", "build-development"]
-}
-
-task gulpBuild(type: YarnTask, dependsOn: [gulpClean]) {
-    args = ["gulp", "build-production"]
 }
 
 task gulpTests(type: YarnTask, dependsOn: [gulpSeleniumInstall, gulpDevBuild]) {
@@ -57,22 +53,6 @@ task gulpUnitTests(type: YarnTask, dependsOn: [gulpDevBuild]) {
 
 task gulpGhPages(type: YarnTask, dependsOn: [yarn]) {
     args = ["gulp", "gh-pages"]
-}
-
-task gulpRelease(type: YarnTask, dependsOn: [yarn]) {
-    args = ["gulp", 'complete-release']
-}
-
-task patchRelease(type: YarnTask, dependsOn: [yarn]) {
-    args = ['gulp', 'complete-release']
-}
-
-task minorRelease(type: YarnTask, dependsOn: [yarn]) {
-    args = ['gulp', 'complete-release', '--minor']
-}
-
-task majorRelease(type: YarnTask, dependsOn: [yarn]) {
-    args = ['gulp', 'complete-release', '--major']
 }
 
 yarn_install {

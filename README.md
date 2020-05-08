@@ -34,16 +34,6 @@ For Linux/MacOS `./gradlew gulpDefault`
 
 For Windows  `gradlew.bat gulpDefault`
 
-# How to release a new version
-
-In case when you would like to release a new version and publish it to NPM repository you can use next commands:
- 
- `./gradlew patchRelease` - To bump up and release next patch version (ex. 1.2.5 --> 1.2.6) 
- 
- `./gradlew minorRelease` - To bump up and release next minor version (ex. 0.5.1 --> 0.6.0)
- 
- `./gradlew majorRelease` - To bump up and release next major version (ex. 1.2.5 --> 2.0.0)
-
 # Playground
 
 You can find a link to a playground [here](https://acierto.github.io/email-inputs/).

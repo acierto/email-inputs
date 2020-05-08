@@ -19,16 +19,7 @@ export default {
         ]
     },
     optimization: {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    chunks: 'all',
-                    name: 'vendor',
-                    test: /[\\/]node_modules[\\/]/
-                },
-                default: false
-            }
-        }
+        noEmitOnErrors: true
     },
     output: {
         filename: '[name].js',
@@ -36,7 +27,6 @@ export default {
         publicPath: ''
     },
     plugins: [
-        new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/index.ejs',

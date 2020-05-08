@@ -8,5 +8,4 @@ import './gulp/tasks/lint';
 import './gulp/tasks/protractor';
 import './gulp/tasks/selenium/selenium';
 import './gulp/tasks/build';
-import './gulp/tasks/release';
 import './gulp/tasks/default';
