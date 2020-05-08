@@ -1,4 +1,4 @@
-import {testDataList2} from '../data-list';
+import {testDataList1} from '../data-list';
 import {Storage} from '../storage';
 import {EmailInput} from '../email-input/email-input';
 import {Observable} from '../observable';
@@ -17,26 +17,37 @@ export const EmailInputs = (rootNode) => {
         subscribe: (subscriber) => observer.subscribe(subscriber)
     };
 
-    const render = (emailInputs = []) => {
-        const inputElements = emailInputs.map((input) => EmailInput(input).render()).join('');
+    const render = () => {
         const newInputElement = NewEmailInput(rootNode, storage);
         const output = `<div class="email-inputs">
                             <div class="email-container">
-                                ${inputElements}${newInputElement.render()}
+                                ${newInputElement.render()}
                             </div>
                         </div>`;
 
         if (rootNode) {
-            rootNode.innerHTML = output; // TODO: change implementation
+            rootNode.innerHTML = output;
             newInputElement.registerListeners();
-            newInputElement.focus();
         } else {
             console.warn('The root element for "email-inputs" has not found.');
         }
     };
 
-    observer.subscribe(render);
-    storage.replaceAll(testDataList2);
+    const rerender = ({added, removed}) => {
+        const ref = rootNode.querySelector('.email-container');
+
+        for (const input of added) {
+            ref.insertBefore(EmailInput(input), ref.childNodes[ref.children.length - 1]);
+        }
+
+        for (const id of removed) {
+            ref.querySelector(`.email-input[data-id="${id}"]`).remove();
+        }
+    };
+
+    render();
+    observer.subscribe(rerender);
+    storage.replaceAll(testDataList1);
 
     rootNode.addEventListener('click', onRemoveEmailListener(storage));
 

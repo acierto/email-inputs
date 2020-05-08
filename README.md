@@ -51,7 +51,7 @@ There are already some data pre-generated for testing some corner cases.
 
 # How to run tests
 
-Here is 2 types of tests - unit tests and integration tests.
+Here are 2 types of tests - unit tests and integration tests.
 To run only unit tests you can use this command:
 `./gradlew gulpUnitTests`
 

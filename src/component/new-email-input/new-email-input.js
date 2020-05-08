@@ -1,19 +1,9 @@
 import './new-email-input.less';
 import {dataTypes} from '../data-types';
-import {onAddEmailListener, onCommaListener, onEnterListener} from './email-input-add-listener';
+import {createBlurListener, createKeyPressListener} from './create-new-email-input-listeners';
 
 export const NewEmailInput = (htmlNode, storage, options = {}) => {
     const placeholder = options.placeholder || 'add more people...';
-
-    const createKeyPressListener = (element, listeners) => {
-        const condition = (event) => [onCommaListener, onEnterListener]
-            .map((listener) => listener(event))
-            .reduce((acc, valid) => acc || valid, false);
-
-        return onAddEmailListener(element, storage, condition, listeners);
-    };
-
-    const createBlurListener = (element) => onAddEmailListener(element, storage);
 
     const getRef = () => htmlNode.querySelector('.new-email-input');
 
@@ -25,20 +15,14 @@ export const NewEmailInput = (htmlNode, storage, options = {}) => {
 
     const registerListeners = () => {
         const element = getRef();
-        const blurListener = createBlurListener(element);
-        const keyPressListener = createKeyPressListener(element, [{
-            listener: blurListener,
-            type: 'blur'
-        }]);
+        const blurListener = createBlurListener(element, storage);
+        const keyPressListener = createKeyPressListener(element, storage);
 
-        element.addEventListener('keypress', keyPressListener, false);
-        element.addEventListener('blur', blurListener, false);
+        element.addEventListener('keypress', keyPressListener);
+        element.addEventListener('blur', blurListener);
     };
 
-    const focus = () => getRef().focus();
-
     return {
-        focus,
         registerListeners,
         render
     };
