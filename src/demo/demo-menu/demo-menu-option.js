@@ -1,5 +1,5 @@
 import './demo-menu-option.less';
-import {createElement} from '../service/create-element';
+import {createButton} from '../service/create-element';
 
 export const DemoMenuOption = (rootElement, options) => {
     const {
@@ -7,7 +7,7 @@ export const DemoMenuOption = (rootElement, options) => {
         text
     } = options;
 
-    const element = createElement('button', 'demo-menu-option', text);
+    const element = createButton('demo-menu-option', text);
     rootElement.appendChild(element);
 
     element.addEventListener('click', (event) => {

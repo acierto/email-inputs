@@ -1,5 +1,5 @@
 import './demo-menu.less';
-import {createElement} from '../service/create-element';
+import {createDiv} from '../service/create-element';
 import {DemoMenuOption} from './demo-menu-option';
 
 const renderMenuContent = (rootElement, renderFn) => {
@@ -7,19 +7,19 @@ const renderMenuContent = (rootElement, renderFn) => {
     if (content) {
         rootElement.removeChild(content);
     }
-    const contentElement = createElement('div', 'demo-menu-content');
+    const contentElement = createDiv('demo-menu-content');
     rootElement.appendChild(contentElement);
     renderFn(contentElement);
 };
 
-const createOption = (rootElement, name, renderFn) => ({
+const createOption = (rootElement, text, renderFn) => ({
     onClick: () => renderMenuContent(rootElement, renderFn),
-    text: name
+    text
 });
 
 export const DemoMenu = (rootElement, options) => {
-    const menuElement = createElement('div', 'demo-menu');
-    const menuHeaderElement = createElement('div', 'demo-menu-header');
+    const menuElement = createDiv('demo-menu');
+    const menuHeaderElement = createDiv('demo-menu-header');
     rootElement.appendChild(menuElement);
     menuElement.appendChild(menuHeaderElement);
 

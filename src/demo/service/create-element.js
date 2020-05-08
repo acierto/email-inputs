@@ -1,9 +1,9 @@
-export const createElement = (tagName, className = '', html = '', attributes = {}) => {
-    const div = document.createElement(tagName);
-    div.className = className;
-    div.innerHTML = html;
-    Object.keys(attributes).forEach((key) => {
-        div.setAttribute(key, attributes[key]);
-    });
-    return div;
+const createElement = (tagName, className = '', html = '') => {
+    const element = document.createElement(tagName);
+    element.className = className;
+    element.innerHTML = html;
+    return element;
 };
+
+export const createButton = (className, html) => createElement('button', className, html);
+export const createDiv = (className, html) => createElement('div', className, html);

@@ -1,5 +1,5 @@
 import {EmailInputs} from '../../component/email-inputs/email-inputs';
-import {createElement} from '../service/create-element';
+import {createDiv} from '../service/create-element';
 import {getNextEmail} from '../email-generator';
 import './demo-form.less';
 
@@ -19,7 +19,7 @@ export const DemoForm = (rootElement, options) => {
            </div>
     `;
 
-    const element = () => createElement('div', 'demo-form', render());
+    const element = () => createDiv('demo-form', render());
 
     const addEmailListener = (emailInputs) => () => {
         const emails = emailInputs.getAllEmails();
