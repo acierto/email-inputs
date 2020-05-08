@@ -39,7 +39,7 @@ export const DemoForm = (rootNode) => {
 
     const postRender = () => {
         const inputContainerNode = document.querySelector('#email-inputs');
-        const emailInputs = EmailInputs(inputContainerNode, {});
+        const emailInputs = EmailInputs(inputContainerNode, {placeholder: 'add more emails...'});
         registerListeners(emailInputs);
     };
 

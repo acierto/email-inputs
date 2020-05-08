@@ -7,7 +7,7 @@ import {onRemoveEmailListener} from '../email-input/email-input-remove-listener'
 
 import './email-inputs.less';
 
-export const EmailInputs = (rootElement) => {
+export const EmailInputs = (rootElement, options) => {
     const observer = Observable();
     const storage = Storage(observer);
 
@@ -18,7 +18,9 @@ export const EmailInputs = (rootElement) => {
     };
 
     const render = () => {
-        const newInputElement = NewEmailInput(rootElement, storage);
+        const newInputElement = NewEmailInput(rootElement, storage, {
+            placeholder: options.placeholder
+        });
         const output = `<div class="email-inputs">
                             <div class="email-container">
                                 ${newInputElement.render()}

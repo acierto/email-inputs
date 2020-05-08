@@ -1,9 +1,10 @@
 import './new-email-input.less';
+import {propOr} from '../services/common-service';
 import {dataTypes} from '../data-types';
 import {createInputListeners} from './create-new-email-input-listeners';
 
 export const NewEmailInput = (htmlNode, storage, options = {}) => {
-    const placeholder = options.placeholder || 'add more people...';
+    const placeholder = propOr('placeholder', 'add more people...', options);
 
     const getRef = () => htmlNode.querySelector('.new-email-input');
 
