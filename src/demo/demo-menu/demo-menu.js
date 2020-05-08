@@ -25,9 +25,10 @@ export const DemoMenu = (rootElement, options) => {
 
     Object.keys(options).forEach((optionKey) => {
         const option = options[optionKey];
-        DemoMenuOption(menuHeaderElement, createOption(menuElement, optionKey, option.render, option.default));
+        const demoMenuOption = DemoMenuOption(menuHeaderElement, createOption(menuElement, optionKey, option.render));
         if (option.default) {
             renderMenuContent(menuElement, option.render);
+            demoMenuOption.classList.add('active');
         }
     });
 };

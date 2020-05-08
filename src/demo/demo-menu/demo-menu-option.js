@@ -7,10 +7,16 @@ export const DemoMenuOption = (rootElement, options) => {
         text
     } = options;
 
-    const render = () => `${text}`;
-
-    const element = createElement('button', 'demo-menu-option', render());
-    element.addEventListener('click', onClick);
-
+    const element = createElement('button', 'demo-menu-option', text);
     rootElement.appendChild(element);
+
+    element.addEventListener('click', (event) => {
+        for (const child of rootElement.children) {
+            child.classList.remove('active');
+        }
+        element.classList.add('active');
+        onClick(event);
+    });
+
+    return element;
 };
