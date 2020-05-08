@@ -10,7 +10,6 @@ export const NewEmailInput = (htmlNode, storage, options = {}) => {
     const render = () => `<input 
                                 class="new-email-input"
                                 data-type="${dataTypes.ADD_EMAIL_INPUT}"
-                                name="new-email-input" 
                                 placeholder="${placeholder}"/>`;
 
     const registerListeners = () => {

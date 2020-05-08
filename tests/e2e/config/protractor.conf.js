@@ -1,8 +1,8 @@
 var os = require('os');
 
 var AsciiTable = require('ascii-table');
-var DEFAULT_TIMEOUT = 600000;
-var DEFAULT_EXPECTATION_TIMEOUT = 20000;
+var DEFAULT_TIMEOUT = 30000;
+var DEFAULT_EXPECTATION_TIMEOUT = 1000;
 var ScreenShotReporter = require('protractor-screenshot-reporter');
 
 var browserName = process.env.SELENIUM_TEST_BROWSER || 'chrome';
@@ -119,7 +119,6 @@ exports.config = {
             files.forEach(require);
         }
 
-        addFolder('common');
         addFolder('component');
 
         return browser.waitForAngularEnabled(false)

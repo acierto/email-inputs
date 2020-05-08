@@ -38,5 +38,7 @@ gulp.task('watch-lint', () => {
 
     watch(`${paths.srcDir}/**/*.less`, 'lint-less');
     watch(`${paths.srcDir}/**/*.js`, 'lint');
-    watch(`${paths.testsDir}/**/*.js`, 'lint-tests');
+    watch(`${paths.testsDir}/unit/**/*.js`, 'lint-tests');
+    watch(`${paths.testsDir}/e2e/dsl/**/*.js`, 'lint-tests');
+    watch(`${paths.testsDir}/e2e/scenario/**/*.js`, 'lint-tests');
 });
