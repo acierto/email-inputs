@@ -1,4 +1,1 @@
-export const dataTypes = {
-    ADD_EMAIL_INPUT: 'add-email-input',
-    REMOVE_EMAIL_INPUT: 'remove-email-input'
-};
+export const dataTypes = {REMOVE_EMAIL_INPUT: 'remove-email-input'};

@@ -17,11 +17,11 @@ export const Storage = (observer) => {
             inputs.push(input);
             observer.notify(createNotification(prevInputs, inputs));
         },
-        getAll: () => inputs,
+        getAllEmails: () => inputs,
         removeById: (id) => {
             updateInputs(inputs.filter((input) => input.id !== id));
         },
-        replaceAll: (emails) => {
+        replaceAllEmails: (emails) => {
             const newInputs = emails.map(emailToEmailInput);
             updateInputs(newInputs);
         }

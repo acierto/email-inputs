@@ -14,7 +14,7 @@ describe('notification', () => {
                 added: [email2],
                 inputs: [email2],
                 removed: ['1']
-            })
+            });
         });
         it('case 2. should create notification with information of final result, what was added and removed', () => {
             const previousInput = [email1, email2];
@@ -24,7 +24,7 @@ describe('notification', () => {
                 added: [],
                 inputs: [email2],
                 removed: ['1']
-            })
+            });
         });
         it('case 3. should create notification with information of final result, what was added and removed', () => {
             const previousInput = [];
@@ -34,7 +34,7 @@ describe('notification', () => {
                 added: [email1],
                 inputs: [email1],
                 removed: []
-            })
+            });
         });
     });
 });

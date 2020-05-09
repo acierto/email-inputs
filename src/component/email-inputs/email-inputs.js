@@ -11,8 +11,8 @@ export const EmailInputs = (rootElement, options) => {
     const storage = Storage(observer);
 
     const api = {
-        getAllEmails: () => storage.getAll(),
-        replaceAll: (emails) => storage.replaceAll(emails),
+        getAllEmails: () => storage.getAllEmails(),
+        replaceAll: (emails) => storage.replaceAllEmails(emails),
         subscribe: (subscriber) => observer.subscribe(subscriber)
     };
 
