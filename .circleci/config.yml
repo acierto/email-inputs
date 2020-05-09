@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8u252-jdk
+      - image: circleci/openjdk-13-tools-deps-1.10.1.469-buster-node-browsers
     steps:
       - checkout
       - restore_cache:
