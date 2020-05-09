@@ -39,6 +39,10 @@ task gulpDevBuild(type: YarnTask, dependsOn: [gulpClean]) {
     args = ["gulp", "build-development"]
 }
 
+task gulpBuild(type: YarnTask, dependsOn: [gulpClean]) {
+    args = ["gulp", "build-production"]
+}
+
 task gulpTests(type: YarnTask, dependsOn: [gulpSeleniumInstall, gulpDevBuild]) {
     args = ["gulp", "e2e", "jest"]
 }

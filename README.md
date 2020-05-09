@@ -1,5 +1,7 @@
 # email-inputs
-Lightweight email inputs component without dependencies
+Lightweight email inputs component without third party dependencies
+
+[![CircleCI](https://circleci.com/gh/acierto/email-inputs.svg?style=svg)](https://circleci.com/gh/acierto/email-inputs)
 
 # How component works
 
