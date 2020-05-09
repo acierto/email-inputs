@@ -10,7 +10,6 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: npm install
       - run: ./gradlew gulpTests
-
 workflows:
   version: 2
   build-deploy:
