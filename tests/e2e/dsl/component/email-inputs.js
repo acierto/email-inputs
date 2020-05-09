@@ -40,18 +40,18 @@ const addNewEmailOnEnter = (email) => {
     typeNewEmail(email);
     Action.clickEnter(newEmailInputSelector);
     findEmailByName(email);
-}
+};
 
 const addNewEmailOnComma = (email) => {
     typeNewEmail(`${email},`);
     findEmailByName(email);
-}
+};
 
 const addNewEmailOnBlur = (email) => {
     typeNewEmail(email);
     Action.click(emailContainerSelector);
     findEmailByName(email);
-}
+};
 
 const removeNthEmail = (nth) => {
     ElementUtil.elementFinder(emailContainerSelector)
@@ -69,8 +69,8 @@ const EmailInputs = {
     addNewEmailOnComma,
     addNewEmailOnEnter,
     expectAllEmails,
-    expectEmailPresent,
     expectEmailNotPresent,
+    expectEmailPresent,
     isVisible,
     nthEmailIs,
     removeNthEmail

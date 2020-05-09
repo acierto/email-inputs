@@ -1,4 +1,4 @@
-import fs from 'fs'; // eslint-disable-line import/no-nodejs-modules
+import fs from 'fs';
 import gulp from 'gulp';
 import jest from 'gulp-jest';
 import env from 'gulp-env';
@@ -29,7 +29,7 @@ gulp.task('jest', gulp.series('run-jest', () => new Promise((resolve, reject) =>
             }
         };
 
-        R.forEach((propName) => checkThreshold(propName), ['lines', 'statements', 'functions', 'branches']);
+        ['lines', 'statements', 'functions', 'branches'].forEach((propName) => checkThreshold(propName));
         resolve();
     })
 )));

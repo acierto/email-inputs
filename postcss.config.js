@@ -1,5 +1,5 @@
-const autoprefixer = require('autoprefixer');
-const doiuse = require('doiuse');
+import autoprefixer from 'autoprefixer';
+import doiuse from 'doiuse';
 
 module.exports = {
     plugins: [

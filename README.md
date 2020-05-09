@@ -3,7 +3,7 @@ Lightweight email inputs component without dependencies
 
 # How component works
 
-* Email block created by pressing Enter, entering comma, or by losing focus on the
+* Email block creates by pressing Enter, entering comma, or by losing focus on the
   input field. A Block can be deleted.
 * Input width depends on the parent container’s width and height. If parent width changes,
   emails redistributes by rows.

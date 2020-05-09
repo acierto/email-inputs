@@ -6,5 +6,3 @@ export const emailToEmailInput = (email) => ({
     id: getNextId(),
     valid: validate(email)
 });
-
-export const emailsToEmailInputs = (emails) => emails.map(emailToEmailInput);

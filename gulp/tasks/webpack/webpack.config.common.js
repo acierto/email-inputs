@@ -8,6 +8,12 @@ const postCssLoader = {
 
 export default {
     rulesConfig: [
+        {
+            exclude: /node_modules/,
+            loader: 'eslint-loader',
+            options: {cache: true},
+            test: /\.js$/
+        },
         {test: /\.css$/, use: ['style-loader', 'css-loader', postCssLoader]},
         {exclude: /tmp/, loader: 'html-loader', test: /\.html$/},
         {

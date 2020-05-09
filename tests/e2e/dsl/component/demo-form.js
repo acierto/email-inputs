@@ -24,11 +24,11 @@ const expectValidEmails = (count) => {
 const expectAllEmails = (count) => {
     EmailInputs.isVisible();
     EmailInputs.expectAllEmails(count);
-}
+};
 
 const removeLastEmail = () => {
     EmailInputs.removeNthEmail();
-}
+};
 
 const DemoForm = {
     addGeneratedEmail,

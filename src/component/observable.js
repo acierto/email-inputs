@@ -1,15 +1,17 @@
 export const Observable = () => {
     let observers = [];
 
+    const unsubscribe = (listener) => () => {
+        observers = observers.filter((subscriber) => subscriber !== listener);
+    };
+
     return {
         notify: (data) => {
-            observers.forEach((observer) => observer(data));
+            observers.forEach((listener) => listener(data));
         },
-        subscribe: (observer) => {
-            observers.push(observer);
-        },
-        unsubscribe: (observer) => {
-            observers = observers.filter((subscriber) => subscriber !== observer);
+        subscribe: (listener) => {
+            observers.push(listener);
+            return unsubscribe(listener);
         }
     };
 };
