@@ -6,17 +6,15 @@ export const EmailInput = (input) => {
         const {email, id} = input;
 
         return `<span class="email">${email}</span>
-                <a 
-                    class="remove-email" 
-                    href="#">
+                <span class="remove-email">
                     <i class="remove-icon" data-id="${id}" data-type="${dataTypes.REMOVE_EMAIL_INPUT}"></i>
-                </a>`;
+                </span>`;
     };
 
     const element = () => {
         const {id, valid} = input;
         const div = document.createElement('span');
-        div.className = `email-input  ${valid ? 'valid' : 'invalid'}`;
+        div.className = `email-input ${valid ? 'valid' : 'invalid'}`;
         div.innerHTML = innerHtml();
         div.setAttribute('data-id', id);
         return div;
