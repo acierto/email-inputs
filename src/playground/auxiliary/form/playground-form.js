@@ -1,15 +1,16 @@
 import {createDiv} from '../service/create-element';
 import {getNextEmail} from '../email-generator';
 import './playground-form.less';
+import './playground-form-case3.less';
 
 export const PlaygroundForm = (rootElement, options) => {
     const render = () => `
-            <div class="playground-form-wrapper">
+            <div class="playground-form-wrapper ${options.classname}">
                <div class="form-content">
                    <div class="form-header">
                        Share <strong>Board game</strong> with others
                    </div>
-                   <div id="email-inputs"></div>
+                   ${options.emailInputsList.map(({id}) => `<div id="${id}"></div>`).join('')}
                </div>
                <div class="buttons-panel">
                     <button class="add-email">Add email</button> 
@@ -38,10 +39,13 @@ export const PlaygroundForm = (rootElement, options) => {
     };
 
     const postRender = () => {
-        const inputContainerNode = document.querySelector('#email-inputs');
-        const emailInputs = EmailInputs(inputContainerNode, {placeholder: 'add more emails...'});
-        emailInputs.replaceAll(options.initialData);
-        registerListeners(emailInputs);
+        options.emailInputsList.forEach((emailInputsConfig) => {
+            const {id, placeholder} = emailInputsConfig;
+            const inputContainerNode = document.querySelector(`#${id}`);
+            const emailInputs = EmailInputs(inputContainerNode, {placeholder});
+            emailInputs.replaceAll(emailInputsConfig.initialData);
+            registerListeners(emailInputs);
+        });
     };
 
     rootElement.appendChild(element());

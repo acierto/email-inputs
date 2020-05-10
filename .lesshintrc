@@ -1,8 +1,6 @@
 {
     "fileExtensions": [".less", ".css"],
-    "idSelector": {
-        "exclude": ["root", "email-inputs"]
-    },
+    "idSelector": false,
     "hexLength": "short",
     "maxCharPerLine": 120,
     "onlyVariableColors": true,
