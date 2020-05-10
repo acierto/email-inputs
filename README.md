@@ -3,7 +3,7 @@ Lightweight email inputs component without third party dependencies
 
 [![CircleCI](https://circleci.com/gh/acierto/email-inputs.svg?style=svg)](https://circleci.com/gh/acierto/email-inputs)
 
-# How component works
+## How component works
 
 * Email block creates by pressing Enter, entering comma, or by losing focus on the
   input field. A Block can be deleted.
@@ -21,18 +21,22 @@ Lightweight email inputs component without third party dependencies
 * "emails-input" has no external dependencies like React, Lodash or any polyfills.
 * "emails-input" has no memory leaks or doesn't re-render all email blocks every time you add or remove a single email.
 
-# Browsers support
+## How component looks
+
+![Unit test troubleshooting overview](./docs/example-component-view.png) 
+
+## Browsers support
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
 | --------- | --------- | --------- | --------- |
 | IE11, Edge| last version| last version| last version|
 
-# Playground
+## Playground
 
 You can find a link to a playground [here](https://acierto.github.io/email-inputs/).
 There are already some data pre-generated for testing some corner cases.
 
-# API of the component
+## API 
 
 |Name|Description|
 |----|-----------|
@@ -40,7 +44,42 @@ There are already some data pre-generated for testing some corner cases.
 |replaceAll|A method to replace all entered emails with new ones.|
 |subscribe|Ability to subscribe for emails list changes.|
 
-# Requirements to the system
+## Options
+
+|Name|Default|Description|
+|----|----|--------|
+|placeholder|add more people...|The text displayed in input field to give a hint what is the field about.|
+
+## Examples of component usages in the code
+
+### Declaring the component
+
+```html
+<!-- form header -->
+<div id="emails-input"></div>
+<!-- form footer, buttons -->
+<script src="emails-input-0.0.2.js"></script>
+<script>
+var inputContainerNode = document.querySelector('#emails-input');
+var emailsInput = EmailsInput(inputContainerNode, {...options});
+// Handling Add email and Get emails count buttons, etc.
+</script>
+```
+
+First we have to define the element to which we will assign email inputs. In this example it is `<div id="emails-input"></div>`.
+Next we have to add the script to html page. One of the ways to do it is `<script src="emails-input.js"></script>`,
+otherwise if you use Webpack, you can also just import it in your code as `import EmailInputs from 'emails-input'; '`.
+
+```javascript
+var inputContainerNode = document.querySelector('#emails-input');
+var emailsInput = EmailsInput(inputContainerNode, {...options});
+```
+With these lines email inputs initialized and assigned to a defined place by us. As you noticed, second parameter
+allows providing custom options to a component. [List of options](#options)
+
+# For contributors
+
+## Requirements to the system
 There are 2 options, to execute all command with [Gradle](https://gradle.org/) or [Gulp 4](https://gulpjs.com/).
 * For first option you have to install on your computer JDK. Verified on [JDK 1.8](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html).
 * For the second option you have to install locally [Node.js](https://nodejs.org/en/), verified on 14.2.0 and [Yarn](https://yarnpkg.com/)
@@ -49,7 +88,7 @@ verified on version 1.22.4
 First version of running commands is less intrusive for the system as it won't require changing locally installed versions 
 of Node.js, Gulp and Yarn. Even install them if something hasn't been installed yet.
 
-# How to run the project
+## How to run the project
 You can run the application with the next command:
 
 For Linux/MacOS `./gradlew gulpDefault` or `gulp`
@@ -58,11 +97,11 @@ For Windows  `gradlew.bat gulpDefault`
 
 The project will be accessible via [http://localhost:3000/](http://localhost:3000/).
 
-# How to run tests
+## How to run tests
 
 Here are 2 types of tests - unit tests and integration tests.
 
-## Unit tests
+### Unit tests
 To run only unit tests you can use this command:
 `./gradlew gulpUnitTests` or `gulp jest`.
 
@@ -82,7 +121,7 @@ As you can see from above screenshots. With yellow cells report shows on overvie
 reached. When you drill down to the issue, you can see exact line with issue. In this case it's like 9, as one of 
 the cases has not covered. 
 
-## Integration tests
+### Integration tests
 
 To run only integration tests you can use this command:
 `./gradlew gulpIntegrationTests` or `gulp clean && gulp build-development && gulp e2e`.
@@ -98,7 +137,7 @@ syntax to execute commands to Selenium.
 
 In case of some failures, you can find screenshots in `<project-dir>/build/e2e`.
 
-## All tests
+### All tests
 
 To run all tests you can use this command:
 `./gradlew gulpTests` or `gulp clean && gulp build-development && gulp selenium-install && gulp e2e && gulp jest`.
@@ -107,9 +146,7 @@ Every commit triggers the build on [CircleCI](https://circleci.com/) and runs th
 can find in `<project-dir>/.circleci/config.yml`. The status badge is added to README.md and located on the top of the 
 file to track that new commits don't bring regressions. 
 
-# How to update GitHub Pages
+## How to update GitHub Pages
 
 To update GitHub Pages you have to run this command:
-`./gradlew gulpGhPages` or `gulp gh-pages`.
-
-# Examples of component usages in the code 
+`./gradlew gulpGhPages` or `gulp gh-pages`. 

@@ -1,7 +1,6 @@
 import webpack from 'webpack';
 import paths from '../../utils/paths';
 import common from './webpack.config.common';
-import {version} from '../../../package.json';
 
 const mode = 'production';
 
@@ -30,7 +29,7 @@ export default {
     },
     optimization: {minimize: true},
     output: {
-        filename: `email-inputs-${version}.js`,
+        filename: `email-inputs.js`,
         globalObject: 'window',
         libraryTarget: 'umd',
         path: paths.distDir,
