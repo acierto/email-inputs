@@ -1,7 +1,11 @@
 import PlaygroundFormDsl from '../../dsl/component/playground-form-dsl';
 import EmailInputsDsl from '../../dsl/component/email-inputs-dsl';
+import Navigation from '../../dsl/common/navigation';
 
 describe('Email inputs', () => {
+    beforeAll(() => {
+        Navigation.openCase(2);
+    })
     it('should display valid and invalid emails', () => {
         PlaygroundFormDsl.expectValidEmails(5);
         PlaygroundFormDsl.expectAllEmails(6);
