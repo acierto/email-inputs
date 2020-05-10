@@ -21,7 +21,7 @@ export const Storage = (observer) => {
         removeById: (id) => {
             updateInputs(inputs.filter((input) => input.id !== id));
         },
-        replaceAllEmails: (emails) => {
+        replaceAllEmails: (emails = []) => {
             const newInputs = emails.map(emailToEmailInput);
             updateInputs(newInputs);
         }

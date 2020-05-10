@@ -1,14 +1,9 @@
+import {validEmail} from '../helpers/objects-creator';
 import {Storage} from '~/src/component/storage';
 import {Observable} from '~/src/component/observable';
 import {getNextId} from '~/src/component/services/id-generator';
 
 jest.mock('../../../src/component/services/id-generator');
-
-const validEmail = (id, name) => ({
-    email: `${name}@miro.com`,
-    id: id.toString(),
-    valid: true
-});
 
 describe('Storage', () => {
     let storage;
@@ -37,17 +32,24 @@ describe('Storage', () => {
         storage.removeById('1');
         storage.removeById('2');
         storage.removeById('3');
+        storage.removeById('25');
 
         expect(storage.getAllEmails()).toEqual([
             validEmail(4, 'jeroen')
         ]);
     });
 
-    it('should be possible to replace all emails', () => {
+    it('should be possible to replace all emails. casee 1', () => {
         getNextId.mockImplementation(() => '5');
         storage.replaceAllEmails(['maria@miro.com']);
         expect(storage.getAllEmails()).toEqual([
             validEmail(5, 'maria')
         ]);
+    });
+
+    it('should be possible to replace all emails. case 2', () => {
+        getNextId.mockImplementation(() => '5');
+        storage.replaceAllEmails();
+        expect(storage.getAllEmails()).toEqual([]);
     });
 });

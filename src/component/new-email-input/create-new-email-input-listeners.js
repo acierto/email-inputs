@@ -1,7 +1,7 @@
 import {isDefined, isNotBlank} from '../services/common-service';
 
 export const createInputListeners = (element, storage) => {
-    const toMails = (value) => value.split(',');
+    const toMails = (value) => isDefined(value) ? value.split(',') : [];
 
     const addEmails = (value) => {
         toMails(value).forEach((email) => {

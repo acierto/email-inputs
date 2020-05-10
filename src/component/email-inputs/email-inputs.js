@@ -6,7 +6,7 @@ import {onRemoveEmailListener} from '../email-input/email-input-remove-listener'
 
 import './email-inputs.less';
 
-export const EmailInputs = (rootElement, options) => {
+export const EmailInputs = (rootComponent, options) => {
     const observer = Observable();
     const storage = Storage(observer);
 
@@ -17,15 +17,15 @@ export const EmailInputs = (rootElement, options) => {
     };
 
     const render = () => {
-        const newInputElement = NewEmailInput(rootElement, storage, {placeholder: options.placeholder});
+        const newInputElement = NewEmailInput(rootComponent, storage, {placeholder: options.placeholder});
         const output = `<div class="email-inputs">
                             <div class="email-container">
                                 ${newInputElement.render()}
                             </div>
                         </div>`;
 
-        if (rootElement) {
-            rootElement.innerHTML = output;
+        if (rootComponent) {
+            rootComponent.innerHTML = output;
             newInputElement.registerListeners();
         } else {
             console.warn('The root element for "email-inputs" has not found.');
@@ -33,7 +33,7 @@ export const EmailInputs = (rootElement, options) => {
     };
 
     const rerender = ({added, removed}) => {
-        const ref = rootElement.querySelector('.email-container');
+        const ref = rootComponent.querySelector('.email-container');
 
         for (const input of added) {
             ref.insertBefore(EmailInput(input), ref.childNodes[ref.children.length - 1]);
@@ -46,9 +46,11 @@ export const EmailInputs = (rootElement, options) => {
     };
 
     render();
-    observer.subscribe(rerender);
 
-    rootElement.addEventListener('click', onRemoveEmailListener(storage));
+    if (rootComponent) {
+        observer.subscribe(rerender);
+        rootComponent.addEventListener('click', onRemoveEmailListener(storage));
+    }
 
     return api;
 };

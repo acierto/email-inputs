@@ -1,7 +1,7 @@
 import {createDiv} from '../service/create-element';
 import {getNextEmail} from '../email-generator';
 import './playground-form.less';
-import './playground-form-case3.less';
+import './playground-form-case4.less';
 
 export const PlaygroundForm = (rootElement, options) => {
     const render = () => `

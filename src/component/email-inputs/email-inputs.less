@@ -1,4 +1,4 @@
-@import '../email-inputs-fonts';
+@import './email-inputs-fonts';
 
 .email-inputs {
   background: #ffffff;
@@ -11,15 +11,15 @@
   overflow: hidden;
   padding: 4px 7px;
 
-  .email-container {
+  > * {
+    font-family: 'OpenSans', serif;
+  }
+
+  > .email-container {
     align-content: flex-start;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     overflow-y: auto;
-  }
-
-  * {
-    font-family: 'OpenSans', serif;
   }
 }

@@ -52,6 +52,7 @@ describe('common-service', () => {
         it('should return property of the object or default value when property is not found', () => {
             expect(propOr('name', 'John', {name: 'Mattheu'})).toEqual('Mattheu');
             expect(propOr('name', 'John', {firstName: 'Mattheu'})).toEqual('John');
+            expect(propOr('name', 'John', {name: null})).toEqual('John');
         });
     });
 });
