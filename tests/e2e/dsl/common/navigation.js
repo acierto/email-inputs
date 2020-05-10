@@ -7,8 +7,8 @@ const menuHeaderSelector = '.playground-menu-header';
 const buttonSelector = (buttonName) => XPath.withButtonContains(`${menuHeaderSelector}`, buttonName);
 
 class Navigation {
-    static openCase(n) {
-        Action.jsClick(buttonSelector(`Case ${n}`))
+    static openCase(num) {
+        Action.jsClick(buttonSelector(`Case ${num}`));
     }
 }
 

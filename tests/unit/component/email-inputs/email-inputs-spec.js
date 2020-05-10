@@ -46,6 +46,5 @@ describe('Email inputs', () => {
         console.warn = jest.fn();
         EmailInputs(undefined, {placeholder: 'one more?'});
         expect(console.warn).toHaveBeenCalledWith('The root element for "email-inputs" has not found.');
-
     });
 });

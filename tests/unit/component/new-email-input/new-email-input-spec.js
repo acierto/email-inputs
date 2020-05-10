@@ -5,13 +5,13 @@ describe('new-email-input', () => {
         const addEmailMock = jest.fn();
         const storageMock = {addEmail: addEmailMock};
         expect(NewEmailInput(document.body, storageMock).render())
-            .toContain("placeholder=\"add more people...\"");
+            .toContain('placeholder="add more people..."');
     });
 
     it('should render with custom placeholder text', () => {
         const addEmailMock = jest.fn();
         const storageMock = {addEmail: addEmailMock};
         expect(NewEmailInput(document.body, storageMock, {placeholder: 'add more emails...'}).render())
-            .toContain("placeholder=\"add more emails...\"");
+            .toContain('placeholder="add more emails..."');
     });
 });

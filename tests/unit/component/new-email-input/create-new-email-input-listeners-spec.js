@@ -125,7 +125,7 @@ describe('create-new-email-input-listeners', () => {
             const {pasteListener} = createInputListeners(elementMock, storageMock);
             const preventDefault = jest.fn();
             const eventMock = {
-                originalEvent: {clipboardData: {getData: (type) => undefined}},
+                originalEvent: {clipboardData: {getData: () => undefined}},
                 preventDefault
             };
             pasteListener(eventMock);
