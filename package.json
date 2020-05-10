@@ -2,7 +2,7 @@
   "author": "Bogdan Nechyporenko",
   "description": "Lightweight email inputs component without dependencies",
   "name": "email-inputs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "git@github.com:acierto/email-inputs.git"

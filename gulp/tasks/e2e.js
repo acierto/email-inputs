@@ -3,7 +3,8 @@ import gulp from 'gulp';
 import {runProtractor} from './protractor';
 
 const seleniumHubPort = 4444;
-const seleniumWinAddr = ''; // use existing selenium grid
+const seleniumLinuxAddr = ''; // use existing selenium grid for Linux slaves
+const seleniumWinAddr = ''; // use existing selenium grid for Windows slaves
 
 const getSeleniumAddress = (platform) => ['windows', 'WIN10'].indexOf(platform) !== -1 ? seleniumWinAddr : seleniumLinuxAddr;
 

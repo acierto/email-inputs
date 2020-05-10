@@ -12,6 +12,11 @@ const newEmailInputSelector = `${emailContainerSelector} .new-email-input`;
 const nthEmailSelector = (nth) => `${emailSelector}:nth-child(${nth})`;
 const nthEmailRemoveIconSelector = (nth) => `${nthEmailSelector(nth)} .remove-icon`;
 
+const typeNewEmail = (email) => Action.typeText(newEmailInputSelector, email);
+
+const countAllEmails = () => ElementUtil.elementFinder(emailContainerSelector)
+    .all(By.css('.email-input'))
+    .count();
 const expectAllEmails = (count) => Expectation.count(emailSelector, count);
 
 const findEmailByName = (email) =>
@@ -24,39 +29,26 @@ const findEmailByName = (email) =>
         )
         .first();
 
-const expectEmailNotPresent = (email) => Expectation.notPresent(findEmailByName(email));
-
-const expectEmailPresent = (email) => Expectation.present(findEmailByName(email));
-
-const nthEmailIs = (nth, text) => Expectation.textEquals(nthEmailSelector(nth), text);
-
-const isVisible = () => Expectation.displayed(componentSelector);
-
-const typeNewEmail = (email) => Action.typeText(newEmailInputSelector, email);
+const addNewEmail = (email, specificAction = () => true) => {
+    countAllEmails()
+        .then((count) => {
+            typeNewEmail(email);
+            specificAction();
+            findEmailByName(email);
+            expectAllEmails(count + 1);
+        });
+};
+const addNewEmailOnBlur = (email) => addNewEmail(email, () => Action.click(emailContainerSelector));
+const addNewEmailOnComma = (email) => addNewEmail(`${email},`);
+const addNewEmailOnEnter = (email) => addNewEmail(email, () => Action.clickEnter(newEmailInputSelector));
 
 const clickToRemoveNthEmail = (nth) => Action.jsClick(nthEmailRemoveIconSelector(nth));
-
-const addNewEmailOnEnter = (email) => {
-    typeNewEmail(email);
-    Action.clickEnter(newEmailInputSelector);
-    findEmailByName(email);
-};
-
-const addNewEmailOnComma = (email) => {
-    typeNewEmail(`${email},`);
-    findEmailByName(email);
-};
-
-const addNewEmailOnBlur = (email) => {
-    typeNewEmail(email);
-    Action.click(emailContainerSelector);
-    findEmailByName(email);
-};
-
+const expectEmailNotPresent = (email) => Expectation.notPresent(findEmailByName(email));
+const expectEmailPresent = (email) => Expectation.present(findEmailByName(email));
+const nthEmailIs = (nth, text) => Expectation.textEquals(nthEmailSelector(nth), text);
+const isVisible = () => Expectation.displayed(componentSelector);
 const removeNthEmail = (nth) => {
-    ElementUtil.elementFinder(emailContainerSelector)
-        .all(By.css('.email-input'))
-        .count()
+    countAllEmails()
         .then((count) => {
             const nthEmail = isDefined(nth) ? nth : count;
             clickToRemoveNthEmail(nthEmail);
@@ -64,7 +56,7 @@ const removeNthEmail = (nth) => {
         });
 };
 
-const EmailInputs = {
+const EmailInputsDsl = {
     addNewEmailOnBlur,
     addNewEmailOnComma,
     addNewEmailOnEnter,
@@ -75,4 +67,4 @@ const EmailInputs = {
     nthEmailIs,
     removeNthEmail
 };
-export default EmailInputs;
+export default EmailInputsDsl;

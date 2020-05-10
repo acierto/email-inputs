@@ -1,11 +1,10 @@
-import {EmailInputs} from '../../component/email-inputs/email-inputs';
 import {createDiv} from '../service/create-element';
 import {getNextEmail} from '../email-generator';
-import './demo-form.less';
+import './playground-form.less';
 
-export const DemoForm = (rootElement, options) => {
+export const PlaygroundForm = (rootElement, options) => {
     const render = () => `
-            <div class="demo-form-wrapper">
+            <div class="playground-form-wrapper">
                <div class="form-content">
                    <div class="form-header">
                        Share <strong>Board game</strong> with others
@@ -19,7 +18,7 @@ export const DemoForm = (rootElement, options) => {
            </div>
     `;
 
-    const element = () => createDiv('demo-form', render());
+    const element = () => createDiv('playground-form', render());
 
     const addEmailListener = (emailInputs) => () => {
         const emails = emailInputs.getAllEmails();
@@ -32,9 +31,9 @@ export const DemoForm = (rootElement, options) => {
     };
 
     const registerListeners = (emailInputs) => {
-        rootElement.querySelector('.demo-form .add-email')
+        rootElement.querySelector('.playground-form .add-email')
             .addEventListener('click', addEmailListener(emailInputs));
-        rootElement.querySelector('.demo-form .get-emails-count')
+        rootElement.querySelector('.playground-form .get-emails-count')
             .addEventListener('click', getEmailsCountListener(emailInputs));
     };
 

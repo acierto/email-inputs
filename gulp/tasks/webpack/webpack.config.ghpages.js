@@ -1,11 +1,10 @@
-import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import paths from '../../utils/paths';
 import common from './webpack.config.common';
 
 export default {
     entry: {
-        main: ['./src/index']
+        main: ['./src/playground/demo/playground-demo']
     },
     mode: 'development',
     module: {
@@ -29,8 +28,8 @@ export default {
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './src/index.ejs',
-            title: 'Email Inputs'
+            template: './src/playground/demo/playground-demo.ejs',
+            title: 'Email Inputs Playground Demo'
         })
     ]
 };

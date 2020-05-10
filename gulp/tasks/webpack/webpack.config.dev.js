@@ -17,7 +17,7 @@ export default {
         main: [
             `webpack-dev-server/client?http://${hostname}:${serverPort}`,
             'webpack/hot/only-dev-server',
-            './src/index',
+            './src/playground/development/playground-development',
             'bean'
         ]
     },
@@ -51,8 +51,8 @@ export default {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/index.ejs',
-            title: 'Email Inputs'
+            template: './src/playground/development/playground-development.ejs',
+            title: 'Email Inputs Playground Development'
         })
     ]
 };

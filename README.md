@@ -21,6 +21,11 @@ Lightweight email inputs component without third party dependencies
 * "emails-input" has no external dependencies like React, Lodash or any polyfills.
 * "emails-input" has no memory leaks or doesn't re-render all email blocks every time you add or remove a single email.
 
+# Playground
+
+You can find a link to a playground [here](https://acierto.github.io/email-inputs/).
+There are already some data pre-generated for testing some corner cases.
+
 # API of the component
 
 |Name|Description|
@@ -29,31 +34,39 @@ Lightweight email inputs component without third party dependencies
 |replaceAll|A method to replace all entered emails with new ones.|
 |subscribe|Ability to subscribe for emails list changes.|
 
-# How to build the project
+# Requirements to the system
+There are 2 options, to execute all command with [Gradle](https://gradle.org/) or [Gulp 4](https://gulpjs.com/).
+* For first option you have to install on your computer JDK. Verified on [JDK 1.8](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html).
+* For the second option you have to install locally [Node.js](https://nodejs.org/en/), verified on 14.2.0 and [Yarn](https://yarnpkg.com/)
+verified on version 1.22.4
+
+First version of running commands is less intrusive for the system as it won't require changing locally installed versions 
+of Node.js, Gulp and Yarn. Even install them if something hasn't been installed yet.
+
+# How to run the project
 You can run the application with the next command:
 
-For Linux/MacOS `./gradlew gulpDefault`
+For Linux/MacOS `./gradlew gulpDefault` or `gulp`
 
 For Windows  `gradlew.bat gulpDefault`
 
-# Playground
-
-You can find a link to a playground [here](https://acierto.github.io/email-inputs/).
-There are already some data pre-generated for testing some corner cases.
+The project will be accessible via [http://localhost:3000/](http://localhost:3000/).
 
 # How to run tests
 
 Here are 2 types of tests - unit tests and integration tests.
 To run only unit tests you can use this command:
-`./gradlew gulpUnitTests`
+`./gradlew gulpUnitTests` or `gulp jest`.
 
 To run only integration tests you can use this command:
-`./gradlew gulpIntegrationTests`
+`./gradlew gulpIntegrationTests` or `gulp clean && gulp build-development && gulp e2e`.
 
 To run all tests you can use this command:
-`./gradlew gulpTests`
+`./gradlew gulpTests` or `gulp clean && gulp build-development && gulp selenium-install && gulp e2e && gulp jest`.
 
 # How to update GitHub Pages
 
 To update GitHub Pages you have to run this command:
-`./gradlew gulpGhPages`
+`./gradlew gulpGhPages` or `gulp gh-pages`.
+
+# Examples of component usages in the code 
