@@ -56,7 +56,7 @@ const removeNthEmail = (nth) => {
         });
 };
 
-const EmailInputsDsl = {
+const EmailsInputDsl = {
     addNewEmailOnBlur,
     addNewEmailOnComma,
     addNewEmailOnEnter,
@@ -67,4 +67,4 @@ const EmailInputsDsl = {
     nthEmailIs,
     removeNthEmail
 };
-export default EmailInputsDsl;
+export default EmailsInputDsl;

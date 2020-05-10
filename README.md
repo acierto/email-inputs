@@ -58,17 +58,17 @@ There are already some data pre-generated for testing some corner cases.
 <!-- form header -->
 <div id="emails-input"></div>
 <!-- form footer, buttons -->
-<script src="emails-input-0.0.2.js"></script>
+<script src="email-inputs.js"></script>
 <script>
 var inputContainerNode = document.querySelector('#emails-input');
-var emailsInput = EmailsInput(inputContainerNode, {...options});
+var emailsInput = EmailInputs(inputContainerNode, {...options});
 // Handling Add email and Get emails count buttons, etc.
 </script>
 ```
 
 First we have to define the element to which we will assign email inputs. In this example it is `<div id="emails-input"></div>`.
 Next we have to add the script to html page. One of the ways to do it is `<script src="emails-input.js"></script>`,
-otherwise if you use Webpack, you can also just import it in your code as `import EmailInputs from 'emails-input'; '`.
+otherwise if you use Webpack, you can also just import it in your code as `import EmailsInput from 'emails-input'; '`.
 
 ```javascript
 var inputContainerNode = document.querySelector('#emails-input');

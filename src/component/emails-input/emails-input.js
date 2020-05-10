@@ -4,9 +4,9 @@ import {Observable} from '../observable';
 import {NewEmailInput} from '../new-email-input/new-email-input';
 import {onRemoveEmailListener} from '../email-input/email-input-remove-listener';
 
-import './email-inputs.less';
+import './emails-input.less';
 
-export const EmailInputs = (rootComponent, options) => {
+export const EmailsInput = (rootComponent, options) => {
     const observer = Observable();
     const storage = Storage(observer);
 

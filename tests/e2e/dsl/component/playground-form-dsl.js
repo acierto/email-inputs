@@ -1,5 +1,5 @@
 import {Action, Alert} from 'protractor-base-dsl';
-import EmailInputsDsl from './email-inputs-dsl';
+import EmailsInputDsl from './emails-input-dsl';
 
 const demoFormSelector = '#root .playground-form';
 const addEmailButtonSelector = `${demoFormSelector} .add-email`;
@@ -10,24 +10,24 @@ const clickGetEmailsCountButton = () => Action.jsClick(getEmailsCountButtonSelec
 
 const addGeneratedEmail = (expectedNewCount, expectedNewEmailName) => {
     clickAddEmailButton();
-    EmailInputsDsl.expectAllEmails(expectedNewCount);
-    EmailInputsDsl.nthEmailIs(expectedNewCount, expectedNewEmailName);
+    EmailsInputDsl.expectAllEmails(expectedNewCount);
+    EmailsInputDsl.nthEmailIs(expectedNewCount, expectedNewEmailName);
 };
 
 const expectValidEmails = (count) => {
-    EmailInputsDsl.isVisible();
+    EmailsInputDsl.isVisible();
     clickGetEmailsCountButton();
     Alert.textEquals(count);
     Alert.accept();
 };
 
 const expectAllEmails = (count) => {
-    EmailInputsDsl.isVisible();
-    EmailInputsDsl.expectAllEmails(count);
+    EmailsInputDsl.isVisible();
+    EmailsInputDsl.expectAllEmails(count);
 };
 
 const removeLastEmail = () => {
-    EmailInputsDsl.removeNthEmail();
+    EmailsInputDsl.removeNthEmail();
 };
 
 const PlaygroundFormDsl = {

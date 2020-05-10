@@ -10,7 +10,7 @@ export const PlaygroundForm = (rootElement, options) => {
                    <div class="form-header">
                        Share <strong>Board game</strong> with others
                    </div>
-                   ${options.emailInputsList.map(({id}) => `<div id="${id}"></div>`).join('')}
+                   ${options.emailsInputList.map(({id}) => `<div id="${id}"></div>`).join('')}
                </div>
                <div class="buttons-panel">
                     <button class="add-email">Add email</button> 
@@ -21,30 +21,30 @@ export const PlaygroundForm = (rootElement, options) => {
 
     const element = () => createDiv('playground-form', render());
 
-    const addEmailListener = (emailInputs) => () => {
-        const emails = emailInputs.getAllEmails();
-        emailInputs.replaceAll([...emails.map((input) => input.email), getNextEmail()]);
+    const addEmailListener = (emailsInput) => () => {
+        const emails = emailsInput.getAllEmails();
+        emailsInput.replaceAll([...emails.map((input) => input.email), getNextEmail()]);
     };
 
-    const getEmailsCountListener = (emailInputs) => () => {
-        const emails = emailInputs.getAllEmails();
+    const getEmailsCountListener = (emailsInput) => () => {
+        const emails = emailsInput.getAllEmails();
         alert(emails.filter((input) => input.valid).length);
     };
 
-    const registerListeners = (emailInputs) => {
+    const registerListeners = (emailsInput) => {
         rootElement.querySelector('.playground-form .add-email')
-            .addEventListener('click', addEmailListener(emailInputs));
+            .addEventListener('click', addEmailListener(emailsInput));
         rootElement.querySelector('.playground-form .get-emails-count')
-            .addEventListener('click', getEmailsCountListener(emailInputs));
+            .addEventListener('click', getEmailsCountListener(emailsInput));
     };
 
     const postRender = () => {
-        options.emailInputsList.forEach((emailInputsConfig) => {
-            const {id, placeholder} = emailInputsConfig;
+        options.emailsInputList.forEach((emailsInputConfig) => {
+            const {id, placeholder} = emailsInputConfig;
             const inputContainerNode = document.querySelector(`#${id}`);
-            const emailInputs = EmailInputs(inputContainerNode, {placeholder});
-            emailInputs.replaceAll(emailInputsConfig.initialData);
-            registerListeners(emailInputs);
+            const emailsInput = EmailsInput(inputContainerNode, {placeholder});
+            emailsInput.replaceAll(emailsInputConfig.initialData);
+            registerListeners(emailsInput);
         });
     };
 

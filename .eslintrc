@@ -75,7 +75,7 @@
     "console": true,
     "describe": true,
     "document": true,
-    "EmailInputs": true,
+    "EmailsInput": true,
     "element": true,
     "expect": true,
     "fetch": true,

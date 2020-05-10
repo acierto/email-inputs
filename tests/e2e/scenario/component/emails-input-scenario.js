@@ -1,5 +1,5 @@
 import PlaygroundFormDsl from '../../dsl/component/playground-form-dsl';
-import EmailInputsDsl from '../../dsl/component/email-inputs-dsl';
+import EmailsInputDsl from '../../dsl/component/emails-input-dsl';
 import Navigation from '../../dsl/common/navigation';
 
 describe('Email inputs', () => {
@@ -16,21 +16,21 @@ describe('Email inputs', () => {
         PlaygroundFormDsl.addGeneratedEmail(7, 'generated1@miro.com');
         PlaygroundFormDsl.expectValidEmails(6);
         PlaygroundFormDsl.removeLastEmail();
-        EmailInputsDsl.expectEmailNotPresent('generated1@miro.com');
+        EmailsInputDsl.expectEmailNotPresent('generated1@miro.com');
     });
 
     it('should be possible to add emails on blur', () => {
-        EmailInputsDsl.addNewEmailOnBlur('addedOnBlur@miro.com');
+        EmailsInputDsl.addNewEmailOnBlur('addedOnBlur@miro.com');
         PlaygroundFormDsl.removeLastEmail();
     });
 
     it('should be possible to add emails on comma', () => {
-        EmailInputsDsl.addNewEmailOnComma('addedOnComma@miro.com');
+        EmailsInputDsl.addNewEmailOnComma('addedOnComma@miro.com');
         PlaygroundFormDsl.removeLastEmail();
     });
 
     it('should be possible to add emails on enter', () => {
-        EmailInputsDsl.addNewEmailOnEnter('addedOnEnter@miro.com');
+        EmailsInputDsl.addNewEmailOnEnter('addedOnEnter@miro.com');
         PlaygroundFormDsl.removeLastEmail();
     });
 });
