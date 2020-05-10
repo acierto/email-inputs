@@ -29,7 +29,7 @@ export default {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/playground/demo/playground-demo.ejs',
-            title: 'Email Inputs Playground Demo'
+            title: 'Emails Input Playground Demo'
         })
     ]
 };

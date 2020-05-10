@@ -1,7 +1,7 @@
 import {validEmail} from '../../helpers/objects-creator';
-import {EmaislInput} from '~/src/component/emails-input/emails-input';
+import {EmailsInput} from '~/src/component/emails-input/emails-input';
 
-describe('Email inputs', () => {
+describe('Emails input', () => {
     it('should properly work all API methods of the component', () => {
         const email1 = validEmail(1, 'marieke');
         const email2 = validEmail(2, 'andreas');
@@ -13,7 +13,7 @@ describe('Email inputs', () => {
         };
 
         const listener = jest.fn();
-        const componentApi = EmaislInput(document.body, {placeholder: 'type here...'});
+        const componentApi = EmailsInput(document.body, {placeholder: 'type here...'});
         expect(componentApi.getAllEmails()).toEqual([]);
         const unsubscribe = componentApi.subscribe(listener);
         componentApi.replaceAll([email1.email, email2.email]);
@@ -30,7 +30,7 @@ describe('Email inputs', () => {
         const email2 = validEmail(2, 'ronald');
         const email3 = validEmail(3, 'roland');
 
-        const componentApi = EmaislInput(document.body, {placeholder: 'one more?'});
+        const componentApi = EmailsInput(document.body, {placeholder: 'one more?'});
         componentApi.replaceAll([email1.email, email2.email, email3.email]);
 
         const component = document.body.querySelector('.email-inputs');
@@ -44,7 +44,7 @@ describe('Email inputs', () => {
 
     it('should warn if no root element provided', () => {
         console.warn = jest.fn();
-        EmaislInput(undefined, {placeholder: 'one more?'});
+        EmailsInput();
         expect(console.warn).toHaveBeenCalledWith('The root element for "email-inputs" has not found.');
     });
 });

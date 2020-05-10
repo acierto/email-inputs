@@ -51,7 +51,7 @@ export default {
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: './src/playground/development/playground-development.ejs',
-            title: 'Email Inputs Playground Development'
+            title: 'Emails Input Playground Development'
         })
     ]
 };

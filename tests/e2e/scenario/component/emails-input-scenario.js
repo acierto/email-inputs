@@ -2,7 +2,7 @@ import PlaygroundFormDsl from '../../dsl/component/playground-form-dsl';
 import EmailsInputDsl from '../../dsl/component/emails-input-dsl';
 import Navigation from '../../dsl/common/navigation';
 
-describe('Email inputs', () => {
+describe('Emails input', () => {
     beforeAll(() => {
         Navigation.openCase(2);
     });

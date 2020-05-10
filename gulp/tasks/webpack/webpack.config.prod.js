@@ -6,7 +6,7 @@ const mode = 'production';
 
 export default {
     entry: {
-        index: ['./src/component/email-inputs/email-inputs.js']
+        index: ['./src/component/emails-input/emails-input.js']
     },
     mode,
     module: {
@@ -29,7 +29,7 @@ export default {
     },
     optimization: {minimize: true},
     output: {
-        filename: `email-inputs.js`,
+        filename: `emails-input.js`,
         globalObject: 'window',
         libraryTarget: 'umd',
         path: paths.distDir,

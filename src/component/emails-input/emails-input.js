@@ -6,7 +6,7 @@ import {onRemoveEmailListener} from '../email-input/email-input-remove-listener'
 
 import './emails-input.less';
 
-export const EmailsInput = (rootComponent, options) => {
+export const EmailsInput = (rootComponent, options = {}) => {
     const observer = Observable();
     const storage = Storage(observer);
 

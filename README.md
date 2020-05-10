@@ -1,5 +1,5 @@
 # email-inputs
-Lightweight email inputs component without third party dependencies
+Lightweight emails input component without third party dependencies
 
 [![CircleCI](https://circleci.com/gh/acierto/email-inputs.svg?style=svg)](https://circleci.com/gh/acierto/email-inputs)
 
@@ -58,24 +58,30 @@ There are already some data pre-generated for testing some corner cases.
 <!-- form header -->
 <div id="emails-input"></div>
 <!-- form footer, buttons -->
-<script src="email-inputs.js"></script>
+<script src="emails-input.js"></script>
 <script>
 var inputContainerNode = document.querySelector('#emails-input');
-var emailsInput = EmailInputs(inputContainerNode, {...options});
+var emailsInput = EmailInputs(inputContainerNode);
 // Handling Add email and Get emails count buttons, etc.
 </script>
 ```
 
-First we have to define the element to which we will assign email inputs. In this example it is `<div id="emails-input"></div>`.
+First we have to define the element to which we will assign emails input. In this example it is `<div id="emails-input"></div>`.
 Next we have to add the script to html page. One of the ways to do it is `<script src="emails-input.js"></script>`,
 otherwise if you use Webpack, you can also just import it in your code as `import EmailsInput from 'emails-input'; '`.
 
 ```javascript
 var inputContainerNode = document.querySelector('#emails-input');
-var emailsInput = EmailsInput(inputContainerNode, {...options});
+var emailsInput = EmailsInput(inputContainerNode);
 ```
-With these lines email inputs initialized and assigned to a defined place by us. As you noticed, second parameter
-allows providing custom options to a component. [List of options](#options)
+With these lines emails input initialized and assigned to a defined place by us.
+ 
+```javascript
+var inputContainerNode = document.querySelector('#emails-input');
+var options = {};
+var emailsInput = EmailsInput(inputContainerNode, options);
+``` 
+It's also possible with a second argument to provide custom options to a component. [List of options](#options)
 
 # For contributors
 
