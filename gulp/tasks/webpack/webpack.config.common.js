@@ -15,7 +15,6 @@ export default {
             test: /\.js$/
         },
         {test: /\.css$/, use: ['style-loader', 'css-loader', postCssLoader]},
-        {exclude: /tmp/, loader: 'html-loader', test: /\.html$/},
         {
             test: /\.less$/,
             use: ['style-loader',
@@ -23,13 +22,6 @@ export default {
                     loader: 'css-loader',
                     options: {importLoaders: 1}
                 }, postCssLoader, 'less-loader?sourceMap']
-        },
-        {
-            test: require.resolve('bean'),
-            use: [{
-                loader: 'expose-loader',
-                options: 'bean'
-            }]
         },
         {loader: 'url-loader', test: /\.(png|svg|jpg|woff|woff2|eot|ttf|otf)/}
     ]

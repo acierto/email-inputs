@@ -17,8 +17,7 @@ export default {
         main: [
             `webpack-dev-server/client?http://${hostname}:${serverPort}`,
             'webpack/hot/only-dev-server',
-            './src/playground/development/playground-development',
-            'bean'
+            './src/playground/development/playground-development'
         ]
     },
     mode: 'development',
