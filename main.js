@@ -295,13 +295,13 @@ eval("var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/run
 /***/ }),
 
 /***/ 0:
-/*!******************************************************!*\
-  !*** multi ./src/playground/demo/playground-demo.js ***!
-  \******************************************************/
+/*!***************************************************!*\
+  !*** multi ./src/playground/demo/playground-demo ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__(/*! ./src/playground/demo/playground-demo.js */\"./src/playground/demo/playground-demo.js\");\n\n\n//# sourceURL=webpack:///multi_./src/playground/demo/playground-demo.js?");
+eval("module.exports = __webpack_require__(/*! ./src/playground/demo/playground-demo */\"./src/playground/demo/playground-demo.js\");\n\n\n//# sourceURL=webpack:///multi_./src/playground/demo/playground-demo?");
 
 /***/ })
 
