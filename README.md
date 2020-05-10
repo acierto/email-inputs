@@ -61,14 +61,51 @@ The project will be accessible via [http://localhost:3000/](http://localhost:300
 # How to run tests
 
 Here are 2 types of tests - unit tests and integration tests.
+
+## Unit tests
 To run only unit tests you can use this command:
 `./gradlew gulpUnitTests` or `gulp jest`.
+
+Results of the tests run and coverage can be found in `<project-dir>/build/reports/coverage/index.html`
+You will see it in nicely displayed table.
+![Unit test results](./docs/unit-test-reports.png)
+
+If in some cases your coverage drops, IDE doesn't always show properly where is the issue, like for example in
+Intellij IDEA. In that case you can use that report for navigation and troubleshooting. 
+
+Example of that:
+
+![Unit test troubleshooting overview](./docs/unit-test-troubleshooting-overview.png) 
+![Unit test troubleshooting in details](./docs/unit-test-troubleshooting-in-details.png) 
+
+As you can see from above screenshots. With yellow cells report shows on overview page where the coverage has not 
+reached. When you drill down to the issue, you can see exact line with issue. In this case it's like 9, as one of 
+the cases has not covered. 
+
+## Integration tests
 
 To run only integration tests you can use this command:
 `./gradlew gulpIntegrationTests` or `gulp clean && gulp build-development && gulp e2e`.
 
+Integration tests implemented with help of [Protractor](https://www.protractortest.org/). As Protractor based on 
+[Selenium](https://www.selenium.dev/) it's possible to run integration tests on variety of browsers and at the same 
+time leverage the use of [Selenium Grid](https://www.selenium.dev/documentation/en/grid/) and run tests in parallel
+what in the long run will help to speed up the growing amount of tests.
+
+Due to not ideal work of Selenium and Protractor I've been used [Protractor Base DSL](https://www.npmjs.com/package/protractor-base-dsl).
+That library tackles well-known issues with Protractor and browser drivers and on top of that provides a concise 
+syntax to execute commands to Selenium.
+
+In case of some failures, you can find screenshots in `<project-dir>/build/e2e`.
+
+## All tests
+
 To run all tests you can use this command:
 `./gradlew gulpTests` or `gulp clean && gulp build-development && gulp selenium-install && gulp e2e && gulp jest`.
+
+Every commit triggers the build on [CircleCI](https://circleci.com/) and runs this command. Configuration for that you 
+can find in `<project-dir>/.circleci/config.yml`. The status badge is added to README.md and located on the top of the 
+file to track that new commits don't bring regressions. 
 
 # How to update GitHub Pages
 
