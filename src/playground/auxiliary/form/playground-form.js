@@ -43,9 +43,9 @@ export const PlaygroundForm = (rootElement, options) => {
 
     const postRender = () => {
         options.emailsInputList.forEach((emailsInputConfig) => {
-            const {id, placeholder} = emailsInputConfig;
+            const {id, placeholder, showTitle, validators} = emailsInputConfig;
             const inputContainerNode = document.querySelector(`#${id}`);
-            const emailsInput = EmailsInput(inputContainerNode, {placeholder});
+            const emailsInput = EmailsInput(inputContainerNode, {placeholder, showTitle, validators});
             emailsInput.replaceAll(emailsInputConfig.initialData);
             registerListeners(emailsInput);
         });

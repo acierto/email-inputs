@@ -9,7 +9,7 @@ import styles from './emails-input.less';
 
 export const EmailsInput = (rootComponent, options = {}) => {
     const observer = Observable();
-    const storage = Storage(observer);
+    const storage = Storage(observer, options.validators);
 
     const api = {
         getAllEmails: () => storage.getAllEmails(),
@@ -29,7 +29,7 @@ export const EmailsInput = (rootComponent, options = {}) => {
             rootComponent.innerHTML = output;
             newInputElement.registerListeners();
         } else {
-            console.warn('The root element for "email-inputs" has not found.');
+            console.warn('The root element for "emails-input" has not found.');
         }
     };
 
@@ -37,7 +37,8 @@ export const EmailsInput = (rootComponent, options = {}) => {
         const ref = rootComponent.querySelector(`.${styles.emailContainer}`);
 
         for (const input of added) {
-            ref.insertBefore(EmailInput(input), ref.childNodes[ref.children.length - 1]);
+            const inputOptions = {showTitle: options.showTitle};
+            ref.insertBefore(EmailInput(input, inputOptions), ref.childNodes[ref.children.length - 1]);
         }
 
         for (const id of removed) {

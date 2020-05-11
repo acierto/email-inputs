@@ -1,7 +1,7 @@
 import {emailToEmailInput} from './services/email-input-converter';
 import {createNotification} from './services/notification';
 
-export const Storage = (observer) => {
+export const Storage = (observer, validators) => {
     let inputs = [];
 
     const updateInputs = (newInputs) => {
@@ -13,7 +13,7 @@ export const Storage = (observer) => {
     return {
         addEmail: (email) => {
             const prevInputs = [...inputs];
-            const input = emailToEmailInput(email);
+            const input = emailToEmailInput(validators)(email);
             inputs.push(input);
             observer.notify(createNotification(prevInputs, inputs));
         },
@@ -22,7 +22,7 @@ export const Storage = (observer) => {
             updateInputs(inputs.filter((input) => input.id !== id));
         },
         replaceAllEmails: (emails = []) => {
-            const newInputs = emails.map(emailToEmailInput);
+            const newInputs = emails.map(emailToEmailInput(validators));
             updateInputs(newInputs);
         }
     };

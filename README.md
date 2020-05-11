@@ -46,9 +46,11 @@ There are already some data pre-generated for testing some corner cases.
 
 ## Options
 
-|Name|Default|Description|
-|----|----|--------|
-|placeholder|add more people...|The text displayed in input field to give a hint what is the field about.|
+|Name|Type|Default|Description|
+|----|----|----|--------|
+|placeholder|string|add more people...|The text displayed in input field to give a hint what is the field about.|
+|showTitle|boolean|false|If true shows the title for each email. Can be useful if email is too long.|
+|validators|array of functions|[]|You can add your custom validators which will be applied on top of already existing validator of email syntax. The format of the validator is `(email) => email.test(/\d/)` - this example will eliminate the usage of digits in the email. If validator's function returns `true` it means that the email is valid.|
 
 ## Examples of component usages in the code
 

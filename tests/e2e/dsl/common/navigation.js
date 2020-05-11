@@ -13,4 +13,3 @@ class Navigation {
 }
 
 export default Navigation;
-global.Navigation = Navigation;

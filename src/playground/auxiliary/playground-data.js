@@ -12,8 +12,13 @@ export const case2 = {
 export const case3 = {
     emailsInputList: [{
         id: 'email-inputs',
-        initialData: preGeneratedEmails2,
-        placeholder: 'add more emails...'
+        initialData: preGeneratedEmails1,
+        placeholder: 'add more emails...',
+        showTitle: true,
+        validators: [
+            (email) => email.indexOf('v') === -1,
+            (email) => email.length < 20
+        ]
     }]
 };
 
@@ -25,7 +30,8 @@ export const case4 = {
     }, {
         id: 'more-emails',
         initialData: preGeneratedEmails2,
-        placeholder: 'add more emails...'
+        placeholder: 'add more emails...',
+        showTitle: true
     }],
     styles: {
         formContentStyles: {

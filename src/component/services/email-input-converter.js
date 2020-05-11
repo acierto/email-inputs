@@ -1,8 +1,8 @@
 import {validate} from './validator';
 import {getNextId} from './id-generator';
 
-export const emailToEmailInput = (email) => ({
+export const emailToEmailInput = (validators) => (email) => ({
     email,
     id: getNextId(),
-    valid: validate(email)
+    valid: validate(email, validators)
 });

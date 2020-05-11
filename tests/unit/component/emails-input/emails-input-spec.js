@@ -45,6 +45,6 @@ describe('Emails input', () => {
     it('should warn if no root element provided', () => {
         console.warn = jest.fn();
         EmailsInput();
-        expect(console.warn).toHaveBeenCalledWith('The root element for "email-inputs" has not found.');
+        expect(console.warn).toHaveBeenCalledWith('The root element for "emails-input" has not found.');
     });
 });
