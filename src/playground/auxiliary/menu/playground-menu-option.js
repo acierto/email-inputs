@@ -1,5 +1,5 @@
-import './playground-menu-option.less';
 import {createButton} from '../service/create-element';
+import styles from './playground-menu-option.less';
 
 export const PlaygroundMenuOption = (rootElement, options) => {
     const {
@@ -7,14 +7,14 @@ export const PlaygroundMenuOption = (rootElement, options) => {
         text
     } = options;
 
-    const element = createButton('playground-menu-option', text);
+    const element = createButton(styles.playgroundMenuOption, text);
     rootElement.appendChild(element);
 
     element.addEventListener('click', (event) => {
         for (const child of rootElement.children) {
-            child.classList.remove('active');
+            child.classList.remove(styles.active);
         }
-        element.classList.add('active');
+        element.classList.add(styles.active);
         onClick(event);
     });
 

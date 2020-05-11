@@ -1,48 +1,46 @@
-.email-inputs {
-  .email-input {
-    align-items: center;
-    display: flex;
-    flex-grow: 0;
-    height: 24px;
-    margin-right: 8px;
-    margin-top: 4px;
-    min-height: 24px;
+.email-input {
+  align-items: center;
+  display: flex;
+  flex-grow: 0;
+  height: 24px;
+  margin-right: 8px;
+  margin-top: 4px;
+  min-height: 24px;
+  overflow: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  .email {
+    display: inline-block;
     overflow: hidden;
-    padding-left: 10px;
-    padding-right: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-    > .email {
+  .remove-email {
+    outline: none;
+    position: relative;
+
+    .remove-icon {
+      background: url('../../assets/images/remove.svg') no-repeat;
+      background-size: contain;
       display: inline-block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+      height: 8px;
+      margin-left: 8px;
+      width: 8px;
 
-    > .remove-email {
-      outline: none;
-      position: relative;
-
-      > .remove-icon {
-        background: url('../../assets/images/remove.svg') no-repeat;
-        background-size: contain;
-        display: inline-block;
-        height: 8px;
-        margin-left: 8px;
-        width: 8px;
-
-        &:hover {
-          cursor: pointer;
-        }
+      &:hover {
+        cursor: pointer;
       }
     }
+  }
 
-    &.valid {
-      background: rgba(102, 153, 255, 0.2);
-      border-radius: 100px;
-    }
+  &.valid {
+    background: rgba(102, 153, 255, 0.2);
+    border-radius: 100px;
+  }
 
-    &.invalid {
-      border-bottom: 1px dashed #d92929;
-    }
+  &.invalid {
+    border-bottom: 1px dashed #d92929;
   }
 }

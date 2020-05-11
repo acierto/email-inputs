@@ -3,7 +3,7 @@ import {
     XPath
 } from 'protractor-base-dsl';
 
-const menuHeaderSelector = '.playground-menu-header';
+const menuHeaderSelector = '.playground-menu__playground-menu-header';
 const buttonSelector = (buttonName) => XPath.withButtonContains(`${menuHeaderSelector}`, buttonName);
 
 class Navigation {

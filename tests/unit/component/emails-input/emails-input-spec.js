@@ -33,10 +33,10 @@ describe('Emails input', () => {
         const componentApi = EmailsInput(document.body, {placeholder: 'one more?'});
         componentApi.replaceAll([email1.email, email2.email, email3.email]);
 
-        const component = document.body.querySelector('.email-inputs');
-        expect(component.querySelector('.new-email-input')).toBeDefined();
+        const component = document.body.querySelector('.emailsInput');
+        expect(component.querySelector('.newEmailInput')).toBeDefined();
 
-        const emailInputList = [...component.querySelectorAll('.email-input')];
+        const emailInputList = [...component.querySelectorAll('.emailInput')];
         expect(emailInputList.length).toBe(3);
         expect(emailInputList.map((emailInput) => emailInput.querySelector('.email').innerHTML))
             .toEqual([email1.email, email2.email, email3.email]);

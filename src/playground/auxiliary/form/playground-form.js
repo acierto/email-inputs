@@ -1,25 +1,28 @@
 import {createDiv} from '../service/create-element';
 import {getNextEmail} from '../email-generator';
-import './playground-form.less';
-import './playground-form-case4.less';
+import {getStyles} from '../service/common-service';
+import styles from './playground-form.less';
 
 export const PlaygroundForm = (rootElement, options) => {
+    const toStyles = (name) => getStyles(['styles', name], options);
+
     const render = () => `
-            <div class="playground-form-wrapper ${options.classname}">
-               <div class="form-content">
-                   <div class="form-header">
+            <div class="${styles.playgroundFormWrapper}" style="${toStyles('formWrapperStyles')}">
+               <div class="${styles.formContent}" style="${toStyles('formContentStyles')}">
+                   <div class="${styles.formHeader}">
                        Share <strong>Board game</strong> with others
                    </div>
-                   ${options.emailsInputList.map(({id}) => `<div id="${id}"></div>`).join('')}
+                   ${options.emailsInputList.map(({id}) =>
+        `<div class="${styles.emailsInputEntry}" id="${id}"></div>`).join('')}
                </div>
-               <div class="buttons-panel">
+               <div class="${styles.buttonsPanel}">
                     <button class="add-email">Add email</button> 
                     <button class="get-emails-count">Get emails count</button>
                </div>
            </div>
     `;
 
-    const element = () => createDiv('playground-form', render());
+    const element = () => createDiv(styles.playgroundForm, render());
 
     const addEmailListener = (emailsInput) => () => {
         const emails = emailsInput.getAllEmails();
@@ -32,9 +35,9 @@ export const PlaygroundForm = (rootElement, options) => {
     };
 
     const registerListeners = (emailsInput) => {
-        rootElement.querySelector('.playground-form .add-email')
+        rootElement.querySelector(`.${styles.playgroundForm} .add-email`)
             .addEventListener('click', addEmailListener(emailsInput));
-        rootElement.querySelector('.playground-form .get-emails-count')
+        rootElement.querySelector(`.${styles.playgroundForm} .get-emails-count`)
             .addEventListener('click', getEmailsCountListener(emailsInput));
     };
 

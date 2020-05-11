@@ -4,7 +4,8 @@ import {Observable} from '../observable';
 import {NewEmailInput} from '../new-email-input/new-email-input';
 import {onRemoveEmailListener} from '../email-input/email-input-remove-listener';
 
-import './emails-input.less';
+import emailInputStyles from '../email-input/email-input.less';
+import styles from './emails-input.less';
 
 export const EmailsInput = (rootComponent, options = {}) => {
     const observer = Observable();
@@ -18,8 +19,8 @@ export const EmailsInput = (rootComponent, options = {}) => {
 
     const render = () => {
         const newInputElement = NewEmailInput(rootComponent, storage, {placeholder: options.placeholder});
-        const output = `<div class="email-inputs">
-                            <div class="email-container">
+        const output = `<div class="${styles.emailsInput}">
+                            <div class="${styles.emailContainer}"> 
                                 ${newInputElement.render()}
                             </div>
                         </div>`;
@@ -33,14 +34,14 @@ export const EmailsInput = (rootComponent, options = {}) => {
     };
 
     const rerender = ({added, removed}) => {
-        const ref = rootComponent.querySelector('.email-container');
+        const ref = rootComponent.querySelector(`.${styles.emailContainer}`);
 
         for (const input of added) {
             ref.insertBefore(EmailInput(input), ref.childNodes[ref.children.length - 1]);
         }
 
         for (const id of removed) {
-            const child = ref.querySelector(`.email-input[data-id="${id}"]`);
+            const child = ref.querySelector(`.${emailInputStyles.emailInput}[data-id="${id}"]`);
             ref.removeChild(child);
         }
     };

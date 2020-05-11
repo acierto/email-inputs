@@ -1,7 +1,7 @@
 import {Action, Alert} from 'protractor-base-dsl';
 import EmailsInputDsl from './emails-input-dsl';
 
-const demoFormSelector = '#root .playground-form';
+const demoFormSelector = '#root .playground-form__playground-form';
 const addEmailButtonSelector = `${demoFormSelector} .add-email`;
 const getEmailsCountButtonSelector = `${demoFormSelector} .get-emails-count`;
 
