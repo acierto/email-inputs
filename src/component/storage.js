@@ -13,7 +13,7 @@ export const Storage = (observer, validators) => {
     return {
         addEmail: (email) => {
             const prevInputs = [...inputs];
-            const input = emailToEmailInput(validators)(email);
+            const input = emailToEmailInput(validators)(email, prevInputs);
             inputs.push(input);
             observer.notify(createNotification(prevInputs, inputs));
         },
@@ -22,7 +22,7 @@ export const Storage = (observer, validators) => {
             updateInputs(inputs.filter((input) => input.id !== id));
         },
         replaceAllEmails: (emails = []) => {
-            const newInputs = emails.map(emailToEmailInput(validators));
+            const newInputs = emails.map((email) => emailToEmailInput(validators)(email, [...inputs]));
             updateInputs(newInputs);
         }
     };

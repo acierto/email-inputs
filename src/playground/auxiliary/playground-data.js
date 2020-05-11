@@ -17,7 +17,9 @@ export const case3 = {
         showTitle: true,
         validators: [
             (email) => email.indexOf('v') === -1,
-            (email) => email.length < 20
+            (email) => email.length < 20,
+            (email, allEmails) => allEmails.indexOf(email) === -1,
+            (email, allEmails) => allEmails.length < 6
         ]
     }]
 };
@@ -25,12 +27,10 @@ export const case3 = {
 export const case4 = {
     emailsInputList: [{
         id: 'more-people',
-        initialData: preGeneratedEmails1,
-        placeholder: 'add more people...'
+        initialData: preGeneratedEmails1
     }, {
         id: 'more-emails',
         initialData: preGeneratedEmails2,
-        placeholder: 'add more emails...',
         showTitle: true
     }],
     styles: {

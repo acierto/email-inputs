@@ -21,10 +21,15 @@ describe('validator', () => {
             expect(validate('john123@')).toBeFalsy();
         });
         it('should take into account custom validators', () => {
-            expect(validate('john@@miro.com', [() => true])).toBeFalsy();
-            expect(validate('john@miro.com', [() => false])).toBeFalsy();
-            expect(validate('john@miro.com', [() => true, () => false])).toBeFalsy();
-            expect(validate('john@miro.com', [() => true, () => true])).toBeTruthy();
+            expect(validate('john@@miro.com', [], [() => true])).toBeFalsy();
+            expect(validate('john@miro.com', [], [() => false])).toBeFalsy();
+            expect(validate('john@miro.com', [], [() => true, () => false])).toBeFalsy();
+            expect(validate('john@miro.com', [], [() => true, () => true])).toBeTruthy();
+
+            expect(validate('john@miro.com', ['john@miro.com'],
+                [(email, allEmails) => allEmails.indexOf(email) === -1])).toBeFalsy();
+            expect(validate('john@miro.com', ['mike@miro.com'],
+                [(email, allEmails) => allEmails.length !== 1])).toBeFalsy();
         });
     });
 });

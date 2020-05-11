@@ -4,7 +4,7 @@ import common from './webpack.config.common';
 
 export default {
     entry: {
-        main: ['./src/playground/demo/playground-demo']
+        'playground-demo': ['./src/playground/demo/playground-demo']
     },
     mode: 'development',
     module: {

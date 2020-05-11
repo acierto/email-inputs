@@ -36,6 +36,38 @@ Lightweight emails input component without third party dependencies
 You can find a link to a playground [here](https://acierto.github.io/email-inputs/).
 There are already some data pre-generated for testing some corner cases.
 
+You will find there 4 different cases to play with.
+
+### Case 1. 
+
+Clean component in the form, no extra configuration provided.
+
+### Case 2.
+
+Component contains already some of pre-generated emails and gives already some picture how it looks in live without
+any actions required by the user.
+
+### Case 3.
+
+There are several things configured:
+* More than 1000 emails to check how it looks and works on relatively large set.
+* Used long email name to show that this case is handled.
+* Placeholder for input field is custom, namely `add more emails...`
+* Titles on emails are enabled. So long (and therefore trimmed) email names will be visible on hover.
+* Also 4 custom validators configured. Email is valid if all next is true (on top of default email validator):
+** Email can't have 'v' letter.
+** Email characters should be less than 20
+** Emails can't be duplicated
+** Emails can't be more than 6.
+
+### Case 4.
+
+There are 2 email inputs located on the same form, so that you can see that it's possible to play with multiple
+components on the same page. Form buttons will give results twice in the order how emails inputs are located on the
+form.
+
+[How it is configured in details](#enlightening-how-playground-configured)
+
 ## API 
 
 |Name|Description|
@@ -50,7 +82,7 @@ There are already some data pre-generated for testing some corner cases.
 |----|----|----|--------|
 |placeholder|string|add more people...|The text displayed in input field to give a hint what is the field about.|
 |showTitle|boolean|false|If true shows the title for each email. Can be useful if email is too long.|
-|validators|array of functions|[]|You can add your custom validators which will be applied on top of already existing validator of email syntax. The format of the validator is `(email) => email.test(/\d/)` - this example will eliminate the usage of digits in the email. If validator's function returns `true` it means that the email is valid.|
+|validators|array of functions|[]|You can add your custom validators which will be applied on top of already existing validator of email syntax. The format of the validator is `(email, allEmails) => !(/\d/).test(email)` - this example will eliminate the usage of digits in the email. If validator's function returns `true` it means that the email is valid.|
 
 ## Examples of component usages in the code
 
@@ -84,6 +116,59 @@ var options = {};
 var emailsInput = EmailsInput(inputContainerNode, options);
 ``` 
 It's also possible with a second argument to provide custom options to a component. [List of options](#options)
+
+```javascript
+var inputContainerNode = document.querySelector('#emails-input');
+var options = {
+    placeholder: 'type a new email',
+    showTitle: true,
+    validators: [
+        (email) => email.length > 10,
+        (email) => !(/[A-Z]/).test(email),
+    ]
+};
+var emailsInput = EmailsInput(inputContainerNode, options);
+``` 
+
+Emails input will have custom placeholder, titles will be shown on hover and extra validators will be applied on 
+already added emails. First one will check that email has at least 10 characters, second validator will invalidate 
+all emails where used at least 1 capital letter. 
+
+Up so far we know already how to include the component, and the ways to configure it.
+Let's see how it's possible to interact with the component via API:
+
+```javascript
+var emailsInput = EmailsInput(inputContainerNode, options);
+emailsInput.getAllEmails();
+```
+Invoking this method will return the array of all emails with the following structure:
+```javascript
+[{
+     email: 'john@miro.com',
+     id: '1',
+     valid: true
+ },{
+     email: 'john',
+     id: '2',
+     valid: false
+ }]
+```
+Based on this structure you can see which email is valid or not and remove one of emails by `id`. `id` is required here due 
+to possible email duplications. It is intentionally not validated on this case as it might be necessary on some of business cases. 
+
+So then it's no way to make duplicated emails as invalid? Not really! Actually you can. For that and not only for that the second
+parameter in the validator has access to already all added emails. Creating next validator will achieve it:
+
+```javascript
+(email, allEmails) => allEmails.indexOf(email) === -1
+``` 
+
+Actually by having an information of currently adding email name and access to all emails you as a user have very 
+flexible way how you are really willing to use and enhance it.
+
+The next evolvement in validators could be:
+* adding a reason, so that user away where and why it happened.
+* dynamically added/removed validators. It might be useful in complicated wizard pages 
 
 # For contributors
 
@@ -158,3 +243,90 @@ file to track that new commits don't bring regressions.
 
 To update GitHub Pages you have to run this command:
 `./gradlew gulpGhPages` or `gulp gh-pages`. 
+
+## How styles configured.
+
+As a base model used [Less](http://lesscss.org/) with combination of [CSS Modules](https://github.com/css-modules/css-modules).
+Less gives an opportunity to create clean, hierarchical and reusable structures of styles.
+CSS Modules helps to achieve the isolation of components by avoiding style clashes in the rest of the page.
+The smooth integration provided by Webpack, and requires only `css-loader` configuration. 
+
+```javascript
+{
+    loader: 'css-loader',
+    options: {
+        importLoaders: 1,
+        localsConvention: 'camelCase',
+        modules: {
+            localIdentName: '[name]__[local]',
+            mode: 'local'
+        }
+    }
+}
+```
+
+Once CSS Modules is active, the existing tests will stop working as CSS class names will have different names. To make 
+names less chaotic for e2e tests, the hash was excluded and used this pattern `[name]__[local]` which very similar 
+to [BEM naming](http://getbem.com/introduction/).
+
+To make unit tests on [Jest] happy, it requires to have `jest-css-modules` added and configured in "package.json" "jest" 
+section. Module is very simple and depends on `identity-obj-proxy`. In essence, in the unit test when Jest see imports
+of styles, it resolves it to the object with hierarchical structure of classNames. What makes it possible to use in tests
+ `querySelector` to check the rendered html.
+
+### Enlightening how Playground configured
+
+Check `playground-data.js` file, you can play with providing other inputs or even new cases.
+`playground.js` has an entry point for the playground.
+
+You can find also in the code 2 versions of playground: `playground-demo` and `playground-development`. 
+The reason behind that to split the fast development and demonstrating how it works on the released version.
+
+`playground-demo` includes dependency to emails-input in html page
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Emails Input Playground Demo</title>
+</head>
+<body>
+<div id="root"></div>
+<script src="./emails-input.js"></script>
+<script src="playground-demo.js"></script></body>
+</html>
+```
+
+And in the codee only in `playground-form.js` EmailsInput is created. You will not find any import there. Because this 
+component is added to a global scope by the script in html.
+
+What does `playground-development` to emulate the same and work with up-to-date code changes, is doing this in 
+`playground-development.js`
+
+```javascript
+import {EmailsInput} from '../../component/emails-input/emails-input';
+global.EmailsInput = EmailsInput;
+```
+
+In that way both cases actually work with emails-input component in isolation and communicate with it only through 
+provided api calls. What can be found in `playground-form.js`. A short snippet of the code from there:
+
+```javascript
+    const registerListeners = (emailsInput) => {
+        rootElement.querySelector(`.${styles.playgroundForm} .add-email`)
+            .addEventListener('click', addEmailListener(emailsInput));
+        rootElement.querySelector(`.${styles.playgroundForm} .get-emails-count`)
+            .addEventListener('click', getEmailsCountListener(emailsInput));
+    };
+
+    const postRender = () => {
+        options.emailsInputList.forEach((emailsInputConfig) => {
+            const {id, placeholder, showTitle, validators} = emailsInputConfig;
+            const inputContainerNode = document.querySelector(`#${id}`);
+            const emailsInput = EmailsInput(inputContainerNode, {placeholder, showTitle, validators});
+            emailsInput.replaceAll(emailsInputConfig.initialData);
+            registerListeners(emailsInput);
+        });
+    };
+```
