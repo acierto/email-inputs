@@ -8,9 +8,9 @@ Lightweight emails input component without third party dependencies
 * Email block creates by pressing Enter, entering comma, or by losing focus on the
   input field. A Block can be deleted.
 * Input width depends on the parent container’s width and height. If parent width changes,
-  emails redistributes by rows.
+  emails redistributed by rows.
 * Input neither depends on the form or page styles, nor conflicts with them.
-* If input has too many emails, user can scroll it.
+* If the input has too many emails, the user can scroll it.
 * Pasted emails converted into blocks immediately. If multiple comma-separated
   emails pasted (e.g., “ ivan@mail.ru , max@mail.ru ”), they are converted into multiple
   blocks.
@@ -34,7 +34,7 @@ Lightweight emails input component without third party dependencies
 ## Playground
 
 You can find a link to a playground [here](https://acierto.github.io/email-inputs/).
-There are already some data pre-generated for testing some corner cases.
+There is already some data pre-generated for testing some corner cases.
 
 You will find there 4 different cases to play with.
 
@@ -50,9 +50,9 @@ any actions required by the user.
 ### Case 3.
 
 There are several things configured:
-* More than 1000 emails to check how it looks and works on relatively large set.
-* Used long email name to show that this case is handled.
-* Placeholder for input field is custom, namely `add more emails...`
+* More than 1000 emails to check how it looks and works on a relatively large set.
+* Used a long email name to show that this case is handled.
+* Placeholder for the input field is custom, namely `add more emails...`
 * Titles on emails are enabled. So long (and therefore trimmed) email names will be visible on hover.
 * Also 4 custom validators configured. Email is valid if all next is true (on top of default email validator):
 ** Email can't have 'v' letter.
@@ -80,9 +80,9 @@ form.
 
 |Name|Type|Default|Description|
 |----|----|----|--------|
-|placeholder|string|add more people...|The text displayed in input field to give a hint what is the field about.|
+|placeholder|string|add more people...|The text displayed in the input field to give a hint about what the field is about.|
 |showTitle|boolean|false|If true shows the title for each email. Can be useful if email is too long.|
-|validators|array of functions|[]|You can add your custom validators which will be applied on top of already existing validator of email syntax. The format of the validator is `(email, allEmails) => !(/\d/).test(email)` - this example will eliminate the usage of digits in the email. If validator's function returns `true` it means that the email is valid.|
+|validators|array of functions|[]|You can add your custom validators which will be applied on top of already existing validation of email syntax. The format of the validator is `(email, allEmails) => !(/\d/).test(email)` - this example will eliminate the usage of digits in the email. If the validator's function returns `true` it means that the email is valid.|
 
 ## Examples of component usages in the code
 
@@ -101,7 +101,7 @@ var emailsInput = EmailInputs(inputContainerNode);
 ```
 
 First we have to define the element to which we will assign emails input. In this example it is `<div id="emails-input"></div>`.
-Next we have to add the script to html page. One of the ways to do it is `<script src="emails-input.js"></script>`,
+Next we have to add the script to the html page. One of the ways to do it is `<script src="emails-input.js"></script>`,
 otherwise if you use Webpack, you can also just import it in your code as `import EmailsInput from 'emails-input'; '`.
 
 ```javascript
@@ -154,9 +154,9 @@ Invoking this method will return the array of all emails with the following stru
  }]
 ```
 Based on this structure you can see which email is valid or not and remove one of emails by `id`. `id` is required here due 
-to possible email duplications. It is intentionally not validated on this case as it might be necessary on some of business cases. 
+to possible email duplications. It is intentionally not validated in this case as it might be necessary in some business cases. 
 
-So then it's no way to make duplicated emails as invalid? Not really! Actually you can. For that and not only for that the second
+So then there's no way to make duplicate emails as invalid? Not really! Actually you can. For that and not only for that the second
 parameter in the validator has access to already all added emails. Creating next validator will achieve it:
 
 ```javascript
@@ -167,14 +167,14 @@ Actually by having an information of currently adding email name and access to a
 flexible way how you are really willing to use and enhance it.
 
 The next evolvement in validators could be:
-* adding a reason, so that user away where and why it happened.
+* adding a reason, so that the user knows where and why it happened.
 * dynamically added/removed validators. It might be useful in complicated wizard pages 
 
 # For contributors
 
 ## Requirements to the system
-There are 2 options, to execute all command with [Gradle](https://gradle.org/) or [Gulp 4](https://gulpjs.com/).
-* For first option you have to install on your computer JDK. Verified on [JDK 1.8](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html).
+There are 2 options, to execute all commands with [Gradle](https://gradle.org/) or [Gulp 4](https://gulpjs.com/).
+* For the first option you have to install on your computer JDK. Verified on [JDK 1.8](https://www.oracle.com/java/technologies/javase-jdk8-downloads.html).
 * For the second option you have to install locally [Node.js](https://nodejs.org/en/), verified on 14.2.0 and [Yarn](https://yarnpkg.com/)
 verified on version 1.22.4
 
@@ -199,7 +199,7 @@ To run only unit tests you can use this command:
 `./gradlew gulpUnitTests` or `gulp jest`.
 
 Results of the tests run and coverage can be found in `<project-dir>/build/reports/coverage/index.html`
-You will see it in nicely displayed table.
+You will see it in a nicely displayed table.
 ![Unit test results](./docs/unit-test-reports.png)
 
 If in some cases your coverage drops, IDE doesn't always show properly where is the issue, like for example in
@@ -211,7 +211,7 @@ Example of that:
 ![Unit test troubleshooting in details](./docs/unit-test-troubleshooting-in-details.png) 
 
 As you can see from above screenshots. With yellow cells report shows on overview page where the coverage has not 
-reached. When you drill down to the issue, you can see exact line with issue. In this case it's like 9, as one of 
+reached. When you drill down to the issue, you can see the exact line with the issue. In this case it's like 9, as one of 
 the cases has not covered. 
 
 ### Integration tests
@@ -224,9 +224,9 @@ Integration tests implemented with help of [Protractor](https://www.protractorte
 time leverage the use of [Selenium Grid](https://www.selenium.dev/documentation/en/grid/) and run tests in parallel
 what in the long run will help to speed up the growing amount of tests.
 
-Due to not ideal work of Selenium and Protractor I've been used [Protractor Base DSL](https://www.npmjs.com/package/protractor-base-dsl).
-That library tackles well-known issues with Protractor and browser drivers and on top of that provides a concise 
-syntax to execute commands to Selenium.
+Due to the not ideal work of Selenium and Protractor I've been using 
+[Protractor Base DSL](https://www.npmjs.com/package/protractor-base-dsl). That library tackles well-known 
+issues with Protractor and browser drivers and on top of that provides a concise syntax to execute commands to Selenium.
 
 In case of some failures, you can find screenshots in `<project-dir>/build/e2e`.
 
@@ -235,8 +235,8 @@ In case of some failures, you can find screenshots in `<project-dir>/build/e2e`.
 To run all tests you can use this command:
 `./gradlew gulpTests` or `gulp clean && gulp build-development && gulp selenium-install && gulp e2e && gulp jest`.
 
-Every commit triggers the build on [CircleCI](https://circleci.com/) and runs this command. Configuration for that you 
-can find in `<project-dir>/.circleci/config.yml`. The status badge is added to README.md and located on the top of the 
+Every commit triggers the build on [CircleCI](https://circleci.com/) and runs this command. Configuration for that  
+can be found in `<project-dir>/.circleci/config.yml`. The status badge is added to README.md and located on the top of the 
 file to track that new commits don't bring regressions. 
 
 ## How to update GitHub Pages
@@ -244,7 +244,7 @@ file to track that new commits don't bring regressions.
 To update GitHub Pages you have to run this command:
 `./gradlew gulpGhPages` or `gulp gh-pages`. 
 
-## How styles configured.
+## How styles configured
 
 As a base model used [Less](http://lesscss.org/) with combination of [CSS Modules](https://github.com/css-modules/css-modules).
 Less gives an opportunity to create clean, hierarchical and reusable structures of styles.
@@ -280,7 +280,7 @@ Check `playground-data.js` file, you can play with providing other inputs or eve
 `playground.js` has an entry point for the playground.
 
 You can find also in the code 2 versions of playground: `playground-demo` and `playground-development`. 
-The reason behind that to split the fast development and demonstrating how it works on the released version.
+The reason behind that is to split the fast development and demonstrate how it works on the released version.
 
 `playground-demo` includes dependency to emails-input in html page
 
@@ -298,7 +298,7 @@ The reason behind that to split the fast development and demonstrating how it wo
 </html>
 ```
 
-And in the codee only in `playground-form.js` EmailsInput is created. You will not find any import there. Because this 
+And in the code only in `playground-form.js` EmailsInput is created. You will not find any import there. Because this 
 component is added to a global scope by the script in html.
 
 What does `playground-development` to emulate the same and work with up-to-date code changes, is doing this in 
