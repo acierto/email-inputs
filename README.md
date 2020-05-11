@@ -230,6 +230,22 @@ issues with Protractor and browser drivers and on top of that provides a concise
 
 In case of some failures, you can find screenshots in `<project-dir>/build/e2e`.
 
+If you wish to run tests against Selenium Grid keep two things in mind:
+1) You have to provide a link to a configured Grid in `e2e.js` for seleniumLinuxAddr or seleniumWinAddr, depends 
+which OS tests are running. Example `'http://selenium-3-winhub:4444/wd/hub'`.
+2) In `hostname.js` you have to change `module.exports = os.hostname();` to `module.exports = <HOSTNAME_OR_IP>`.
+where <HOSTNAME_OR_IP> hostname or public IP which can be resolved by Selenium Grid. That means that you have to be 
+on the same network with the grid. If Webpack is running, you have to restart it after file modifications.
+
+Once it's done you have several options to choose how to run:
+* `gulp ie-grid`
+* `gulp edge-grid`
+* `gulp win-chrome-grid` 
+* `gulp linux-chrome-grid` 
+* `gulp linux-firefox-grid` 
+
+I think that the names are quite easy to follow and don't require extra explanation.
+
 ### All tests
 
 To run all tests you can use this command:

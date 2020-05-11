@@ -11,8 +11,9 @@ export const PlaygroundMenuOption = (rootElement, options) => {
     rootElement.appendChild(element);
 
     element.addEventListener('click', (event) => {
-        for (const child of rootElement.children) {
-            child.classList.remove(styles.active);
+        const {children} = rootElement;
+        for (let ind = 0; ind < children.length; ind += 1) {
+            children[ind].classList.remove(styles.active);
         }
         element.classList.add(styles.active);
         onClick(event);

@@ -18,6 +18,12 @@ const runProtractorOnGrid = (browser, platformName, platform) => (cb) => runProt
 }));
 
 gulp.task('ie-grid', runProtractorOnGrid('internet explorer', 'windows', 'VISTA'));
+gulp.task('edge-grid', runProtractorOnGrid('MicrosoftEdge', 'WIN10', 'VISTA'));
+gulp.task('win-chrome-grid', runProtractorOnGrid('chrome', 'windows', 'VISTA'));
+gulp.task('win-firefox-grid', runProtractorOnGrid('firefox', 'windows', 'VISTA'));
+
+gulp.task('linux-chrome-grid', runProtractorOnGrid('chrome', 'linux', 'linux'));
+gulp.task('linux-firefox-grid', runProtractorOnGrid('firefox', 'linux', 'linux'));
 
 gulp.task('local-chrome', runLocalProtractor('chrome'));
 gulp.task('local-firefox', runLocalProtractor('firefox'));

@@ -100,7 +100,7 @@ exports.config = {
             },
             spec: {
                 displayErrorMessages: true,
-                displayStacktrace: true,
+                displayStacktrace: 'pretty',
                 displaySuccessful: true,
                 displayFailed: true,
                 displayPending: true,
@@ -125,12 +125,6 @@ exports.config = {
             .then(function () {
                 if (browserName === 'firefox') {
                     return browser.manage().window().setSize(global.defaultBrowserWidth, global.defaultBrowserHeight);
-                }
-
-                if (browserName === 'internet explorer') {
-                    return browser.executeScript(function () {
-                        window.resizeTo(browserWidth, browserHeight);
-                    });
                 }
             }).then(function () {
                 browser.driver.get(`http://${appHost}:${appPort}/`);
