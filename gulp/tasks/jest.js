@@ -1,6 +1,6 @@
 import fs from 'fs';
 import gulp from 'gulp';
-import jest from 'gulp-jest';
+import jest from 'gulp-jest-acierto';
 import env from 'gulp-env';
 import paths from '../utils/paths';
 import packageJson from '../../package.json';

@@ -26,9 +26,7 @@ const expectAllEmails = (count) => {
     EmailsInputDsl.expectAllEmails(count);
 };
 
-const removeLastEmail = () => {
-    EmailsInputDsl.removeNthEmail();
-};
+const removeLastEmail = () => EmailsInputDsl.removeNthEmail();
 
 const PlaygroundFormDsl = {
     addGeneratedEmail,

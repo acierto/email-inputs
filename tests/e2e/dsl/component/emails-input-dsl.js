@@ -7,27 +7,26 @@ import {isDefined} from '../../services/common-service';
 
 const componentSelector = '#email-inputs';
 const emailContainerSelector = `${componentSelector} .emails-input__email-container`;
-const emailSelector = `${emailContainerSelector} .email-input__email-input`;
+const emailInputSubSelector = `.email-input__email-input`;
+const emailSelector = `${emailContainerSelector} ${emailInputSubSelector}`;
 const newEmailInputSelector = `${emailContainerSelector} .new-email-input__new-email-input`;
 const nthEmailSelector = (nth) => `${emailSelector}:nth-child(${nth})`;
 const nthEmailRemoveIconSelector = (nth) => `${nthEmailSelector(nth)} .email-input__remove-icon`;
 
 const typeNewEmail = (email) => Action.typeText(newEmailInputSelector, email);
 
-const countAllEmails = () => ElementUtil.elementFinder(emailContainerSelector)
-    .all(By.css('.email-input__email-input'))
-    .count();
+const findAllEmails = () => ElementUtil.elementFinder(emailContainerSelector).all(By.css(emailInputSubSelector));
+const countAllEmails = () => findAllEmails().count();
 const expectAllEmails = (count) => Expectation.count(emailSelector, count);
 
-const findEmailByName = (email) =>
-    ElementUtil.elementFinder(emailContainerSelector)
-        .all(By.css('.email-input__email-input'))
-        .filter((elem) =>
-            elem.getText()
-                .then(
-                    (text) => text === email)
-        )
-        .first();
+const findEmailByName = (email) => findAllEmails()
+    .filter((elem) =>
+        elem.getText()
+            .then(
+                (text) => text === email
+            )
+    )
+    .first();
 
 const addNewEmail = (email, specificAction = () => true) => {
     countAllEmails()
