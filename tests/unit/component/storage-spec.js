@@ -39,7 +39,7 @@ describe('Storage', () => {
         ]);
     });
 
-    it('should be possible to replace all emails. casee 1', () => {
+    it('should be possible to replace all emails. case 1', () => {
         getNextId.mockImplementation(() => '5');
         storage.replaceAllEmails(['maria@miro.com']);
         expect(storage.getAllEmails()).toEqual([

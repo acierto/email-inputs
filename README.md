@@ -182,7 +182,14 @@ emailsInput.replaceAll(['john@miro.com', 'marieke@miro.com']);
 ```
 
 In the sources of playground you can find the example of usage of this method to set initial values for certain "cases".
-Check out for that `playground-form.js` method `postRender.
+Check out for that `playground-form.js` method `postRender`.
+
+This method takes a performance in mind and only perform [DOM](https://www.w3schools.com/js/js_htmldom.asp)
+manipulation of input elements which were affected. If the list was as `['john@miro.com', 'marieke@miro.com']` 
+and then `replaceAll(['marieke@miro.com', 'john@miro.com'])` called, the component still will
+display `['john@miro.com', 'marieke@miro.com']`. That means if you care about the order of emails visually, 
+you have to call it twice, first time as `emailsInput.replaceAll([])` and then 
+`emailsInput.replaceAll(['john@miro.com', 'marieke@miro.com'])`.
 
 #### subscribe
 
@@ -358,7 +365,22 @@ The reason behind that is to split the fast development and demonstrate how it w
 ```
 
 And in the code only in `playground-form.js` EmailsInput is created. You will not find any import there. Because this 
-component is added to a global scope by the script in html.
+component is added to a global scope by the script in html. It's configured in Webpack how it was achieved:
+```javascript
+{
+...
+    output: {
+        filename: `emails-input.js`,
+        globalObject: 'window',
+        libraryTarget: 'umd',
+        path: paths.distDir,
+        publicPath: '/dist/'
+    },
+...
+}
+```
+
+The main lines here are `globalObject` and `libraryTarget`.
 
 What does `playground-development` to emulate the same and work with up-to-date code changes, is doing this in 
 `playground-development.js`
