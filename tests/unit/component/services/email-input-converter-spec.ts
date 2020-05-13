@@ -1,10 +1,12 @@
-import {emailToEmailInput} from '~/src/component/services/email-input-converter';
-import {getNextId} from '~/src/component/services/id-generator';
+import {emailToEmailInput} from '~/component/services/email-input-converter';
+import {getNextId} from '~/component/services/id-generator';
 
 jest.mock('../../../../src/component/services/id-generator');
 
+const getNextIdMock = getNextId as jest.Mock;
+
 describe('email-input-converter', () => {
-    getNextId.mockImplementation(() => '1');
+    getNextIdMock.mockImplementation(() => '1');
 
     describe('emailToEmailInput', () => {
         it('should convert string to email input object having no custom validators', () => {

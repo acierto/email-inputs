@@ -5,7 +5,7 @@ import {Validator} from './validator-type';
 import {EmailInput} from './email-input/email-input-type';
 import {Storage} from './storage-type';
 
-export const EmailsStorage = (observer: Observable, validators: Validator[]): Storage => {
+export const EmailsStorage = (observer: Observable, validators?: Validator[]): Storage => {
     let inputs = [];
 
     const updateInputs = (newInputs: EmailInput[]) => {

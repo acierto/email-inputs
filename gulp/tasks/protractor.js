@@ -56,4 +56,4 @@ export const runProtractor = (cb, envs) => {
 
 gulp.task('protractor', (cb) => runProtractor(cb, env.set({})));
 
-gulp.task('e2e', gulp.series('lint-tests', 'webdriver-update', 'dev-server', 'protractor'));
+gulp.task('e2e', gulp.series('lint', 'webdriver-update', 'dev-server', 'protractor'));

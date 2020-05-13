@@ -4,7 +4,7 @@ import {
     isNotBlank,
     isUndefined,
     propOr
-} from '~/src/component/services/common-service';
+} from '~/component/services/common-service';
 
 describe('common-service', () => {
     describe('includes', () => {

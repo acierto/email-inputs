@@ -6,7 +6,7 @@ export const defaultEmailValidator = (email: string): boolean => {
     return re.test(String(email).toLowerCase());
 };
 
-export const validate = (email: string, allEmails: EmailInput[], validators: Validator[] = []): boolean => {
+export const validate = (email: string, allEmails: EmailInput[] = [], validators: Validator[] = []): boolean => {
     const validatorsToCheck = [...validators, defaultEmailValidator];
     return validatorsToCheck.reduce<boolean>((acc, validator) => acc && validator(email, allEmails), true);
 };

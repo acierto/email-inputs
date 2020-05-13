@@ -1,12 +1,13 @@
 import {isDefined, isNotBlank} from '../services/common-service';
 import {InputListeners} from './input-listerners-type';
 import {Storage} from '../storage-type';
+import {getInputValue} from '~/component/services/event-service';
 
 export const createInputListeners = (element: HTMLInputElement, storage: Storage): InputListeners => {
     const toMails = (value: string) => isDefined(value) ? value.split(',') : [];
 
     const addEmails = (value: string) => {
-        toMails(value).forEach((email) => {
+        toMails(value).forEach((email: string) => {
             const trimmedEmail = email.trim();
             if (isNotBlank(trimmedEmail)) {
                 storage.addEmail(trimmedEmail);
@@ -16,11 +17,11 @@ export const createInputListeners = (element: HTMLInputElement, storage: Storage
     };
 
     const blurListener = (event: FocusEvent): void => {
-        addEmails((event.target as HTMLInputElement).value);
+        addEmails(getInputValue(event));
     };
 
     const keyPressListener = (event: KeyboardEvent): void => {
-        const {value} = (event.target as HTMLInputElement);
+        const value = getInputValue(event);
         switch (event.key) {
             case 'Enter':
                 addEmails(value);

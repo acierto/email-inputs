@@ -11,6 +11,7 @@
   "devDependencies": {
     "@babel/preset-env": "7.9.6",
     "@babel/register": "7.9.0",
+    "@types/jest": "25.2.1",
     "ascii-table": "0.0.9",
     "autoprefixer": "9.7.6",
     "babel-eslint": "10.1.0",
@@ -52,6 +53,7 @@
     "selenium-standalone": "6.17.0",
     "strip-sourcemap-loader": "0.0.1",
     "style-loader": "1.2.1",
+    "ts-jest": "25.5.1",
     "ts-loader": "7.0.4",
     "tslint": "6.1.2",
     "tslint-loader": "3.5.4",
@@ -65,7 +67,7 @@
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/component/**/*.js"
+      "src/component/**/*.ts"
     ],
     "coverageDirectory": "<rootDir>/build/reports/coverage",
     "coverageThreshold": {
@@ -83,16 +85,21 @@
     ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/mocks/file-mock.js",
-      "\\.(css|less)$": "<rootDir>/node_modules/jest-css-modules"
+      "\\.(css|less)$": "<rootDir>/node_modules/jest-css-modules",
+      "~/(.*)": "<rootDir>/src/$1"
     },
     "notify": true,
+    "preset": "ts-jest",
     "roots": [
       "<rootDir>/tests/unit"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/tests/globals/jasmine.conf.js"
     ],
-    "testRegex": "/.*-spec\\.(js)$",
+    "testRegex": "/.*-spec\\.(ts)$",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
     "verbose": true
   },
   "types": "types.d.ts"

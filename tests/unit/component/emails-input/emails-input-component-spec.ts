@@ -1,7 +1,7 @@
 import {validEmail} from '../../helpers/objects-creator';
-import {EmailsInput} from '~/src/component/emails-input/emails-input';
+import {EmailsInput} from '~/component/emails-input/emails-input';
 
-describe('Emails input', () => {
+describe('Emails input component', () => {
     it('should properly work all API methods of the component', () => {
         const email1 = validEmail(1, 'marieke');
         const email2 = validEmail(2, 'andreas');
@@ -44,7 +44,7 @@ describe('Emails input', () => {
 
     it('should warn if no root element provided', () => {
         console.warn = jest.fn();
-        EmailsInput();
+        EmailsInput(null);
         expect(console.warn).toHaveBeenCalledWith('The root element for "emails-input" has not found.');
     });
 });

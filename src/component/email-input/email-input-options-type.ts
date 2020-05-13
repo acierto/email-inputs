@@ -1,3 +1,3 @@
 export type EmailInputOptions = {
-    showTitle: boolean
+    showTitle?: boolean
 };

@@ -1,4 +1,4 @@
-import {getNextId} from '~/src/component/services/id-generator';
+import {getNextId} from '~/component/services/id-generator';
 
 describe('id-generator', () => {
     describe('getNextId', () => {

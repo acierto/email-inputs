@@ -1,4 +1,5 @@
-import {validate} from '~/src/component/services/validator';
+import {validate} from '~/component/services/validator';
+import {validEmail} from '../../helpers/objects-creator';
 
 describe('validator', () => {
     describe('validate', () => {
@@ -26,9 +27,11 @@ describe('validator', () => {
             expect(validate('john@miro.com', [], [() => true, () => false])).toBeFalsy();
             expect(validate('john@miro.com', [], [() => true, () => true])).toBeTruthy();
 
-            expect(validate('john@miro.com', ['john@miro.com'],
-                [(email, allEmails) => allEmails.indexOf(email) === -1])).toBeFalsy();
-            expect(validate('john@miro.com', ['mike@miro.com'],
+            expect(validate('john@miro.com', [validEmail(1, 'john')],
+                [(email, allEmails) =>
+                    allEmails.map(input => input.email).indexOf(email) === -1])).toBeFalsy();
+
+            expect(validate('john@miro.com', [validEmail(2, 'mike')],
                 [(email, allEmails) => allEmails.length !== 1])).toBeFalsy();
         });
     });

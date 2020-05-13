@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
     "downlevelIteration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -17,6 +18,11 @@
     "moduleResolution": "node",
     "noImplicitAny": false,
     "outDir": "./dist/",
+    "paths": {
+      "~/*": [
+        "*"
+      ]
+    },
     "removeComments": true,
     "resolveJsonModule": true,
     "strictNullChecks": false,

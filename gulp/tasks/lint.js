@@ -20,24 +20,9 @@ const lesshintSteam = (stream) => stream
     .pipe(lesshint.reporter())
     .pipe(lesshint.failOnError());
 
-const lintStream = (stream) => stream
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-
-gulp.task('lint-less', gulp.series('add-linters', () => lesshintSteam(gulp.src(`${paths.srcDir}/**/*.less`))));
-
-gulp.task('lint', () => lintStream(gulp.src(`${paths.srcDir}/**/*.js`)));
-
-gulp.task('lint-tests', () => lintStream(
-    gulp.src([`${paths.testsDir}/**/*.js`, `!${paths.testsDir}/e2e/config/**/*.js`])));
-
-gulp.task('lint-all', gulp.series('lint-less', 'lint', 'lint-tests'));
+gulp.task('lint', gulp.series('add-linters', () => lesshintSteam(gulp.src(`${paths.srcDir}/**/*.less`))));
 
 gulp.task('watch-lint', () => {
     const watch = (glob, taskName) => gulp.watch(glob, gulp.parallel(taskName));
-    watch(`${paths.srcDir}/**/*.less`, 'lint-less');
-    watch(`${paths.testsDir}/unit/**/*.js`, 'lint-tests');
-    watch(`${paths.testsDir}/e2e/dsl/**/*.js`, 'lint-tests');
-    watch(`${paths.testsDir}/e2e/scenario/**/*.js`, 'lint-tests');
+    watch(`${paths.srcDir}/**/*.less`, 'lint');
 });
