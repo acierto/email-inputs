@@ -1,6 +1,5 @@
 import {emailToEmailInput} from './services/email-input-converter';
 import {createNotification} from './services/notification';
-
 import {Observable} from './observable-type';
 import {Validator} from './validator-type';
 import {EmailInput} from './email-input/email-input-type';
