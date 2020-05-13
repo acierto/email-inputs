@@ -31,5 +31,6 @@ export default {
             template: './src/playground/demo/playground-demo.ejs',
             title: 'Emails Input Playground Demo'
         })
-    ]
+    ],
+    resolve: common.resolve
 };

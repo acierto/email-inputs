@@ -9,6 +9,17 @@ const postCssLoader = {
 export default {
     rulesConfig: [
         {
+            enforce: 'pre',
+            test: /\.ts$/,
+            exclude: /node_modules/,
+            loader:'tslint-loader'
+        },
+        {
+            test: /\.ts$/,
+            exclude: /node_modules/,
+            loader: 'ts-loader'
+        },
+        {
             exclude: /node_modules/,
             loader: 'eslint-loader',
             options: {cache: true},
@@ -31,5 +42,8 @@ export default {
                 }, postCssLoader, 'less-loader?sourceMap']
         },
         {loader: 'url-loader', test: /\.(png|svg|jpg|woff|woff2|eot|ttf|otf)/}
-    ]
+    ],
+    resolve: {
+        extensions: ['.ts', '.js', '.less']
+    }
 };

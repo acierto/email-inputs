@@ -1,15 +1,17 @@
-import {Storage} from '../storage';
-import {EmailInput} from '../email-input/email-input';
-import {Observable} from '../observable';
+import {EmailsStorage} from '../emails-storage';
+import {EmailInputComponent} from '../email-input/email-input-component';
+import {Observer} from '../observer';
 import {NewEmailInput} from '../new-email-input/new-email-input';
 import {onRemoveEmailListener} from '../email-input/email-input-remove-listener';
 
-import emailInputStyles from '../email-input/email-input.less';
+import emailInputStyles from '../email-input/email-input-component.less';
 import styles from './emails-input.less';
+import {EmailsInputOptions} from './emails-input-options-type';
+import {EmailsInputApi} from './emails-input-api-type';
 
-export const EmailsInput = (rootComponent, options = {}) => {
-    const observer = Observable();
-    const storage = Storage(observer, options.validators);
+export const EmailsInput = (rootComponent, options: EmailsInputOptions = {}): EmailsInputApi => {
+    const observer = Observer();
+    const storage = EmailsStorage(observer, options.validators);
 
     const api = {
         getAllEmails: () => storage.getAllEmails(),
@@ -20,7 +22,7 @@ export const EmailsInput = (rootComponent, options = {}) => {
     const render = () => {
         const newInputElement = NewEmailInput(rootComponent, storage, {placeholder: options.placeholder});
         const output = `<div class="${styles.emailsInput}">
-                            <div class="${styles.emailContainer}"> 
+                            <div class="${styles.emailContainer}">
                                 ${newInputElement.render()}
                             </div>
                         </div>`;
@@ -38,7 +40,7 @@ export const EmailsInput = (rootComponent, options = {}) => {
 
         for (const input of added) {
             const inputOptions = {showTitle: options.showTitle};
-            ref.insertBefore(EmailInput(input, inputOptions), ref.childNodes[ref.children.length - 1]);
+            ref.insertBefore(EmailInputComponent(input, inputOptions), ref.childNodes[ref.children.length - 1]);
         }
 
         for (const id of removed) {
@@ -51,7 +53,8 @@ export const EmailsInput = (rootComponent, options = {}) => {
 
     if (rootComponent) {
         observer.subscribe(rerender);
-        rootComponent.addEventListener('click', onRemoveEmailListener(storage));
+        const container = rootComponent.querySelector(`.${styles.emailContainer}`);
+        container.addEventListener('click', onRemoveEmailListener(storage));
     }
 
     return api;

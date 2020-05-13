@@ -1,9 +1,13 @@
 import {dataTypes} from '../data-types';
-import styles from './email-input.less';
+import {EmailInput} from './email-input-type';
+import {EmailInputOptions} from './email-input-options-type';
 
-export const EmailInput = (input, {showTitle} = {}) => {
+import styles from './email-input-component.less';
+
+export const EmailInputComponent = (input: EmailInput, options: EmailInputOptions) => {
     const innerHtml = () => {
         const {email, id} = input;
+        const {showTitle} = options;
 
         const displayEmailComponent = showTitle ?
             `<span class=${styles.email} title="${email}">${email}</span>` :

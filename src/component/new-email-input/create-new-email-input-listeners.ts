@@ -1,9 +1,11 @@
 import {isDefined, isNotBlank} from '../services/common-service';
+import {InputListeners} from './input-listerners-type';
+import {Storage} from '../storage-type';
 
-export const createInputListeners = (element, storage) => {
-    const toMails = (value) => isDefined(value) ? value.split(',') : [];
+export const createInputListeners = (element: HTMLInputElement, storage: Storage): InputListeners => {
+    const toMails = (value: string) => isDefined(value) ? value.split(',') : [];
 
-    const addEmails = (value) => {
+    const addEmails = (value: string) => {
         toMails(value).forEach((email) => {
             const trimmedEmail = email.trim();
             if (isNotBlank(trimmedEmail)) {
@@ -13,10 +15,12 @@ export const createInputListeners = (element, storage) => {
         });
     };
 
-    const blurListener = (event) => addEmails(event.target.value);
+    const blurListener = (event: FocusEvent): void => {
+        addEmails((event.target as HTMLInputElement).value);
+    };
 
-    const keyPressListener = (event) => {
-        const {value} = event.target;
+    const keyPressListener = (event: KeyboardEvent): void => {
+        const {value} = (event.target as HTMLInputElement);
         switch (event.key) {
             case 'Enter':
                 addEmails(value);
@@ -28,12 +32,13 @@ export const createInputListeners = (element, storage) => {
         }
     };
 
-    const pasteListener = (event) => {
+    const pasteListener = (event: ClipboardEvent): void => {
         const getValue = () => {
-            const {clipboardData} = event.originalEvent || event;
+            const {clipboardData} = event;
             if (isDefined(clipboardData)) {
                 return clipboardData.getData('text/plain');
             }
+            // @ts-ignore TODO:
             return window.clipboardData.getData('text');
         };
 
