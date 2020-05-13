@@ -54,11 +54,11 @@ There are several things configured:
 * Used a long email name to show that this case is handled.
 * Placeholder for the input field is custom, namely `add more emails...`
 * Titles on emails are enabled. So long (and therefore trimmed) email names will be visible on hover.
-* Also 4 custom validators configured. Email is valid if all next is true (on top of default email validator):
-** Email can't have 'v' letter.
-** Email characters should be less than 20
-** Emails can't be duplicated
-** Emails can't be more than 6.
+* Additionally, 4 custom validators are configured. Email is valid if all next is true (on top of default email validator):
+    * Email can't have 'v' letter.
+    * Email characters should be less than 20
+    * Emails can't be duplicated
+    * Emails can't be more than 6.
 
 ### Case 4.
 
