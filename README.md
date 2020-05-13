@@ -173,7 +173,7 @@ The next evolvement in validators could be:
 
 #### replaceAll
 
-In case when you have to make a bulk update you can use *replaceAll* API method. As arguments, it takes an array 
+In case when you have to make a bulk update, you can use *replaceAll* API method. As arguments, it takes an array 
 of strings.
 
 ```javascript
@@ -186,8 +186,8 @@ Check out for that `playground-form.js` method `postRender.
 
 #### subscribe
 
-If you are building a reactive application, and you have to listen for any changes to your input field that API method
-is available for that. 
+If you are building a reactive application, and you have to listen for any changes to emails in the component, this
+ API method is exactly for that. 
 
 ```javascript
 var emailsInput = EmailsInput(inputContainerNode, options);
