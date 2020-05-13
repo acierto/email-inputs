@@ -12,14 +12,14 @@ Lightweight emails input component without third party dependencies
 * Input neither depends on the form or page styles, nor conflicts with them.
 * If the input has too many emails, the user can scroll it.
 * Pasted emails converted into blocks immediately. If multiple comma-separated
-  emails pasted (e.g., “ ivan@mail.ru , max@mail.ru ”), they are converted into multiple
+  emails pasted (e.g., ivan@mail.ru,max@mail.ru), they are converted into multiple
   blocks.
 * "Add email" button adds a random email to the list.
 * "Get emails count" button shows an alert with valid emails count.
 * Editing of added emails is impossible.
-* It is possible to create several emails editors on the same page.
+* It is possible to locate several emails editors on the same page.
 * "emails-input" has no external dependencies like React, Lodash or any polyfills.
-* "emails-input" has no memory leaks or doesn't re-render all email blocks every time you add or remove a single email.
+* "emails-input" has no memory leaks and doesn't re-render all email blocks every time you add or remove a single email.
 
 ## How component looks
 
@@ -72,9 +72,9 @@ form.
 
 |Name|Description|
 |----|-----------|
-|getAllEmails|A method to get all entered emails. Both valid and invalid.|
-|replaceAll|A method to replace all entered emails with new ones.|
-|subscribe|Ability to subscribe for emails list changes.|
+|getAllEmails|A method to get all entered emails. Both valid and invalid.  [More info](#getallemails)|
+|replaceAll|A method to replace all entered emails with new ones. [More info](#replaceall)|
+|subscribe|Ability to subscribe for emails list changes. [More info](#subscribe)|
 
 ## Options
 
@@ -137,6 +137,8 @@ all emails where used at least 1 capital letter.
 Up so far we know already how to include the component, and the ways to configure it.
 Let's see how it's possible to interact with the component via API:
 
+#### getAllEmails
+
 ```javascript
 var emailsInput = EmailsInput(inputContainerNode, options);
 emailsInput.getAllEmails();
@@ -168,7 +170,48 @@ flexible way how you are really willing to use and enhance it.
 
 The next evolvement in validators could be:
 * adding a reason, so that the user knows where and why it happened.
-* dynamically added/removed validators. It might be useful in complicated wizard pages 
+
+#### replaceAll
+
+In case when you have to make a bulk update you can use *replaceAll* API method. As arguments, it takes an array 
+of strings.
+
+```javascript
+var emailsInput = EmailsInput(inputContainerNode, options);
+emailsInput.replaceAll(['john@miro.com', 'marieke@miro.com']);
+```
+
+In the sources of playground you can find the example of usage of this method to set initial values for certain "cases".
+Check out for that `playground-form.js` method `postRender.
+
+#### subscribe
+
+If you are building a reactive application, and you have to listen for any changes to your input field that API method
+is available for that. 
+
+```javascript
+var emailsInput = EmailsInput(inputContainerNode, options);
+var unsubscribe = emailsInput.subscribe((message) => {...});
+unsubscribe();
+```
+
+On line 2 it is shown how it's possible to subscribe to any changes with emails. You'll receive a notification message
+in a format:
+```javascript
+{
+    added,
+    inputs,
+    removed
+}
+```
+
+Each of this field is of type array. 
+* *added* - contains the information of lastly added emails. Take the situation when *replaceAll* method was invoked.
+It will calculate the difference which emails were before and which are now and add only missing ones. 
+* *inputs* - the final state of all emails after all modifications
+* *removed* - contains the information of lastly removed emails. Calculated in the same way as *added* field.
+
+Once you don't need to listen to modifications anymore, you can unsubscribe as it is shown on line 3.  
 
 # For contributors
 
@@ -330,19 +373,24 @@ provided api calls. What can be found in `playground-form.js`. A short snippet o
 
 ```javascript
     const registerListeners = (emailsInput) => {
-        rootElement.querySelector(`.${styles.playgroundForm} .add-email`)
-            .addEventListener('click', addEmailListener(emailsInput));
-        rootElement.querySelector(`.${styles.playgroundForm} .get-emails-count`)
-            .addEventListener('click', getEmailsCountListener(emailsInput));
-    };
-
-    const postRender = () => {
-        options.emailsInputList.forEach((emailsInputConfig) => {
-            const {id, placeholder, showTitle, validators} = emailsInputConfig;
-            const inputContainerNode = document.querySelector(`#${id}`);
-            const emailsInput = EmailsInput(inputContainerNode, {placeholder, showTitle, validators});
-            emailsInput.replaceAll(emailsInputConfig.initialData);
-            registerListeners(emailsInput);
-        });
-    };
+            rootElement.querySelector(`.${styles.playgroundForm} .add-email`)
+                .addEventListener('click', addEmailListener(emailsInput));
+            rootElement.querySelector(`.${styles.playgroundForm} .get-emails-count`)
+                .addEventListener('click', getEmailsCountListener(emailsInput));
+            emailsInput.subscribe((emailInput) => {
+                console.log('Added email(s)', emailInput.added);
+                console.log('Removed email(s)', emailInput.removed);
+                console.log('Currently containing emails', emailInput.inputs);
+            });
+        };
+    
+        const postRender = () => {
+            options.emailsInputList.forEach((emailsInputConfig) => {
+                const {id, placeholder, showTitle, validators} = emailsInputConfig;
+                const inputContainerNode = document.querySelector(`#${id}`);
+                const emailsInput = EmailsInput(inputContainerNode, {placeholder, showTitle, validators});
+                emailsInput.replaceAll(emailsInputConfig.initialData);
+                registerListeners(emailsInput);
+            });
+        };
 ```

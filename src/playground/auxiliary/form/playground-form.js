@@ -39,6 +39,11 @@ export const PlaygroundForm = (rootElement, options) => {
             .addEventListener('click', addEmailListener(emailsInput));
         rootElement.querySelector(`.${styles.playgroundForm} .get-emails-count`)
             .addEventListener('click', getEmailsCountListener(emailsInput));
+        emailsInput.subscribe((message) => {
+            console.log('Added email(s)', message.added);
+            console.log('Removed email(s)', message.removed);
+            console.log('Currently containing emails', message.inputs);
+        });
     };
 
     const postRender = () => {
