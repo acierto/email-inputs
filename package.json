@@ -70,14 +70,6 @@
       "src/component/**/*.ts"
     ],
     "coverageDirectory": "<rootDir>/build/reports/coverage",
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      }
-    },
     "coverageReporters": [
       "html",
       "json-summary",

@@ -1,7 +1,6 @@
 import {isDefined, isNotBlank} from '../services/common-service';
 import {InputListeners} from './input-listerners-type';
 import {Storage} from '../storage-type';
-import {getInputValue} from '~/component/services/event-service';
 
 export const createInputListeners = (element: HTMLInputElement, storage: Storage): InputListeners => {
     const toMails = (value: string) => isDefined(value) ? value.split(',') : [];
@@ -17,11 +16,11 @@ export const createInputListeners = (element: HTMLInputElement, storage: Storage
     };
 
     const blurListener = (event: FocusEvent): void => {
-        addEmails(getInputValue(event));
+        addEmails((event.target as HTMLInputElement).value);
     };
 
     const keyPressListener = (event: KeyboardEvent): void => {
-        const value = getInputValue(event);
+        const {value} = (event.target as HTMLInputElement);
         switch (event.key) {
             case 'Enter':
                 addEmails(value);
@@ -39,8 +38,7 @@ export const createInputListeners = (element: HTMLInputElement, storage: Storage
             if (isDefined(clipboardData)) {
                 return clipboardData.getData('text/plain');
             }
-            // @ts-ignore TODO:
-            return window.clipboardData.getData('text');
+            return (window as any).clipboardData.getData('text');
         };
 
         const value = getValue();

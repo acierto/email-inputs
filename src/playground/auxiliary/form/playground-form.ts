@@ -3,7 +3,7 @@ import {getNextEmail} from '../email-generator';
 import {getStyles} from '../service/common-service';
 import styles from './playground-form.less';
 import {PlaygroundFormOptionsType} from './playground-form-options-type';
-import {EmailsInputApi} from '../../../component/emails-input/emails-input-api-type';
+import {EmailsInputApi} from '~/component/emails-input/emails-input-api-type';
 
 export const PlaygroundForm = (rootElement: HTMLElement, options: PlaygroundFormOptionsType): void => {
     const toStyles = (name) => getStyles(['styles', name], options);
@@ -53,7 +53,6 @@ export const PlaygroundForm = (rootElement: HTMLElement, options: PlaygroundForm
             const {id, placeholder, showTitle, validators} = emailsInputConfig;
             const inputContainerNode = document.querySelector(`#${id}`);
 
-            // @ts-ignore TODO
             const emailsInputApi = EmailsInput(inputContainerNode, {placeholder, showTitle, validators});
             emailsInputApi.replaceAll(emailsInputConfig.initialData);
             registerListeners(emailsInputApi);

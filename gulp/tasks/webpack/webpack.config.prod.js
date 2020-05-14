@@ -6,7 +6,7 @@ const mode = 'production';
 
 export default {
     entry: {
-        index: ['./src/component/emails-input/emails-input.js']
+        index: ['./src/component/emails-input/emails-input.ts']
     },
     mode,
     module: {
@@ -14,7 +14,7 @@ export default {
             {
                 include: /node_modules/,
                 loaders: ['strip-sourcemap-loader'],
-                test: /\.js$/
+                test: /\.ts/
             },
             {
                 exclude: /(node_modules)/,

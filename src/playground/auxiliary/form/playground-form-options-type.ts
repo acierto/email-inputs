@@ -1,4 +1,4 @@
-import {Validator} from '../../../component/validator-type';
+import {Validator} from '~/component/validator-type';
 
 type PlaygroundFormOptionType = {
     id: string,

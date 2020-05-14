@@ -9,11 +9,6 @@ export default {
     mode: 'development',
     module: {
         rules: [
-            {
-                exclude: /(node_modules|tmp)/,
-                loader: 'babel-loader',
-                test: /\.js$/
-            },
             ...common.rulesConfig
         ]
     },

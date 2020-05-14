@@ -25,7 +25,7 @@ describe('Emails input component', () => {
         expect(listener).toHaveBeenCalledWith(expectedLastReceivedNotificationMessage);
     });
 
-    it('should properly render elements', () => {
+    it('should properly render elements and remove them', () => {
         const email1 = validEmail(1, 'robert');
         const email2 = validEmail(2, 'ronald');
         const email3 = validEmail(3, 'roland');

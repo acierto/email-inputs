@@ -21,15 +21,18 @@ gulp.task('jest', gulp.series('run-jest', () => new Promise((resolve, reject) =>
             reject(err);
         }
         const total = JSON.parse(data).total;
-        const global = packageJson.jest.coverageThreshold.global;
+        const {coverageThreshold} = packageJson.jest;
+        if (coverageThreshold) {
+            const global = coverageThreshold.global;
 
-        const checkThreshold = (propName) => {
-            if (total[propName].pct < global[propName]) {
-                reject(createMessage(propName, total));
-            }
-        };
+            const checkThreshold = (propName) => {
+                if (total[propName].pct < global[propName]) {
+                    reject(createMessage(propName, total));
+                }
+            };
 
-        ['lines', 'statements', 'functions', 'branches'].forEach((propName) => checkThreshold(propName));
+            ['lines', 'statements', 'functions', 'branches'].forEach((propName) => checkThreshold(propName));
+        }
         resolve();
     })
 )));

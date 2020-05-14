@@ -1,4 +1,10 @@
-const arrayOf = (num: number): any[] => Array(num).fill(null).map((_, ind: number) => ind);
+const arrayOf = (num: number): number[] => {
+    const array: number[] = [];
+    for (let ind = 0; ind < num; ind++) {
+        array.push(ind);
+    }
+    return array;
+}
 const mapNTimes = (num: number, func: (num: number) => string) => arrayOf(num).map((_, ind: number) => func(ind));
 const repeat = (num: number, text: string) => arrayOf(num).reduce((acc) => text + acc, '');
 
