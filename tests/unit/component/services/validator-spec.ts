@@ -1,4 +1,4 @@
-import {validate} from '~/component/services/validator';
+import {validate} from '~/component/services/validation-service';
 import {validEmail} from '../../helpers/objects-creator';
 
 describe('validator', () => {

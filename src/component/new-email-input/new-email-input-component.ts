@@ -1,9 +1,9 @@
 import {propOr} from '../services/common-service';
 import {createInputListeners} from './create-new-email-input-listeners';
-import styles from './new-email-input.less';
+import styles from './new-email-input-component.less';
 import {Storage} from '../storage-type';
 
-export const NewEmailInput = (rootComponent: HTMLElement, storage: Storage, options = {}) => {
+export const NewEmailInputComponent = (rootComponent: HTMLElement, storage: Storage, options = {}) => {
     const placeholder = propOr('placeholder', 'add more people...', options);
 
     const getRef = (): HTMLInputElement => rootComponent.querySelector(`.${styles.newEmailInput}`);

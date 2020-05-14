@@ -1,5 +1,5 @@
 import {Playground} from '../playground';
-import {EmailsInput} from '../../component/emails-input/emails-input';
+import {EmailsInputComponent} from '../../component/emails-input/emails-input-component';
 
-(global as any).EmailsInput = EmailsInput;
+(global as any).EmailsInput = EmailsInputComponent;
 Playground();

@@ -1,4 +1,4 @@
-import {NewEmailInput} from '~/component/new-email-input/new-email-input';
+import {NewEmailInputComponent} from '~/component/new-email-input/new-email-input-component';
 
 describe('New email input component', () => {
     const addEmailMock = jest.fn();
@@ -10,12 +10,12 @@ describe('New email input component', () => {
     };
 
     it('should render with default placeholder text', () => {
-        expect(NewEmailInput(document.body, storageMock).render())
+        expect(NewEmailInputComponent(document.body, storageMock).render())
             .toContain('placeholder="add more people..."');
     });
 
     it('should render with custom placeholder text', () => {
-        expect(NewEmailInput(document.body, storageMock, {placeholder: 'add more emails...'}).render())
+        expect(NewEmailInputComponent(document.body, storageMock, {placeholder: 'add more emails...'}).render())
             .toContain('placeholder="add more emails..."');
     });
 });

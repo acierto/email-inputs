@@ -1,15 +1,15 @@
 import {EmailsStorage} from '../emails-storage';
 import {EmailInputComponent} from '../email-input/email-input-component';
 import {Observer} from '../observer';
-import {NewEmailInput} from '../new-email-input/new-email-input';
+import {NewEmailInputComponent} from '../new-email-input/new-email-input-component';
 import {onRemoveEmailListener} from '../email-input/email-input-remove-listener';
-
-import emailInputStyles from '../email-input/email-input-component.less';
-import styles from './emails-input.less';
 import {EmailsInputOptions} from './emails-input-options-type';
 import {EmailsInputApi} from './emails-input-api-type';
 
-export const EmailsInput = (rootComponent, options: EmailsInputOptions = {}): EmailsInputApi => {
+import styles from './emails-input-component.less';
+import emailInputStyles from '../email-input/email-input-component.less';
+
+export const EmailsInputComponent = (rootComponent, options: EmailsInputOptions = {}): EmailsInputApi => {
     const observer = Observer();
     const storage = EmailsStorage(observer, options.validators);
 
@@ -20,7 +20,7 @@ export const EmailsInput = (rootComponent, options: EmailsInputOptions = {}): Em
     };
 
     const render = () => {
-        const newInputElement = NewEmailInput(rootComponent, storage, {placeholder: options.placeholder});
+        const newInputElement = NewEmailInputComponent(rootComponent, storage, {placeholder: options.placeholder});
         const output = `<div class="${styles.emailsInput}">
                             <div class="${styles.emailContainer}">
                                 ${newInputElement.render()}

@@ -1,4 +1,4 @@
-import {validate} from './validator';
+import {validate} from './validation-service';
 import {getNextId} from './id-generator';
 
 import {Validator} from '../validator-type';

@@ -1,4 +1,4 @@
-import {createNotification} from '~/component/services/notification';
+import {createNotification} from '~/component/services/notification-service';
 import {EmailInput} from '~/component/email-input/email-input-type';
 
 const email = (num: number): EmailInput => ({id: num.toString(), email: `${num}@miro.com`, valid: true});

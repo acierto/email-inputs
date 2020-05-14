@@ -1,5 +1,5 @@
 import {Observer} from '~/component/observer';
-import {createNotification} from '~/component/services/notification';
+import {createNotification} from '~/component/services/notification-service';
 import {validEmail} from '../helpers/objects-creator';
 
 describe('Observable', () => {
