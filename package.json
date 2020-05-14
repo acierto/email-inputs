@@ -51,6 +51,7 @@
     "protractor-jasmine2-html-reporter": "0.0.7",
     "protractor-screenshot-reporter": "0.0.5",
     "selenium-standalone": "6.17.0",
+    "simulate-event": "1.4.0",
     "strip-sourcemap-loader": "0.0.1",
     "style-loader": "1.2.1",
     "ts-jest": "25.5.1",
@@ -70,6 +71,14 @@
       "src/component/**/*.ts"
     ],
     "coverageDirectory": "<rootDir>/build/reports/coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    },
     "coverageReporters": [
       "html",
       "json-summary",
