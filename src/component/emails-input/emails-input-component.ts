@@ -12,6 +12,7 @@ import emailInputStyles from '../email-input/email-input-component.less';
 export const EmailsInputComponent = (rootComponent, options: EmailsInputOptions = {}): EmailsInputApi => {
     const observer = Observer();
     const storage = EmailsStorage(observer, options.validators);
+    let emailContainer: HTMLDivElement;
 
     const api = {
         getAllEmails: () => storage.getAllEmails(),
@@ -27,7 +28,7 @@ export const EmailsInputComponent = (rootComponent, options: EmailsInputOptions 
 
         const newInputElement = NewEmailInputComponent(storage, {placeholder: options.placeholder});
 
-        const emailContainer: HTMLDivElement = document.createElement("div");
+        emailContainer = document.createElement("div");
         emailContainer.className = styles.emailContainer;
         emailContainer.appendChild(newInputElement);
         emailContainer.addEventListener('click', onRemoveEmailListener(storage));
@@ -42,16 +43,15 @@ export const EmailsInputComponent = (rootComponent, options: EmailsInputOptions 
     };
 
     const rerender = ({added, removed}) => {
-        const ref = rootComponent.querySelector(`.${styles.emailContainer}`);
-
         for (const input of added) {
             const inputOptions = {showTitle: options.showTitle};
-            ref.insertBefore(EmailInputComponent(input, inputOptions), ref.childNodes[ref.children.length - 1]);
+            emailContainer.insertBefore(EmailInputComponent(input, inputOptions),
+                emailContainer.childNodes[emailContainer.children.length - 1]);
         }
 
         for (const id of removed) {
-            const child = ref.querySelector(`.${emailInputStyles.emailInput}[data-id="${id}"]`);
-            ref.removeChild(child);
+            const child = emailContainer.querySelector(`.${emailInputStyles.emailInput}[data-id="${id}"]`);
+            emailContainer.removeChild(child);
         }
     };
 
