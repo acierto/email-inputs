@@ -1,6 +1,6 @@
 import {preGeneratedEmails1, preGeneratedEmails2} from './pregenerated-emails';
 import {PlaygroundFormOptionsType} from "./form/playground-form-options-type";
-import {EmailInput} from "../../component/email-input/email-input-type";
+import {EmailInput} from "~/component/email-input/email-input-type";
 
 export const case1: PlaygroundFormOptionsType = {emailsInputList: [{id: 'email-inputs'}]};
 

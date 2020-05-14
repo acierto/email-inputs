@@ -1,5 +1,5 @@
 import {validEmail} from '../../helpers/objects-creator';
-import {EmailsInputComponent} from '~/component/emails-input/emails-input-component';
+import {EmailsInput} from '~/component/emails-input/emails-input-component';
 
 describe('Emails input component', () => {
     afterEach(() => {
@@ -19,7 +19,7 @@ describe('Emails input component', () => {
         };
 
         const listener = jest.fn();
-        const componentApi = EmailsInputComponent(document.body, {placeholder: 'type here...'});
+        const componentApi = EmailsInput(document.body, {placeholder: 'type here...'});
         expect(componentApi.getAllEmails()).toEqual([]);
         const unsubscribe = componentApi.subscribe(listener);
         componentApi.replaceAll([email1.email, email2.email]);
@@ -36,7 +36,7 @@ describe('Emails input component', () => {
         const email2 = validEmail(2, 'ronald');
         const email3 = validEmail(3, 'roland');
 
-        const componentApi = EmailsInputComponent(document.body, {placeholder: 'one more?'});
+        const componentApi = EmailsInput(document.body, {placeholder: 'one more?'});
         componentApi.replaceAll([email1.email, email2.email, email3.email]);
 
         const component = document.body.querySelector('.emailsInput');
@@ -50,7 +50,7 @@ describe('Emails input component', () => {
 
     it('should warn if no root element provided', () => {
         console.warn = jest.fn();
-        EmailsInputComponent(null);
+        EmailsInput(null);
         expect(console.warn).toHaveBeenCalledWith('The root element for "emails-input" has not found.');
     });
 });
