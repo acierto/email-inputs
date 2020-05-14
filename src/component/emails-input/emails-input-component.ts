@@ -19,20 +19,26 @@ export const EmailsInputComponent = (rootComponent, options: EmailsInputOptions 
         subscribe: (subscriber) => observer.subscribe(subscriber)
     };
 
-    const render = () => {
-        const newInputElement = NewEmailInputComponent(rootComponent, storage, {placeholder: options.placeholder});
-        const output = `<div class="${styles.emailsInput}">
-                            <div class="${styles.emailContainer}">
-                                ${newInputElement.render()}
-                            </div>
-                        </div>`;
-
-        if (rootComponent) {
-            rootComponent.innerHTML = output;
-            newInputElement.registerListeners();
-        } else {
+    const appendToRootComponent = () => {
+        if (!rootComponent) {
             console.warn('The root element for "emails-input" has not found.');
+            return;
         }
+
+        const newInputElement = NewEmailInputComponent(storage, {placeholder: options.placeholder});
+
+        const emailContainer: HTMLDivElement = document.createElement("div");
+        emailContainer.className = styles.emailContainer;
+        emailContainer.appendChild(newInputElement);
+        emailContainer.addEventListener('click', onRemoveEmailListener(storage));
+
+        const emailsInput = document.createElement("div");
+        emailsInput.className = styles.emailsInput;
+        emailsInput.appendChild(emailContainer);
+
+        rootComponent.appendChild(emailsInput);
+
+        observer.subscribe(rerender);
     };
 
     const rerender = ({added, removed}) => {
@@ -49,13 +55,7 @@ export const EmailsInputComponent = (rootComponent, options: EmailsInputOptions 
         }
     };
 
-    render();
-
-    if (rootComponent) {
-        observer.subscribe(rerender);
-        const container = rootComponent.querySelector(`.${styles.emailContainer}`);
-        container.addEventListener('click', onRemoveEmailListener(storage));
-    }
+    appendToRootComponent();
 
     return api;
 };

@@ -1,17 +1,8 @@
-import {dataTypes} from '../data-types';
 import {Storage} from '../storage-type';
 
-interface EmailEventTarget extends EventTarget {
-    dataset: any
-}
-
-interface RemoveMouseEvent extends MouseEvent {
-    target: EmailEventTarget | null
-}
-
-export const onRemoveEmailListener = (storage: Storage) => (event: RemoveMouseEvent) => {
-    const {id, type} = event.target.dataset;
-    if (dataTypes.REMOVE_EMAIL_INPUT === type) {
+export const onRemoveEmailListener = (storage: Storage) => (event: MouseEvent) => {
+    if (event.target instanceof HTMLButtonElement) {
+        const {id} = event.target.dataset;
         storage.removeById(id);
     }
 };

@@ -10,12 +10,12 @@ describe('New email input component', () => {
     };
 
     it('should render with default placeholder text', () => {
-        expect(NewEmailInputComponent(document.body, storageMock).render())
+        expect(NewEmailInputComponent(storageMock).outerHTML)
             .toContain('placeholder="add more people..."');
     });
 
     it('should render with custom placeholder text', () => {
-        expect(NewEmailInputComponent(document.body, storageMock, {placeholder: 'add more emails...'}).render())
+        expect(NewEmailInputComponent(storageMock, {placeholder: 'add more emails...'}).outerHTML)
             .toContain('placeholder="add more emails..."');
     });
 });

@@ -3,18 +3,18 @@ import {createInputListeners} from './create-new-email-input-listeners';
 import styles from './new-email-input-component.less';
 import {Storage} from '../storage-type';
 
-export const NewEmailInputComponent = (rootComponent: HTMLElement, storage: Storage, options = {}) => {
+export const NewEmailInputComponent = (storage: Storage, options = {}) => {
     const placeholder = propOr('placeholder', 'add more people...', options);
 
-    const getRef = (): HTMLInputElement => rootComponent.querySelector(`.${styles.newEmailInput}`);
+    const create = () => {
+        const component:HTMLInputElement = document.createElement("input");
+        component.placeholder = placeholder;
+        component.className = styles.newEmailInput;
+        registerListeners(component);
+        return component;
+    };
 
-    const render = () => `<input
-                                class="${styles.newEmailInput}"
-                                placeholder="${placeholder}"/>`;
-
-    const registerListeners = () => {
-        const element = getRef();
-
+    const registerListeners = (element: HTMLInputElement) => {
         const {
             blurListener,
             keyPressListener,
@@ -26,8 +26,5 @@ export const NewEmailInputComponent = (rootComponent: HTMLElement, storage: Stor
         element.addEventListener('paste', pasteListener);
     };
 
-    return {
-        registerListeners,
-        render
-    };
+    return create();
 };

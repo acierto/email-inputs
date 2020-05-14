@@ -2,6 +2,12 @@ import {validEmail} from '../../helpers/objects-creator';
 import {EmailsInputComponent} from '~/component/emails-input/emails-input-component';
 
 describe('Emails input component', () => {
+    afterEach(() => {
+        for (const child of document.body.children) {
+            document.body.removeChild(child);
+        }
+    });
+
     it('should properly work all API methods of the component', () => {
         const email1 = validEmail(1, 'marieke');
         const email2 = validEmail(2, 'andreas');

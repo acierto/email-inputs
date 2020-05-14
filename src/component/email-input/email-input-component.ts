@@ -1,32 +1,37 @@
-import {dataTypes} from '../data-types';
 import {EmailInput} from './email-input-type';
 import {EmailInputOptions} from './email-input-options-type';
 
 import styles from './email-input-component.less';
 
 export const EmailInputComponent = (input: EmailInput, options: EmailInputOptions = {}) => {
-    const innerHtml = () => {
-        const {email, id} = input;
+
+    const createCrossButton = (id) => {
+        const crossButton = document.createElement("button");
+        crossButton.className = styles.removeEmail;
+        crossButton.dataset.id = id;
+        return crossButton;
+    };
+
+    const createEmailText = (email, showTitle): HTMLSpanElement => {
+        const emailText = document.createElement("span");
+        emailText.className = styles.email;
+        emailText.textContent = email;
+        if (showTitle) {
+            emailText.title = email;
+        }
+        return emailText;
+    }
+
+    const create = () => {
+        const {id, email, valid} = input;
         const {showTitle} = options;
-
-        const displayEmailComponent = showTitle ?
-            `<span class=${styles.email} title="${email}">${email}</span>` :
-            `<span class=${styles.email}>${email}</span>`;
-
-        return `${displayEmailComponent}
-                <span class=${styles.removeEmail}>
-                    <i class=${styles.removeIcon} data-id="${id}" data-type="${dataTypes.REMOVE_EMAIL_INPUT}"></i>
-                </span>`;
+        const emailInputComponent = document.createElement('span');
+        emailInputComponent.className = `${styles.emailInput} ${valid ? styles.valid : styles.invalid}`;
+        emailInputComponent.setAttribute('data-id', id);
+        emailInputComponent.appendChild(createEmailText(email, showTitle));
+        emailInputComponent.appendChild(createCrossButton(id));
+        return emailInputComponent;
     };
 
-    const element = () => {
-        const {id, valid} = input;
-        const div = document.createElement('span');
-        div.className = `${styles.emailInput} ${valid ? styles.valid : styles.invalid}`;
-        div.innerHTML = innerHtml();
-        div.setAttribute('data-id', id);
-        return div;
-    };
-
-    return element();
+    return create();
 };

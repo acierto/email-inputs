@@ -6,12 +6,12 @@ import {
 import {isDefined} from '../../services/common-service';
 
 const componentSelector = '#email-inputs';
-const emailContainerSelector = `${componentSelector} .emails-input__email-container`;
+const emailContainerSelector = `${componentSelector} .emails-input-component__email-container`;
 const emailInputSubSelector = '.email-input-component__email-input';
 const emailSelector = `${emailContainerSelector} ${emailInputSubSelector}`;
-const newEmailInputSelector = `${emailContainerSelector} .new-email-input__new-email-input`;
+const newEmailInputSelector = `${emailContainerSelector} .new-email-input-component__new-email-input`;
 const nthEmailSelector = (nth) => `${emailSelector}:nth-child(${nth})`;
-const nthEmailRemoveIconSelector = (nth) => `${nthEmailSelector(nth)} .email-input-component__remove-icon`;
+const nthEmailRemoveIconSelector = (nth) => `${nthEmailSelector(nth)} .email-input-component__remove-email`;
 
 const typeNewEmail = (email) => Action.typeText(newEmailInputSelector, email);
 
