@@ -9,7 +9,7 @@ import {EmailsInputApi} from './emails-input-api-type';
 import styles from './emails-input-component.less';
 import emailInputStyles from '../email-input/email-input-component.less';
 
-export const EmailsInputComponent = (rootComponent, options: EmailsInputOptions = {}): EmailsInputApi => {
+export const EmailsInput = (rootComponent, options: EmailsInputOptions = {}): EmailsInputApi => {
     const observer = Observer();
     const storage = EmailsStorage(observer, options.validators);
     let emailContainer: HTMLDivElement;

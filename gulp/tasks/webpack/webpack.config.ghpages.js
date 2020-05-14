@@ -8,9 +8,7 @@ export default {
     },
     mode: 'development',
     module: {
-        rules: [
-            ...common.rulesConfig
-        ]
+        rules: common.rulesConfig
     },
     optimization: {
         noEmitOnErrors: true
@@ -25,7 +23,8 @@ export default {
             filename: 'index.html',
             template: './src/playground/demo/playground-demo.ejs',
             title: 'Emails Input Playground Demo'
-        })
+        }),
+        ...common.plugins
     ],
     resolve: common.resolve
 };

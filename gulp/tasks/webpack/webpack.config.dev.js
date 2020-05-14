@@ -22,21 +22,7 @@ export default {
     },
     mode: 'development',
     module: {
-        rules: [
-            {
-                test: /\.ya?ml$/,
-                use: 'raw-loader'
-            },
-            {
-                exclude: /(node_modules|tmp)/,
-                loader: 'babel-loader',
-                options: {
-                    cacheDirectory: true
-                },
-                test: /\.js$/
-            },
-            ...common.rulesConfig
-        ]
+        rules: common.rulesConfig
     },
     node: {module: 'empty'},
     optimization: {
@@ -52,7 +38,8 @@ export default {
         new HtmlWebpackPlugin({
             template: './src/playground/development/playground-development.ejs',
             title: 'Emails Input Playground Development'
-        })
+        }),
+        ...common.plugins
     ],
     resolve: common.resolve
 };

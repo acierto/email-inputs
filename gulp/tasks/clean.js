@@ -2,7 +2,14 @@ import gulp from 'gulp';
 import del from 'del';
 import paths from '../utils/paths';
 
-gulp.task('clean', (cb) => {
-    del.sync([paths.distDir, paths.devDistDir], {force: true});
+gulp.task('dev-clean', (cb) => {
+    del.sync([paths.devDistDir], {force: true});
     cb();
 });
+
+gulp.task('dist-clean', (cb) => {
+    del.sync([paths.distDir], {force: true});
+    cb();
+});
+
+gulp.task('clean', gulp.parallel('dev-clean', 'dist-clean'));
