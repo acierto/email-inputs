@@ -24,7 +24,8 @@
         "timeEnd",
         "trace"
       ]
-    }
+    },
+    "quotemark": [true, "single"]
   },
   "jsRules": {
     "max-line-length": {

@@ -6,14 +6,14 @@ import styles from './email-input-component.less';
 export const EmailInputComponent = (input: EmailInput, options: EmailInputOptions = {}) => {
 
     const createCrossButton = (id) => {
-        const crossButton = document.createElement("button");
+        const crossButton = document.createElement('button');
         crossButton.className = styles.removeEmail;
         crossButton.dataset.id = id;
         return crossButton;
     };
 
     const createEmailText = (email, showTitle): HTMLSpanElement => {
-        const emailText = document.createElement("span");
+        const emailText = document.createElement('span');
         emailText.className = styles.email;
         emailText.textContent = email;
         if (showTitle) {

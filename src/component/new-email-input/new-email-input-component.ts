@@ -7,7 +7,7 @@ export const NewEmailInputComponent = (storage: Storage, options = {}) => {
     const placeholder = propOr('placeholder', 'add more people...', options);
 
     const create = () => {
-        const component:HTMLInputElement = document.createElement("input");
+        const component:HTMLInputElement = document.createElement('input');
         component.placeholder = placeholder;
         component.className = styles.newEmailInput;
         registerListeners(component);

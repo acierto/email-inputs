@@ -28,12 +28,12 @@ export const EmailsInput = (rootComponent, options: EmailsInputOptions = {}): Em
 
         const newInputElement = NewEmailInputComponent(storage, {placeholder: options.placeholder});
 
-        emailContainer = document.createElement("div");
+        emailContainer = document.createElement('div');
         emailContainer.className = styles.emailContainer;
         emailContainer.appendChild(newInputElement);
         emailContainer.addEventListener('click', onRemoveEmailListener(storage));
 
-        const emailsInput = document.createElement("div");
+        const emailsInput = document.createElement('div');
         emailsInput.className = styles.emailsInput;
         emailsInput.appendChild(emailContainer);
 
