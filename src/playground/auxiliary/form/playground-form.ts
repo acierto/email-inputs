@@ -2,7 +2,7 @@ import {createDiv} from '../service/create-element';
 import {getNextEmail} from '../email-generator';
 import {getStyles} from '../service/common-service';
 import styles from './playground-form.less';
-import {PlaygroundFormOptionsType} from './playground-form-options-type';
+import {PlaygroundFormOptionsType, PlaygroundFormOptionType} from './playground-form-options-type';
 import {EmailsInputApi} from '~/component/emails-input/emails-input-api-type';
 
 export const PlaygroundForm = (rootElement: HTMLElement, options: PlaygroundFormOptionsType): void => {
@@ -49,7 +49,7 @@ export const PlaygroundForm = (rootElement: HTMLElement, options: PlaygroundForm
     };
 
     const postRender = (): void => {
-        options.emailsInputList.forEach((emailsInputConfig) => {
+        options.emailsInputList.forEach((emailsInputConfig: PlaygroundFormOptionType) => {
             const {id, placeholder, showTitle, validators} = emailsInputConfig;
             const inputContainerNode = document.querySelector(`#${id}`);
 

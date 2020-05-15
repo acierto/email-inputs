@@ -1,6 +1,6 @@
 import {Validator} from '~/component/validator-type';
 
-type PlaygroundFormOptionType = {
+export type PlaygroundFormOptionType = {
     id: string,
     initialData?: string[],
     placeholder?: string,
