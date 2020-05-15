@@ -1,0 +1,108 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    min-height: 100%;
+    padding: 0;
+    width: 100%;
+}
+
+#root {
+    height: inherit;
+    width: inherit;
+}
+
+#emails-input {
+    height: 96px;
+    margin: 0 50px;
+}
+
+button {
+    outline: none;
+}
+
+* {
+    font-family: 'OpenSans', serif;
+}
+
+.playground-form__playground-form {
+    align-items: center;
+    display: flex;
+    height: inherit;
+    justify-content: center;
+}
+
+.playground-form__playground-form-wrapper {
+    background: #ffffff center;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px;
+    max-width: 50%;
+    min-width: 500px;
+    width: 50%;
+}
+
+.playground-form__form-content {
+    background-color: #f8f8f7;
+    height: 204px;
+    max-height: 204px;
+    width: 100%;
+}
+
+.playground-form__form-header {
+    align-items: center;
+    align-self: flex-start;
+    display: flex;
+    font-size: 20px;
+    height: 84px;
+    line-height: 27px;
+    margin: 0 50px;
+    max-height: 84px;
+}
+
+.playground-form__form-header strong {
+    margin: 0 5px;
+}
+
+.playground-form__buttons-panel {
+    align-items: center;
+    align-self: flex-start;
+    display: flex;
+    height: 96px;
+    margin: 0 50px;
+}
+
+.playground-form__buttons-panel > button {
+    background-color: #4262ff;
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+    height: 40px;
+    margin-right: 15px;
+    padding: 8px 15px;
+}
+
+.playground-form__buttons-panel > button:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/open-sans/OpenSans-Regular-webfont.eot');
+    src: url('./open-sans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('./open-sans/OpenSans-Regular-webfont.ttf') format('opentype');
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    font-style: normal;
+    font-weight: bold;
+    src: url('./open-sans/OpenSans-Bold-webfont.eot');
+    src: url('./open-sans/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('./open-sans/OpenSans-Bold-webfont.ttf') format('opentype');
+}
