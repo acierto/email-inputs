@@ -2,5 +2,6 @@
 .gradle/
 dist/
 build/
+ghPages/
 node_modules/
 devDist/

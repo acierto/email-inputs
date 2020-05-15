@@ -10,6 +10,9 @@ gulp.task('gh-copy-assets', (cb) => {
     gulp.src(`${paths.distDir}/**/*.js`)
         .pipe(gulp.dest(`${paths.ghPagesDir}`));
 
+    gulp.src(`${paths.srcDir}/playground/vanilla-demo/**`)
+        .pipe(gulp.dest(`${paths.ghPagesDir}`));
+
     gulp.src(`${paths.srcDir}/assets/fonts/**`)
         .pipe(gulp.dest(`${paths.ghPagesDir}`));
     cb();
