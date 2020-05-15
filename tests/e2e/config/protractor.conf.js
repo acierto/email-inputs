@@ -1,3 +1,4 @@
+/* eslint-disable */
 var os = require('os');
 
 var AsciiTable = require('ascii-table');
