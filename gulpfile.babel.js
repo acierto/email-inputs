@@ -7,5 +7,4 @@ import './gulp/tasks/jest';
 import './gulp/tasks/lint';
 import './gulp/tasks/protractor';
 import './gulp/tasks/selenium/selenium';
-import './gulp/tasks/build';
 import './gulp/tasks/default';

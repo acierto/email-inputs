@@ -1,43 +1,15 @@
 import gulp from 'gulp';
-import babel from 'gulp-babel';
 import eslint from 'gulp-eslint';
 import paths from '../utils/paths';
-import lesshint from 'gulp-lesshint';
-
-gulp.task('add-linters', () =>
-    gulp
-        .src('lint/custom-linters/**')
-        .pipe(babel({
-            plugins: [
-                'add-module-exports'
-            ],
-            presets: ['@babel/env']
-        }))
-        .pipe(gulp.dest('dist/linters')));
-
-const lesshintSteam = (stream) => stream
-    .pipe(lesshint({maxWarnings: 0}))
-    .pipe(lesshint.reporter())
-    .pipe(lesshint.failOnError());
 
 const lintStream = (stream) => stream
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 
-gulp.task('lint-less', gulp.series('add-linters', () => lesshintSteam(gulp.src(`${paths.srcDir}/**/*.less`))));
-
-gulp.task('lint', () => lintStream(gulp.src(`${paths.srcDir}/**/*.js`)));
-
-gulp.task('lint-tests', () => lintStream(
-    gulp.src([`${paths.testsDir}/**/*.js`, `!${paths.testsDir}/e2e/config/**/*.js`])));
-
-gulp.task('lint-all', gulp.series('lint-less', 'lint', 'lint-tests'));
+gulp.task('lint-e2e-tests', () => lintStream(gulp.src(`${paths.testsDir}/e2e/**/*.js`)));
 
 gulp.task('watch-lint', () => {
     const watch = (glob, taskName) => gulp.watch(glob, gulp.parallel(taskName));
-    watch(`${paths.srcDir}/**/*.less`, 'lint-less');
-    watch(`${paths.testsDir}/unit/**/*.js`, 'lint-tests');
-    watch(`${paths.testsDir}/e2e/dsl/**/*.js`, 'lint-tests');
-    watch(`${paths.testsDir}/e2e/scenario/**/*.js`, 'lint-tests');
+    watch(`${paths.testsDir}/e2e/**/*.js`, 'lint-e2e-tests');
 });

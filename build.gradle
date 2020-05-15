@@ -35,15 +35,15 @@ task gulpSeleniumInstall(type: YarnTask, dependsOn: [yarn]) {
 }
 
 task gulpDevBuild(type: YarnTask, dependsOn: [gulpClean]) {
-    args = ["gulp", "build-development"]
+    args = ["gulp", "webpack-development"]
 }
 
 task gulpBuild(type: YarnTask, dependsOn: [gulpClean]) {
-    args = ["gulp", "build-production"]
+    args = ["gulp", "webpack-production"]
 }
 
 task gulpTests(type: YarnTask, dependsOn: [gulpSeleniumInstall, gulpDevBuild]) {
-    args = ["gulp", "e2e", "jest"]
+    args = ["gulp", "jest", "e2e"]
 }
 
 task gulpIntegrationTests(type: YarnTask, dependsOn: [gulpDevBuild]) {

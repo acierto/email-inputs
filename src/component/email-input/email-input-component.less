@@ -1,0 +1,45 @@
+.email-input {
+  align-items: center;
+  display: flex;
+  flex-grow: 0;
+  height: 24px;
+  margin-right: 8px;
+  margin-top: 4px;
+  min-height: 24px;
+  overflow: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  .email {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .remove-email {
+    background: url('../../assets/images/remove.svg') no-repeat;
+    background-size: contain;
+    border: 0;
+    height: 8px;
+    margin-left: 8px;
+    margin-top: 2px;
+    outline: none;
+    padding: 0;
+    position: relative;
+    width: 8px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &.valid {
+    background: rgba(102, 153, 255, 0.2);
+    border-radius: 100px;
+  }
+
+  &.invalid {
+    border-bottom: 1px dashed #d92929;
+  }
+}

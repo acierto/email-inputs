@@ -182,7 +182,7 @@ emailsInput.replaceAll(['john@miro.com', 'marieke@miro.com']);
 ```
 
 In the sources of playground you can find the example of usage of this method to set initial values for certain "cases".
-Check out for that `playground-form.js` method `postRender`.
+Check out for that `playground-form.ts` method `postRender`.
 
 This method takes a performance in mind and only perform [DOM](https://www.w3schools.com/js/js_htmldom.asp)
 manipulation of input elements which were affected. If the list was as `['john@miro.com', 'marieke@miro.com']` 
@@ -342,8 +342,8 @@ of styles, it resolves it to the object with hierarchical structure of className
 
 ### Enlightening how Playground configured
 
-Check `playground-data.js` file, you can play with providing other inputs or even new cases.
-`playground.js` has an entry point for the playground.
+Check `playground-data.ts` file, you can play with providing other inputs or even new cases.
+`playground.ts` has an entry point for the playground.
 
 You can find also in the code 2 versions of playground: `playground-demo` and `playground-development`. 
 The reason behind that is to split the fast development and demonstrate how it works on the released version.
@@ -383,7 +383,7 @@ component is added to a global scope by the script in html. It's configured in W
 The main lines here are `globalObject` and `libraryTarget`.
 
 What does `playground-development` to emulate the same and work with up-to-date code changes, is doing this in 
-`playground-development.js`
+`playground-development.ts`
 
 ```javascript
 import {EmailsInput} from '../../component/emails-input/emails-input';
@@ -391,7 +391,7 @@ global.EmailsInput = EmailsInput;
 ```
 
 In that way both cases actually work with emails-input component in isolation and communicate with it only through 
-provided api calls. What can be found in `playground-form.js`. A short snippet of the code from there:
+provided api calls. What can be found in `playground-form.ts`. A short snippet of the code from there:
 
 ```typescript
     const registerListeners = (emailsInputApi: EmailsInputApi) => {
