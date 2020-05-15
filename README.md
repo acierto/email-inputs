@@ -253,7 +253,7 @@ You will see it in a nicely displayed table.
 ![Unit test results](./docs/unit-test-reports.png)
 
 If in some cases your coverage drops, IDE doesn't always show properly where is the issue, like for example in
-Intellij IDEA. In that case you can use that report for navigation and troubleshooting. 
+[Intellij IDEA](https://www.jetbrains.com/idea/). In that case you can use that report for navigation and troubleshooting. 
 
 Example of that:
 
@@ -393,26 +393,27 @@ global.EmailsInput = EmailsInput;
 In that way both cases actually work with emails-input component in isolation and communicate with it only through 
 provided api calls. What can be found in `playground-form.js`. A short snippet of the code from there:
 
-```javascript
-    const registerListeners = (emailsInput) => {
-            rootElement.querySelector(`.${styles.playgroundForm} .add-email`)
-                .addEventListener('click', addEmailListener(emailsInput));
-            rootElement.querySelector(`.${styles.playgroundForm} .get-emails-count`)
-                .addEventListener('click', getEmailsCountListener(emailsInput));
-            emailsInput.subscribe((emailInput) => {
-                console.log('Added email(s)', emailInput.added);
-                console.log('Removed email(s)', emailInput.removed);
-                console.log('Currently containing emails', emailInput.inputs);
-            });
-        };
+```typescript
+    const registerListeners = (emailsInputApi: EmailsInputApi) => {
+        rootElement.querySelector(`.${styles.playgroundForm} .add-email`)
+            .addEventListener('click', addEmailListener(emailsInputApi));
+        rootElement.querySelector(`.${styles.playgroundForm} .get-emails-count`)
+            .addEventListener('click', getEmailsCountListener(emailsInputApi));
+        emailsInputApi.subscribe((message) => {
+            console.info('Added email(s)', message.added);
+            console.info('Removed email(s)', message.removed);
+            console.info('Currently containing emails', message.inputs);
+        });
+    };
     
-        const postRender = () => {
-            options.emailsInputList.forEach((emailsInputConfig) => {
-                const {id, placeholder, showTitle, validators} = emailsInputConfig;
-                const inputContainerNode = document.querySelector(`#${id}`);
-                const emailsInput = EmailsInput(inputContainerNode, {placeholder, showTitle, validators});
-                emailsInput.replaceAll(emailsInputConfig.initialData);
-                registerListeners(emailsInput);
-            });
-        };
+    const postRender = (): void => {
+        options.emailsInputList.forEach((emailsInputConfig: PlaygroundFormOptionType) => {
+            const {id, placeholder, showTitle, validators} = emailsInputConfig;
+            const inputContainerNode = document.querySelector(`#${id}`);
+
+            const emailsInputApi = EmailsInput(inputContainerNode, {placeholder, showTitle, validators});
+            emailsInputApi.replaceAll(emailsInputConfig.initialData);
+            registerListeners(emailsInputApi);
+        });
+    };
 ```
