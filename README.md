@@ -31,14 +31,17 @@ Lightweight emails input component without third party dependencies
 | --------- | --------- | --------- | --------- |
 | IE11, Edge| last version| last version| last version|
 
+## Size
+
+The distribution size of the component is 17 Kb.
+
 ## Playground
 
-You can find 2 links to play with the component.
-Once is developed on [Vanilla html and embedded script](https://acierto.github.io/email-inputs/playground-vanilla-demo.html), 
-another one is a bit more [advanced, which contains 4 cases]([here](https://acierto.github.io/email-inputs/)) and built
-with help of Typescript and Less. There is already some data pre-generated for testing some corner cases.
-
-You will find there 4 different cases to play with.
+You can find 2 links to play with the component:
+* [Vanilla demo, using html and embedded script](https://acierto.github.io/email-inputs/playground-vanilla-demo.html), 
+* [More advanced demo with 4 cases]([here](https://acierto.github.io/email-inputs/)), built
+with help of Typescript and Less. There some pre-generated data for testing some of corner cases.
+You will find there 4 different cases to play with:
 
 ### Case 1. 
 
