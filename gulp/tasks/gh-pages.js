@@ -6,9 +6,14 @@ import paths from '../utils/paths';
 
 gulp.task('gh-clean', () => del(paths.ghPagesDir, {force: true}));
 
-gulp.task('gh-copy-assets', () =>
+gulp.task('gh-copy-assets', (cb) => {
     gulp.src(`${paths.distDir}/**/*.js`)
-        .pipe(gulp.dest(`${paths.ghPagesDir}`)));
+        .pipe(gulp.dest(`${paths.ghPagesDir}`));
+
+    gulp.src(`${paths.srcDir}/assets/fonts/**`)
+        .pipe(gulp.dest(`${paths.ghPagesDir}`));
+    cb();
+});
 
 gulp.task('gh-publish', (cb) => ghPages.publish(`${paths.ghPagesDir}`, {depth: 0, dotfiles: true}, cb));
 

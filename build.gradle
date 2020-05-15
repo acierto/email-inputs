@@ -73,7 +73,6 @@ idea {
         excludeDirs += file('build')
         excludeDirs += file('devDist')
         excludeDirs += file('dist')
-        excludeDirs += file('ghPages')
         excludeDirs += file('node_modules')
     }
 }

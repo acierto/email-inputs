@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
+    <link rel="stylesheet" type="text/css" href="playground-vanilla-demo.css">
+    <title>Emails Input Playground Vanilla Demo</title>
+</head>
+<body>
+<div class="playground-form__playground-form">
+    <div class="playground-form__playground-form-wrapper">
+        <div class="playground-form__form-content">
+            <div class="playground-form__form-header">
+                Share <strong>Board game</strong> with others
+            </div>
+            <div id="emails-input"></div>
+        </div>
+        <div class="playground-form__buttons-panel">
+            <button class="add-email">Add email</button>
+            <button class="get-emails-count">Get emails count</button>
+        </div>
+    </div>
+</div>
+
+<script src="./emails-input.js"></script>
+<script>
+    var inputContainerNode = document.querySelector('#emails-input');
+    var emailsInput = EmailsInput(inputContainerNode);
+
+    var currentId = 0;
+
+    function getNextId() {
+        currentId += 1;
+        return currentId.toString();
+    }
+
+    document.querySelector('.get-emails-count').addEventListener('click', function () {
+        let counter = 0;
+
+        var emails = emailsInput.getAllEmails();
+        for (var i = 0; i < emails.length; i++) {
+            if (emails[i].valid) {
+                counter++;
+            }
+        }
+        alert(counter);
+    });
+
+    document.querySelector('.add-email').addEventListener('click', function () {
+        var emails = emailsInput.getAllEmails();
+        var newEmails = [];
+        for (var i = 0; i < emails.length; i++) {
+            newEmails.push(emails[i].email);
+        }
+        newEmails.push('generated' + getNextId() + '@miro.com');
+        emailsInput.replaceAll(newEmails);
+    });
+
+    emailsInput.subscribe(function (message) {
+        console.info('Added email(s)', message.added);
+        console.info('Removed email(s)', message.removed);
+        console.info('Currently containing emails', message.inputs);
+    });
+</script>
+
+</body>
+</html>

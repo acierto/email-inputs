@@ -33,8 +33,10 @@ Lightweight emails input component without third party dependencies
 
 ## Playground
 
-You can find a link to a playground [here](https://acierto.github.io/email-inputs/).
-There is already some data pre-generated for testing some corner cases.
+You can find 2 links to play with the component.
+Once is developed on [Vanilla html and embedded script](https://acierto.github.io/email-inputs/playground-vanilla-demo.html), 
+another one is a bit more [advanced, which contains 4 cases]([here](https://acierto.github.io/email-inputs/)) and built
+with help of Typescript and Less. There is already some data pre-generated for testing some corner cases.
 
 You will find there 4 different cases to play with.
 
@@ -181,7 +183,7 @@ var emailsInput = EmailsInput(inputContainerNode, options);
 emailsInput.replaceAll(['john@miro.com', 'marieke@miro.com']);
 ```
 
-In the sources of playground you can find the example of usage of this method to set initial values for certain "cases".
+In the sources of the playground you can find the example of usage of this method to set initial values for certain "cases".
 Check out for that `playground-form.ts` method `postRender`.
 
 This method takes a performance in mind and only perform [DOM](https://www.w3schools.com/js/js_htmldom.asp)
@@ -212,7 +214,7 @@ in a format:
 }
 ```
 
-Each of this field is of type array. 
+Each of these fields is of type array. 
 * *added* - contains the information of lastly added emails. Take the situation when *replaceAll* method was invoked.
 It will calculate the difference which emails were before and which are now and add only missing ones. 
 * *inputs* - the final state of all emails after all modifications
