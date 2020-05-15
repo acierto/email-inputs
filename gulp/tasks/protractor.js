@@ -36,7 +36,7 @@ export const runProtractor = (cb, envs) => {
     if (argv.suite) {
         protractorArgs = protractorArgs.concat(['--suite', argv.suite]);
     }
-    console.log('starting protractor with arguments', protractorArgs);
+    console.log('Starting protractor with arguments', protractorArgs);
     return gulp
         .src([`${paths.testsDir}/e2e/*.js`])
         .pipe(envs)
@@ -56,4 +56,4 @@ export const runProtractor = (cb, envs) => {
 
 gulp.task('protractor', (cb) => runProtractor(cb, env.set({})));
 
-gulp.task('e2e', gulp.series('lint-tests', 'webdriver-update', 'dev-server', 'protractor'));
+gulp.task('e2e', gulp.series('lint-e2e-tests', 'webdriver-update', 'dev-server', 'protractor'));

@@ -6,7 +6,7 @@ const mode = 'production';
 
 export default {
     entry: {
-        index: ['./src/component/emails-input/emails-input.js']
+        index: ['./src/component/emails-input/emails-input-component.ts']
     },
     mode,
     module: {
@@ -14,15 +14,7 @@ export default {
             {
                 include: /node_modules/,
                 loaders: ['strip-sourcemap-loader'],
-                test: /\.js$/
-            },
-            {
-                exclude: /(node_modules)/,
-                loader: 'babel-loader',
-                options: {
-                    cacheDirectory: true
-                },
-                test: /\.js?$/
+                test: /\.ts/
             },
             ...common.rulesConfig
         ]
@@ -36,6 +28,8 @@ export default {
         publicPath: '/dist/'
     },
     plugins: [
-        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(mode)})
-    ]
+        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(mode)}),
+        ...common.plugins
+    ],
+    resolve: common.resolve
 };
