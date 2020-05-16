@@ -72,6 +72,7 @@ idea {
     module {
         excludeDirs += file('build')
         excludeDirs += file('devDist')
+        excludeDirs += file('ghPages')
         excludeDirs += file('dist')
         excludeDirs += file('node_modules')
     }
