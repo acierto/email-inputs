@@ -267,6 +267,12 @@ are on lines 13, 39 and 42.
 
 ### Integration tests
 
+First you need to download WebDrivers by running command:
+`./gradlew gulpSeleniumInstall` or `gulp webdriver-update`. 
+
+This command is separate as the command uses GitHub hook to download them, and GitHub in turns has a limit on that.
+You can't call it more than certain times per hour/day.  
+
 To run only integration tests you can use this command:
 `./gradlew gulpIntegrationTests` or `gulp clean && gulp build-development && gulp e2e`.
 
