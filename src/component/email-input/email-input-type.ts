@@ -5,6 +5,6 @@ export type EmailInput = {
 };
 
 export type PositionedEmailInput = EmailInput & {
-    oldId?: string,
+    oldId: string,
     position: number
 };

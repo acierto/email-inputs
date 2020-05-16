@@ -1,7 +1,7 @@
 import {createNotification} from '~/component/services/notification-service';
 import {EmailInput} from '~/component/email-input/email-input-type';
-import {OperationKind, ReplaceOperation} from '~/component/services/inputs-operation';
 import {getNextId} from '~/component/services/id-generator';
+import {replaceOp} from '../../helpers/objects-creator';
 
 const email = (num: number): string => `${num}@miro.com`;
 const emailInput = (num: number): EmailInput => ({id: num.toString(), email: email(num), valid: true});
@@ -9,10 +9,6 @@ const emailInput = (num: number): EmailInput => ({id: num.toString(), email: ema
 jest.mock('../../../../src/component/services/id-generator');
 const getNextIdMock = getNextId as jest.Mock;
 
-const replaceOp = (emails) => ({
-    emails,
-    kind: OperationKind.Replace
-} as ReplaceOperation);
 
 describe('notification', () => {
     const email1 = emailInput(1);

@@ -1,9 +1,8 @@
 import {NewEmailInputComponent} from '~/component/new-email-input/new-email-input-component';
 
 describe('New email input component', () => {
-    const addEmailMock = jest.fn();
     const storageMock = {
-        addEmail: addEmailMock,
+        addEmails: jest.fn(),
         getAllEmails: () => [],
         removeById: () => {},
         replaceAllEmails: () => {}

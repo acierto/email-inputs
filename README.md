@@ -189,13 +189,6 @@ emailsInput.replaceAll(['john@miro.com', 'marieke@miro.com']);
 In the sources of the playground you can find the example of usage of this method to set initial values for certain "cases".
 Check out for that `playground-form.ts` method `postRender`.
 
-This method takes a performance in mind and only perform [DOM](https://www.w3schools.com/js/js_htmldom.asp)
-manipulation of input elements which were affected. If the list was as `['john@miro.com', 'marieke@miro.com']` 
-and then `replaceAll(['marieke@miro.com', 'john@miro.com'])` called, the component still will
-display `['john@miro.com', 'marieke@miro.com']`. That means if you care about the order of emails visually, 
-you have to call it twice, first time as `emailsInput.replaceAll([])` and then 
-`emailsInput.replaceAll(['john@miro.com', 'marieke@miro.com'])`.
-
 #### subscribe
 
 If you are building a reactive application, and you have to listen for any changes to emails in the component, this
@@ -213,15 +206,18 @@ in a format:
 {
     added,
     inputs,
-    removed
+    removed,
+    updated
 }
 ```
 
 Each of these fields is of type array. 
-* *added* - contains the information of lastly added emails. Take the situation when *replaceAll* method was invoked.
-It will calculate the difference which emails were before and which are now and add only missing ones. 
-* *inputs* - the final state of all emails after all modifications
-* *removed* - contains the information of lastly removed emails. Calculated in the same way as *added* field.
+* *added* - array of objects `{id: string, email: string, valid: boolean}`. Contains the information of lastly added 
+email(s).
+* *inputs* - array of objects `{id: string, email: string, valid: boolean}`. Contains the final state of all emails after all modifications.
+* *removed* - array of strings (IDs). Contains the information of lastly removed emails. 
+* *updated* - array of objects `{id: string, email: string, oldId: string, position: number, valid: boolean}`. 
+Contains the information about which previous email was updated to a current one, including the position of replacement.
 
 Once you don't need to listen to modifications anymore, you can unsubscribe as it is shown on line 3.  
 
