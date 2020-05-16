@@ -262,8 +262,8 @@ Example of that:
 ![Unit test troubleshooting in details](./docs/unit-test-troubleshooting-in-details.png) 
 
 As you can see from above screenshots. With yellow cells report shows on overview page where the coverage has not 
-reached. When you drill down to the issue, you can see the exact line with the issue. In this case it's like 9, as one of 
-the cases has not covered. 
+reached. When you drill down to the issue, you can see the exact line with the issue. In this case the problems 
+are on lines 13, 39 and 42. 
 
 ### Integration tests
 
