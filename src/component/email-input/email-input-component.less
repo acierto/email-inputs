@@ -3,15 +3,18 @@
   display: flex;
   flex-grow: 0;
   height: 24px;
+  line-height: 24px;
   margin-right: 8px;
   margin-top: 4px;
   min-height: 24px;
   overflow: hidden;
   padding-left: 10px;
   padding-right: 8px;
+  position: relative;
 
   .email {
     display: inline-block;
+    margin-right: 18px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -22,10 +25,11 @@
     background-size: contain;
     border: 0;
     height: 8px;
-    margin-left: 8px;
     outline: none;
     padding: 0;
-    position: relative;
+    position: absolute;
+    right: 8px;
+    top: 8px;
     width: 8px;
 
     &:hover {
@@ -41,5 +45,9 @@
   &.invalid {
     border-bottom: 1px dashed #d92929;
     padding: 0;
+
+    .remove-email {
+      right: 0;
+    }
   }
 }
