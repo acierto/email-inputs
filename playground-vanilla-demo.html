@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
     <link rel="stylesheet" type="text/css" href="playground-vanilla-demo.css">
     <title>Emails Input Playground Vanilla Demo</title>
 </head>
@@ -59,7 +58,8 @@
     emailsInput.subscribe(function (message) {
         console.info('Added email(s)', message.added);
         console.info('Removed email(s)', message.removed);
-        console.info('Currently containing emails', message.inputs);
+        console.info('Updated email(s)', message.updated);
+        console.info('Current list of emails: ', message.inputs);
     });
 </script>
 
