@@ -33,7 +33,7 @@ Lightweight emails input component without third party dependencies
 
 ## Size
 
-The distribution size of the component is 17 Kb.
+The distribution size of the component is 18 Kb.
 
 ## Playground
 
