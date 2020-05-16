@@ -10,8 +10,8 @@ export const validEmail = (id: number | string, name: string): EmailInput => ({
 const doNothing = () => {
 };
 
-export const createStorageMock = (addEmail = doNothing): Storage => ({
-    addEmail,
+export const createStorageMock = (addEmails = doNothing): Storage => ({
+    addEmails,
     getAllEmails: () => [],
     removeById: jest.fn(),
     replaceAllEmails: () => {

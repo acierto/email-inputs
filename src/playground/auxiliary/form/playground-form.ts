@@ -44,7 +44,8 @@ export const PlaygroundForm = (rootElement: HTMLElement, options: PlaygroundForm
         emailsInputApi.subscribe((message) => {
             console.info('Added email(s)', message.added);
             console.info('Removed email(s)', message.removed);
-            console.info('Currently containing emails', message.inputs);
+            console.info('Updated email(s)', message.updated);
+            console.info('Current list of emails: ', message.inputs);
         });
     };
 

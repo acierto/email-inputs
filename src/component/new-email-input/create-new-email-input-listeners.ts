@@ -6,13 +6,14 @@ export const createInputListeners = (element: HTMLInputElement, storage: Storage
     const toMails = (value: string) => isDefined(value) ? value.split(',') : [];
 
     const addEmails = (value: string) => {
-        toMails(value).forEach((email: string) => {
-            const trimmedEmail = email.trim();
-            if (isNotBlank(trimmedEmail)) {
-                storage.addEmail(trimmedEmail);
-                element.value = '';
-            }
-        });
+        const emails = toMails(value)
+            .map((email: string) => email.trim())
+            .filter((email: string) => isNotBlank(email));
+
+        if (emails.length > 0) {
+            storage.addEmails(emails);
+            element.value = '';
+        }
     };
 
     const blurListener = (event: FocusEvent): void => {

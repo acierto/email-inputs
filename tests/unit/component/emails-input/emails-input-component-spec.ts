@@ -15,7 +15,8 @@ describe('Emails input component', () => {
         const expectedLastReceivedNotificationMessage = {
             added: [email1, email2],
             inputs: [email1, email2],
-            removed: []
+            removed: [],
+            updated: []
         };
 
         const listener = jest.fn();
@@ -46,6 +47,24 @@ describe('Emails input component', () => {
         expect(emailInputList.length).toBe(3);
         expect(emailInputList.map((emailInput) => emailInput.querySelector('.email').innerHTML))
             .toEqual([email1.email, email2.email, email3.email]);
+    });
+
+    it('should update emails and keep them in order defined by the user', () => {
+        const email1 = validEmail(1, 'robert');
+        const email2 = validEmail(2, 'ronald');
+        const email3 = validEmail(3, 'roland');
+
+        const componentApi = EmailsInput(document.body, {placeholder: 'one more?'});
+        componentApi.replaceAll([email1.email, email2.email, email3.email]);
+        componentApi.replaceAll([email3.email, email2.email, email1.email]);
+
+        const component = document.body.querySelector('.emailsInput');
+        expect(component.querySelector('.newEmailInput')).toBeDefined();
+
+        const emailInputList = [...component.querySelectorAll('.emailInput')];
+        expect(emailInputList.length).toBe(3);
+        expect(emailInputList.map((emailInput) => emailInput.querySelector('.email').innerHTML))
+            .toEqual([email3.email, email2.email, email1.email]);
     });
 
     it('should warn if no root element provided', () => {

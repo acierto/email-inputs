@@ -1,40 +1,102 @@
 import {createNotification} from '~/component/services/notification-service';
 import {EmailInput} from '~/component/email-input/email-input-type';
+import {OperationKind, ReplaceOperation} from '~/component/services/inputs-operation';
+import {getNextId} from '~/component/services/id-generator';
 
-const email = (num: number): EmailInput => ({id: num.toString(), email: `${num}@miro.com`, valid: true});
+const email = (num: number): string => `${num}@miro.com`;
+const emailInput = (num: number): EmailInput => ({id: num.toString(), email: email(num), valid: true});
+
+jest.mock('../../../../src/component/services/id-generator');
+const getNextIdMock = getNextId as jest.Mock;
+
+const replaceOp = (emails) => ({
+    emails,
+    kind: OperationKind.Replace
+} as ReplaceOperation);
 
 describe('notification', () => {
-    const email1 = email(1);
-    const email2 = email(2);
+    const email1 = emailInput(1);
+    const email2 = emailInput(2);
+    const email3 = emailInput(3);
+    const email4 = emailInput(4);
 
     describe('createNotification', () => {
         it('case 1. should create notification with information of final result, what was added and removed', () => {
+            getNextIdMock.mockImplementation(() => '2');
+
             const previousInput = [email1];
-            const newInput = [email2];
-            expect(createNotification(previousInput, newInput)).toEqual({
-                added: [email2],
+            expect(createNotification(previousInput, replaceOp([email(2)]))).toEqual({
+                added: [],
                 inputs: [email2],
-                removed: ['1']
+                removed: [],
+                updated: [{
+                    ...email2,
+                    oldId: '1',
+                    position: 0
+                }]
             });
         });
         it('case 2. should create notification with information of final result, what was added and removed', () => {
+            getNextIdMock.mockImplementation(() => '2');
             const previousInput = [email1, email2];
-            const newInput = [email2];
 
-            expect(createNotification(previousInput, newInput)).toEqual({
+            expect(createNotification(previousInput, replaceOp([email(2)]))).toEqual({
                 added: [],
                 inputs: [email2],
-                removed: ['1']
+                removed: ['2'],
+                updated: [{
+                    ...email2,
+                    oldId: '1',
+                    position: 0,
+                }]
             });
         });
         it('case 3. should create notification with information of final result, what was added and removed', () => {
+            getNextIdMock.mockImplementation(() => '1');
             const previousInput = [];
-            const newInput = [email1];
 
-            expect(createNotification(previousInput, newInput)).toEqual({
+            expect(createNotification(previousInput, replaceOp([email(1)]))).toEqual({
                 added: [email1],
                 inputs: [email1],
-                removed: []
+                removed: [],
+                updated: []
+            });
+        });
+
+        it('case 4. should create notification with information of final result, what was added and removed', () => {
+            getNextIdMock
+                .mockImplementationOnce(() => '5')
+                .mockImplementationOnce(() => '6')
+                .mockImplementationOnce(() => '7');
+            const previousInput = [email1, email2, email3, email4];
+
+            expect(createNotification(previousInput,
+                replaceOp([email(1), email(3), email(5)]))).toEqual({
+                added: [],
+                inputs: [
+                    email1, {
+                        id: '5',
+                        email: email(3),
+                        valid: true
+                    }, {
+                        id: '6',
+                        email: email(5),
+                        valid: true
+                    }],
+                removed: ['4'],
+                updated: [{
+                    id: '5',
+                    email: email(3),
+                    oldId: '2',
+                    position: 1,
+                    valid: true
+                }, {
+                    id: '6',
+                    email: email(5),
+                    oldId: '3',
+                    position: 2,
+                    valid: true
+                }]
             });
         });
     });

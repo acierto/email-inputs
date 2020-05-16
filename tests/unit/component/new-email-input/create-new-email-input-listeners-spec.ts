@@ -19,7 +19,7 @@ describe('create-new-email-input-listeners', () => {
             inputElement.addEventListener('blur', blurListener);
             simulateEvent.simulate(inputElement, 'blur');
             expect(inputElement.value).toEqual('');
-            expect(addEmailMock).toHaveBeenCalledWith('sara@miro.com');
+            expect(addEmailMock).toHaveBeenCalledWith(['sara@miro.com']);
         });
     });
     describe('keyPressListener', () => {
@@ -33,7 +33,7 @@ describe('create-new-email-input-listeners', () => {
             simulateEvent.simulate(inputElement, 'keypress', {key: 'Enter'});
 
             expect(inputElement.value).toEqual('');
-            expect(addEmailMock).toHaveBeenCalledWith('rosa@miro.com');
+            expect(addEmailMock).toHaveBeenCalledWith(['rosa@miro.com']);
         });
 
         it('should process triggered "keypress" event. Case "Comma"', () => {
@@ -46,7 +46,7 @@ describe('create-new-email-input-listeners', () => {
             simulateEvent.simulate(inputElement, 'keypress', {key: ','});
 
             expect(inputElement.value).toEqual('');
-            expect(addEmailMock).toHaveBeenCalledWith('daphne@miro.com');
+            expect(addEmailMock).toHaveBeenCalledWith(['daphne@miro.com']);
         });
 
         it('should process triggered "keypress" event. Case "Other key"', () => {
@@ -85,12 +85,12 @@ describe('create-new-email-input-listeners', () => {
             invokePasteListener(pasteListener, eventMock);
             expect(preventDefault).toHaveBeenCalled();
             expect(inputElement.value).toEqual('');
-            expect(addEmailMock.mock.calls).toEqual([['choyin@miro.com'], ['sara@miro.com']]);
+            expect(addEmailMock.mock.calls).toEqual([[['choyin@miro.com', 'sara@miro.com']]]);
         });
         it('should process triggered "paste" event. Case 2 for "Not IE browser"', () => {
             const inputElement = createInputElement('c');
-            const addEmailMock = jest.fn();
-            const storageMock = createStorageMock(addEmailMock);
+            const addEmailsMock = jest.fn();
+            const storageMock = createStorageMock(addEmailsMock);
             const {pasteListener} = createInputListeners(inputElement, storageMock);
             const preventDefault = jest.fn();
             const eventMock = {
@@ -101,7 +101,7 @@ describe('create-new-email-input-listeners', () => {
             invokePasteListener(pasteListener, eventMock);
             expect(preventDefault).toHaveBeenCalled();
             expect(inputElement.value).toEqual('c');
-            expect(addEmailMock).not.toHaveBeenCalled();
+            expect(addEmailsMock).not.toHaveBeenCalled();
         });
         it('should process triggered "paste" event. Case 1 for "IE browser"', () => {
             const inputElement = createInputElement('c');
@@ -121,7 +121,7 @@ describe('create-new-email-input-listeners', () => {
             invokePasteListener(pasteListener, eventMock);
             expect(preventDefault).toHaveBeenCalled();
             expect(inputElement.value).toEqual('');
-            expect(addEmailMock.mock.calls).toEqual([['choyin@miro.com'], ['sara@miro.com']]);
+            expect(addEmailMock.mock.calls).toEqual([[['choyin@miro.com', 'sara@miro.com']]]);
         });
         it('should process triggered "paste" event. Case 2 for "IE browser"', () => {
             const inputElement = createInputElement('c');

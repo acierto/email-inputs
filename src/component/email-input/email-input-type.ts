@@ -3,3 +3,8 @@ export type EmailInput = {
     email: string,
     valid: boolean
 };
+
+export type PositionedEmailInput = EmailInput & {
+    oldId?: string,
+    position: number
+};

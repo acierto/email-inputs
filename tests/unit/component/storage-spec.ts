@@ -11,14 +11,14 @@ describe('Storage', () => {
     let storage;
     beforeEach(() => {
         storage = EmailsStorage(Observer());
-        const addEmail = (id, name) => {
-            getNextIdMock.mockImplementation(() => id.toString());
-            storage.addEmail(`${name}@miro.com`);
-        };
-        addEmail(1, 'john');
-        addEmail(2, 'maria');
-        addEmail(3, 'paul');
-        addEmail(4, 'jeroen');
+        getNextIdMock
+            .mockImplementationOnce(() => '1')
+            .mockImplementationOnce(() => '2')
+            .mockImplementationOnce(() => '3')
+            .mockImplementationOnce(() => '4');
+
+        const toEmail = (name) => `${name}@miro.com`;
+        storage.addEmails(['john', 'maria', 'paul', 'jeroen'].map(toEmail));
     });
 
     it('should store added emails and return all of them', () => {

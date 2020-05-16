@@ -8,6 +8,7 @@ import {EmailsInputApi} from './emails-input-api-type';
 
 import styles from './emails-input-component.less';
 import emailInputStyles from '../email-input/email-input-component.less';
+import {EmailsNotification} from '~/component/emails-notification-type';
 
 export const EmailsInput = (rootComponent, options: EmailsInputOptions = {}): EmailsInputApi => {
     const observer = Observer();
@@ -42,15 +43,22 @@ export const EmailsInput = (rootComponent, options: EmailsInputOptions = {}): Em
         observer.subscribe(rerender);
     };
 
-    const rerender = ({added, removed}) => {
+    const rerender = (notification: EmailsNotification) => {
+        const {added, removed, updated} = notification;
+        const inputOptions = {showTitle: options.showTitle};
+        for (const input of updated) {
+            const oldInput = emailContainer.querySelector(`.${emailInputStyles.emailInput}[data-id="${input.oldId}"]`);
+            emailContainer.replaceChild(EmailInputComponent(input, inputOptions), oldInput);
+        }
+
         for (const input of added) {
-            const inputOptions = {showTitle: options.showTitle};
             emailContainer.insertBefore(EmailInputComponent(input, inputOptions),
                 emailContainer.childNodes[emailContainer.children.length - 1]);
         }
 
         for (const id of removed) {
-            const child = emailContainer.querySelector(`.${emailInputStyles.emailInput}[data-id="${id}"]`);
+            const cssSelector = `.${emailInputStyles.emailInput}[data-id="${id}"]`;
+            const child = emailContainer.querySelector(cssSelector);
             emailContainer.removeChild(child);
         }
     };
