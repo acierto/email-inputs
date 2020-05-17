@@ -39,7 +39,7 @@ The distribution size of the component is 18 Kb.
 
 You can find 2 links to play with the component:
 * [Vanilla demo, using html and embedded script](https://acierto.github.io/email-inputs/playground-vanilla-demo.html), 
-* [More advanced demo with 4 cases]([here](https://acierto.github.io/email-inputs/)), built
+* [More advanced demo with 4 cases](https://acierto.github.io/email-inputs/), built
 with help of Typescript and Less. There some pre-generated data for testing some of corner cases.
 You will find there 4 different cases to play with:
 
