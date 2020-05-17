@@ -296,7 +296,6 @@ on the same network with the grid. If Webpack is running, you have to restart it
 
 Once it's done you have several options to choose how to run:
 * `gulp ie-grid`
-* `gulp edge-grid`
 * `gulp win-chrome-grid` 
 * `gulp linux-chrome-grid` 
 * `gulp linux-firefox-grid` 
