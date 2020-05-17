@@ -44,7 +44,7 @@
     "jest-css-modules": "2.1.0",
     "less-loader": "6.1.0",
     "lesshint": "6.3.7",
-    "lesshint-webpack-plugin": "^0.0.5",
+    "lesshint-webpack-plugin": "0.0.5",
     "postcss-loader": "3.0.0",
     "protractor-base-dsl": "0.1.35",
     "protractor-jasmine2-html-reporter": "0.0.7",

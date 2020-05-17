@@ -6331,7 +6331,7 @@ lesshint-reporter-stylish@1.0.0:
   dependencies:
     chalk "^1.1.3"
 
-lesshint-webpack-plugin@^0.0.5:
+lesshint-webpack-plugin@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/lesshint-webpack-plugin/-/lesshint-webpack-plugin-0.0.5.tgz#154993daa5fd942f90ef8015621f7ea4338350aa"
   integrity sha512-wqKb5DWJmA9QI13fHH0KXIJ18R/wpceaXLlEqAbOn4PBdzSG7j0xLgu44ififIGsniHBE8DRtcyDfc50WqJLMw==
