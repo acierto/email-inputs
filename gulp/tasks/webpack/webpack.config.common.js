@@ -25,12 +25,6 @@ export default {
             exclude: /node_modules/,
             loader: 'ts-loader'
         },
-        {
-            exclude: /node_modules/,
-            loader: 'eslint-loader',
-            options: {cache: true},
-            test: /\.js$/
-        },
         {test: /\.css$/, use: ['style-loader', 'css-loader', postCssLoader]},
         {
             test: /\.less$/,
